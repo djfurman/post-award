@@ -61,31 +61,31 @@
             $ref: '#/definitions/Agreement'
         responses:
           201:
-            description: 'The provided agreement was successfully added to the post award system.'
+            description: The provided agreement was successfully added to the post award system.
             schema:
               $ref: '#/definitions/AgreementResponse'
           400:
-            description: 'The provided agreement failed basic preconditions, please refer to API documentation for required data.'
+            description: The provided agreement failed basic preconditions, please refer to API documentation for required data.
             schema:
               $ref: '#/definitions/ErrorResponse'
           401:
-            description: 'Agreements must be provided with appropriate authorization and will not be processed from unauthorized entities.'
+            description: Agreements must be provided with appropriate authorization and will not be processed from unauthorized entities.
             schema:
               $ref: '#/definitions/ErrorResponse'
           409:
-            description: 'The provided agreement has already been processed by post award and is on file, this appears to be a duplicate. The client should use the PATCH endpoint to update an existing agreement'
+            description: The provided agreement has already been processed by post award and is on file, this appears to be a duplicate. The client should use the PATCH endpoint to update an existing agreement.
             schema:
               $ref: '#/definitions/ErrorResponse'
           415:
-            description: 'Agreements must be provided in appropriate application/json structure for real time processing. Other microservices may handle conversion of resources for conversion to this format and should be used instead.'
+            description: Agreements must be provided in appropriate application/json structure for real time processing. Other microservices may handle conversion of resources for conversion to this format and should be used instead.
             schema:
               $ref: '#/definitions/ErrorResponse'
           500:
-            description: 'Something went wrong server side, this is likely not a problem with the input and the server has not yet implemented appropriate handling for the condition created, administrators have been notified.'
+            description: Something went wrong server side, this is likely not a problem with the input and the server has not yet implemented appropriate handling for the condition created, administrators have been notified.
             schema:
               $ref: '#/definitions/ErrorResponse'
           503:
-            description: 'The server is temporarily unavailable retry in provided header duration, provided in seconds.'
+            description: The server is temporarily unavailable retry in provided header duration, provided in seconds.
             schema:
               $ref: '#/definitions/ErrorResponse'
     /agreement/:id:
@@ -112,6 +112,77 @@
             description: The provided agreement was not located by the system. It may never have been posted in order to place it under management.
             schema:
               $ref: '#/definitions/ErrorResponse'
+      patch:
+        summary: Update an agreement
+        description: Updates an agreement to match the provided data
+        operationId: 'AgreementController::update'
+        produces:
+        - application/json
+        schemes:
+        - http
+        parameters:
+        - name: id
+          in: path
+          description: UUID v4 for the agreement to be used, may be better as the agreement slug
+          required: true
+          type: string
+        responses:
+          200:
+            description: The provided agreement was successfully added to the post award system.
+            schema:
+              $ref: '#/definitions/AgreementResponse'
+          400:
+            description: The provided agreement failed basic preconditions, please refer to API documentation for required data.
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+          401:
+            description: Agreements must be provided with appropriate authorization and will not be processed from unauthorized entities.
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+          409:
+            description: The provided agreement has already been processed by post award and is on file, this appears to be a duplicate. The client should use the PATCH endpoint to update an existing agreement
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+          415:
+            description: Agreements must be provided in appropriate application/json structure for real time processing. Other microservices may handle conversion of resources for conversion to this format and should be used instead.
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+          500:
+            description: Something went wrong server side, this is likely not a problem with the input and the server has not yet implemented appropriate handling for the condition created, administrators have been notified.
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+          503:
+            description: The server is temporarily unavailable retry in provided header duration, provided in seconds.
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+      delete:
+        summary: Remove an agreement
+        description: Remove an agreement and all related information from the system
+        operationId: 'AgreementController::destroy'
+        produces:
+        - application/json
+        schemes:
+        - http
+        parameters:
+        - name: id
+          in: path
+          description: UUID v4 for the agreement to be used, may be better as the agreement slug
+          required: true
+          type: string
+        responses:
+          204:
+            description: The requested agreement and all related records were successfully deleted
+          401:
+            description: The request failed to include the appropriate authorization information
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+          403:
+            description: The request included the authorization information, however, the user specified is disallowed from removing the agreement.
+          404:
+            description: The provided agreement was not located by the system. It may never have been posted in order to place it under management.
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+
   definitions:
     Agreement:
       type: object
@@ -121,14 +192,17 @@
           properties:
             order_identifier:
               type: string
+              example: 'FAKEBUY18A0001'
             release_identifier:
               type: string
+              example: 'FAKEORD18F0001'
             effective_date:
               type: string
               format: 'date-time'
             total_value:
               type: number
               format: double
+              example: 1257291938.21
         party_list:
           type: array
           items:
@@ -170,6 +244,7 @@
         office_code:
           type: string
           description: Shorthand code identifying the office itself in one of the several systems of record for authoritative locations
+          example: 'CAGE'
         office_type:
           type: string
           description: Identifier for which official code system to which the pointer belongs
@@ -178,15 +253,18 @@
             - DODAAC
             - DUNS
             - 'DUNS+4'
+          example: 'CGE01'
     reference:
       type: object
       properties:
         reference_type:
           type: string
           description: Pointer to which reference source the data pretains
+          example: 'Statement of Work'
         reference_value:
           type: string
           description: Detail data
+          example: 'B0000118W00010001'
     term:
       type: object
       properties:
@@ -214,9 +292,11 @@
           purpose:
             type: string
             description: To what this document pretains
+            example: 'Post-Award'
           link:
             type: string
             description: URI pointer to the documentation
+            example: 'https://github.com/facet-acq/post-award/wiki'
     AgreementResponse:
       description: The agreement response object
       allOf:
