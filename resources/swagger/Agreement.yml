@@ -14,14 +14,9 @@
   basePath: '/api/v1'
   tags:
   - name: Agreement
-    description: Generic term for a business object deemed by ASC as a 'purchase order' or commonly referred to as a contract. Since contract has a specific domain meaning, a more generic term emcompassing contracts, blanket agreements and leases was chosen.
+    description: Generic term for a contract
     externalDocs:
       description: 'Learn more!'
-      url: 'https://github.com/facet-acq/post-award/wiki/Getting-Started'
-  - name: Contract
-    description: General term for an agreement between two parties where one recieves goods or services and the other provides these.
-    externalDocs:
-      description: 'Add here'
       url: 'https://github.com/facet-acq/post-award/wiki/Getting-Started'
   schemes:
   - 'http'
@@ -253,6 +248,34 @@
             - DUNS
             - 'DUNS+4'
           example: CGE01
+        role:
+          type: string
+          description: Identifier for the role which the identified office plays in the agreement
+          enum:
+            - Buyer
+            - Seller
+            - Subcontractor
+            - Postal Mailing Address
+            - Contracting Officer Representative
+            - Government Furnished Property FOB Point
+            - Inspection and Acceptance Location
+            - Contract Administrator
+            - Facility
+            - Free on Board Point
+            - Acceptance Location
+            - Inspection Location
+            - Payer
+            - Remittance Location
+            - Ship To Location
+            - Service Performance Location
+            - Mark-for Party
+          example: Buyer
+        address:
+          $ref: '#/definitions/address'
+        coordinates:
+          $ref: '#/definitions/coordinates'
+      required:
+      - role
     reference:
       type: object
       properties:
@@ -282,6 +305,68 @@
           type: string
           description: Line item identifier
           example: '0001AA'
+    address:
+      type: object
+      properties:
+        addressee:
+          type: string
+          description: name of the business or individual to whom the address pretains
+          example: John Doe, Inc
+        care_of:
+          type: string
+          description: Second line address or c/o name
+          default: null
+          example: Alice Bobson
+        street_number_and_name:
+          type: string
+          description: Street number and name
+          example: 123 Main Street NW
+        city:
+          type: string
+          description: City in which the address resides
+          example: Springfield
+        state:
+          type: string
+          description: Two character state identifier
+          example: MA
+        postal_code:
+          type: integer
+          minimum: 11111
+          maximum: 999999999
+      required:
+      - addressee
+      - street_number_and_name
+      - city
+      - state
+      - postal_code
+    coordinates:
+        type: object
+        properties:
+          latitude_value:
+            type: number
+            format: double
+            example: 42.1015
+          latitude_direction:
+            type: string
+            enum:
+              - N
+              - S
+            example: N
+          longitude_value:
+            type: number
+            format: double
+            example: 72.5898
+          longitude_direction:
+            type: string
+            enum:
+              - E
+              - W
+            example: W
+        required:
+        - latitude_value
+        - latitude_direction
+        - longitude_value
+        - longitude_direction
     docs:
       description: Relevant documentation that may be of use to the requestor
       type: array
