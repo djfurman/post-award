@@ -3,23 +3,23 @@
   info:
     description: This is a sample document for the agreement resource
     version: '0.1.0'
-    title: 'Agreement'
+    title: Agreement
     termsOfService: 'http://example.com'
     contact:
       email: djfurman@gmail.com
     license:
-      name: 'BSD 3-Clause License'
+      name: BSD 3-Clause License
       url: 'https://raw.githubusercontent.com/facet-acq/post-award/develop/LICENSE.md'
   host: 'facet.danielfurman.net'
   basePath: '/api/v1'
   tags:
-  - name: 'agreement'
-    description: 'Create and modify agreements'
+  - name: Agreement
+    description: Generic term for a business object deemed by ASC as a 'purchase order' or commonly referred to as a contract. Since contract has a specific domain meaning, a more generic term emcompassing contracts, blanket agreements and leases was chosen.
     externalDocs:
       description: 'Learn more!'
       url: 'https://github.com/facet-acq/post-award/wiki/Getting-Started'
-  - name: 'contract'
-    description: 'add this'
+  - name: Contract
+    description: General term for an agreement between two parties where one recieves goods or services and the other provides these.
     externalDocs:
       description: 'Add here'
       url: 'https://github.com/facet-acq/post-award/wiki/Getting-Started'
@@ -28,27 +28,27 @@
   paths:
     /agreement:
       get:
-        summary: 'Collection of agreements'
-        description: 'Returns a collection of all agreements to which the user has access with pagination'
+        summary: Collection of agreements
+        description: Returns a collection of all agreements to which the user has access with pagination
         operationId: 'AgreementController::index'
         produces:
           - application/json
         responses:
           200:
-            description: 'Paginated collection of agreements'
+            description: Paginated collection of agreements
             schema:
               type: array
               items:
                 $ref: '#/definitions/Agreement'
           default:
-            description: error payload
+            description: Error payload
             schema:
               type: array
               items:
                 $ref: '#/definitions/ErrorResponse'
       post:
-        summary: 'Add a new agreement for the system to manage'
-        description: 'Agreements exist in many forms including bailment, blanket purchase agreements, contracts, basic agreements, basic ordering agreements, grants, indefiniate delivery - indefinate quantity, purchase orders, indefinate delivery - definate quantity, requirements, letter contacts, taks orders, leases and release/delivery orders; however, each of these agreements share basic elements and management aspects after they have been awarded. This endpoint provides a unified entry point to place an agreement of any type under management for the post-award system.'
+        summary: Add a new agreement for the system to manage
+        description: Agreements exist in many forms including bailment, blanket purchase agreements, contracts, basic agreements, basic ordering agreements, grants, indefiniate delivery - indefinate quantity, purchase orders, indefinate delivery - definate quantity, requirements, letter contacts, taks orders, leases and release/delivery orders; however, each of these agreements share basic elements and management aspects after they have been awarded. This endpoint provides a unified entry point to place an agreement of any type under management for the post-award system.
         operationId: 'AgreementController::create'
         produces:
         - application/json
@@ -182,7 +182,6 @@
             description: The provided agreement was not located by the system. It may never have been posted in order to place it under management.
             schema:
               $ref: '#/definitions/ErrorResponse'
-
   definitions:
     Agreement:
       type: object
@@ -192,10 +191,10 @@
           properties:
             order_identifier:
               type: string
-              example: 'FAKEBUY18A0001'
+              example: FAKEBUY18A0001
             release_identifier:
               type: string
-              example: 'FAKEORD18F0001'
+              example: FAKEORD18F0001
             effective_date:
               type: string
               format: 'date-time'
@@ -244,7 +243,7 @@
         office_code:
           type: string
           description: Shorthand code identifying the office itself in one of the several systems of record for authoritative locations
-          example: 'CAGE'
+          example: CAGE
         office_type:
           type: string
           description: Identifier for which official code system to which the pointer belongs
@@ -253,7 +252,7 @@
             - DODAAC
             - DUNS
             - 'DUNS+4'
-          example: 'CGE01'
+          example: CGE01
     reference:
       type: object
       properties:
@@ -264,7 +263,7 @@
         reference_value:
           type: string
           description: Detail data
-          example: 'B0000118W00010001'
+          example: B0000118W00010001
     term:
       type: object
       properties:
@@ -313,4 +312,3 @@
             items:
               type: string
               description: Message about the error
-
