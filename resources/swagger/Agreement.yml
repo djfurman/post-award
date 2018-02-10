@@ -34,7 +34,7 @@
         produces:
           - application/json
         responses:
-          '200':
+          200:
             description: 'Paginated collection of agreements'
             schema:
               type: array
@@ -62,18 +62,56 @@
         responses:
           201:
             description: 'The provided agreement was successfully added to the post award system.'
+            schema:
+              $ref: '#/definitions/AgreementResponse'
           400:
             description: 'The provided agreement failed basic preconditions, please refer to API documentation for required data.'
+            schema:
+              $ref: '#/definitions/ErrorResponse'
           401:
             description: 'Agreements must be provided with appropriate authorization and will not be processed from unauthorized entities.'
+            schema:
+              $ref: '#/definitions/ErrorResponse'
           409:
             description: 'The provided agreement has already been processed by post award and is on file, this appears to be a duplicate. The client should use the PATCH endpoint to update an existing agreement'
+            schema:
+              $ref: '#/definitions/ErrorResponse'
           415:
             description: 'Agreements must be provided in appropriate application/json structure for real time processing. Other microservices may handle conversion of resources for conversion to this format and should be used instead.'
+            schema:
+              $ref: '#/definitions/ErrorResponse'
           500:
             description: 'Something went wrong server side, this is likely not a problem with the input and the server has not yet implemented appropriate handling for the condition created, administrators have been notified.'
+            schema:
+              $ref: '#/definitions/ErrorResponse'
           503:
             description: 'The server is temporarily unavailable retry in provided header duration, provided in seconds.'
+            schema:
+              $ref: '#/definitions/ErrorResponse'
+    /agreement/:id:
+      get:
+        summary: Retrieves a specific agreement
+        description: Retrieves the full agreement object for a single agreement record
+        operationId: 'AgreementController::find'
+        produces:
+        - application/json
+        schemes:
+        - http
+        parameters:
+        - name: id
+          in: path
+          description: UUID v4 for the agreement to be used, may be better as the agreement slug
+          required: true
+          type: string
+        responses:
+          200:
+            description: The provided agreement was successfully located by the system as under management and the response body contains the full agreement object.
+            schema:
+              $ref: '#/definitions/AgreementResponse'
+          404:
+            description: The provided agreement was not located by the system. It may never have been posted in order to place it under management.
+            schema:
+              $ref: '#/definitions/ErrorResponse'
   definitions:
     Agreement:
       type: object
@@ -155,9 +193,11 @@
         term_source:
           type: string
           description: From what authority does the term derive
+          example: 'DFARS'
         term_identifier:
           type: string
           description: Pointer to the term itself
+          example: '52.222-50'
     item:
       type: object
       properties:
@@ -165,17 +205,6 @@
           type: string
           description: Line item identifier
           example: '0001AA'
-    ErrorResponse:
-      description: The error response object
-      allOf:
-      - $ref: '#/definitions/docs'
-      - type: object
-        properties:
-          errors:
-            type: array
-            items:
-              type: string
-              description: Message about the error
     docs:
       description: Relevant documentation that may be of use to the requestor
       type: array
@@ -188,3 +217,20 @@
           link:
             type: string
             description: URI pointer to the documentation
+    AgreementResponse:
+      description: The agreement response object
+      allOf:
+        - $ref: '#/definitions/Agreement'
+        - $ref: '#/definitions/docs'
+    ErrorResponse:
+      description: The error response object
+      allOf:
+      - $ref: '#/definitions/docs'
+      - type: object
+        properties:
+          errors:
+            type: array
+            items:
+              type: string
+              description: Message about the error
+
