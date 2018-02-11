@@ -220,7 +220,12 @@
     fund:
       type: object
       properties:
-        funding_type:
+        amount:
+          type: number
+          format: double
+          description: Total obligation amount of the referenced funding line
+          example: 129748.31
+        accounting_type:
           type: string
           description: Supported funding types
           default: SloaAccountingLine
@@ -230,8 +235,129 @@
             - ArmyLegacyAccountingLine
             - MarineCorpsAccountingLine
             - NavyLegacyAccountingLine
+        accounting_information:
+          $ref: '#/definitions/accounting_information'
+        accounting_classification_reference_number:
+          type: string
+          example: AA
       required:
+        - amount
         - funding_type
+    accounting_information:
+      type: object
+      properties:
+        standard_line_of_accounting:
+          type: object
+          description: US-SECDEF Comptroller and Chief Management Officer format detailed at http://dcmo.defense.gov/Portals/47/Documents/SFIS/SLoA_Accounting_Class_Memo.pdf; Descriptions are taken directly from this memorandum and are not the responsibility of this interface. They have been reproduced here for documentation of the interface and convenience only.
+          properties:
+            blob_with_hats:
+              type: string
+              description: Carot delimited string starting with a delimiter (think position 0 as always null) representing a standard line of accounting
+              example: '^^^097^2018^2020^^0400^002^DISB^252^R^111^^^^^2504^1700^021001^^^^^^^'
+            sub_class:
+              type: string
+              description: Grouping of a transaction type; a.k.a. Sub-level Prefix
+              example: 46
+            department_transfer:
+              type: string
+              description: Transfer of obligation authority; a.k.a. Allocation Transfer Agency Identifier
+              example: 11
+            department_regular:
+              type: string
+              description: Congressional Appropriation Owner
+              example: 097
+            bpoa:
+              type: string
+              format: date-time
+              description: Beginning Period of Availability Fiscal Year Date
+            epoa:
+              type: string
+              format: date-time
+              description: Ending Period of Availability Fiscal Year Date
+            availability_type:
+              type: string
+              description: A24 in SFIS, e.g., X for no-year money
+              example: X
+            main_account:
+              type: string
+              description: Appropriation Symbol or Basic Symbol
+              example: 0400
+            sub_account:
+              type: string
+              description: Indicates the relationship to the Main Account
+              example: 002
+            business_event_type_code:
+              type: string
+              description: Replaces Transaction Codes
+              example: DISB
+            object_class:
+              type: string
+              description: Will initially be implemented at the three-digit level as in SFIS with room to expand to six, e.g., 252
+              example: 252
+            reimbursable_flag:
+              type: string
+              description: Direct, Reimbursable Code
+              example: R
+            budget_line_item:
+              type: string
+              description: Further sub-divides the Treasury Account Fund Symbol below sub-activity; a.k.a. Budget Sub-Activity BSA in MilPers
+              example: 111
+            security_cooperation:
+              type: string
+              description: The country, customer, or U.S. program receiving the product/service
+              example: CAN
+            security_cooperation_implementing_agency_code:
+              type: string
+              description: Identifies the U.S. MILDEP or agency which is executing the FMS sale on behalf of the U.S. Government; e.g., B-Army, D-Air Force, P-Navy
+              example: B
+            security_cooperation_case_designator:
+              type: string
+              description: Identifies the FMS or Security Cooperation contractual sales agreement between countries
+              example: UAK
+            security_cooperation_case_line_item_identifier:
+              type: string
+              description: Security Cooperation (SC) Customer; Identifies a detailed line-item requirement
+              example: 001
+            sub_allocation:
+              type: string
+              description: Use of this data element is exclusive to sub-allocation purposes, useful for Financial Reporting
+              example: 2504
+            agency_disbursing_identifier_code:
+              type: string
+              description: Synonymous with Treasury DSSN definitions for each disbursing office
+              example: 1700
+            agency_accounting_identifier:
+              type: string
+              description: Fiscal Station Number; Comptroller defined; Identifies the accounting system responsible for the accounting event
+              example: 021001
+            funding_center_identifier:
+              type: string
+              description: Cost Object/Cost Accounting (CA) section in SFIS; Army = Funds Center, ASN; Air Force = OAC, OBAN; Navy = BCN
+              example: FQPA000123
+            cost_center_identifier:
+              type: string
+              description: CA section in SFIS; e.g., Army = Cost Center, ASN; Air Force = Resource Center/Cost Center (RC/CC); Navy = BCN
+              example: FQPA000123
+            project_identifier:
+              type: string
+              description: CA section in SFIS; e.g., Army = WBS; Air Force = Project; Navy = WBS (Cost Code)
+              example: ABCD000123
+            activity_identifier:
+              type: string
+              description: CA section in SFIS; e.g., Army = Activity/Network; Air Force = Activity or Special Project; Navy = Activity
+              example: ZYXW000001
+            cost_element_code:
+              type: string
+              description: CA section in SFIS; e.g., Army = Commitment Item; Air Force = Element of Expense Investment Code (EEIC); Navy = Cost Element
+              example: 123456789
+            work_order_number:
+              type: string
+              description: CCA section in SFIS; e.g., Army = Internal Order; Air Force = Job Order; Navy = Job Order (Cost Code)
+              example: 123456789
+            functional_area:
+              type: string
+              description: CA section in SFIS; e.g., Army = Functional Area; Air Force = Budget/Project
+              example: 123456789
     party:
       type: object
       properties:
@@ -333,6 +459,12 @@
           type: integer
           minimum: 11111
           maximum: 999999999
+        country_code:
+          type: string
+          description: ISO-3166 Three Position Country Code
+          minLength: 3
+          maxLength: 3
+          example: USA
       required:
       - addressee
       - street_number_and_name
