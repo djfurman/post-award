@@ -36,21 +36,186 @@
 
     <!-- Request -->
     <section class="section">
-      <div class="content">The reqeust starts here</div>
+      <div class="columns">
+        <div class="column">
+          <h3>Type of Request</h3>
+        </div>
+
+        <div class="column">
+          <div class="field is-grouped">
+            <div class="control">
+              <input type="checkbox" v-model="request.type.initial"> Initial
+              <input type="checkbox" v-model="request.type.modification"> Modification
+              <input type="checkbox" v-model="request.type.deactivation"> Deactivate
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <label class="label">User Id</label>
+            <div class="control">
+              <input type="text" class="input" placeholder="User ID here">
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <label class="label">Date (YYYYMMDD)</label>
+            <input type="text" class="input" v-model="request.date" disabled="true">
+          </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column is-two-thirds">
+          <div class="field">
+            <label class="label">System Name (Platform or Applications)</label>
+            <input type="text" class="input" v-model="request.system.name" disabled="true">
+          </div>
+        </div>
+        <div class="column is-one-third">
+          <div class="field">
+            <label class="label">Location (Physical Location of System)</label>
+            <input type="text" class="input" v-model="request.system.location" disabled="true">
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- Identification -->
+    <section>
+      <div class="columns">
+        <div class="column">
+          <h2 class="subtitle is-centered"><strong>Part 1</strong> (To be completed by Requestor)</h2>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <label class="label">Name (Last, First, Middle Initial)</label>
+          <input type="text" class="input" v-model="identification.name">
+        </div>
+        <div class="column">
+          <label class="label">Organization</label>
+          <input type="text" class="input" v-model="identification.organization">
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <label class="label">Office Symbol/Department</label>
+          <input type="text" class="input" v-model="identification.department">
+        </div>
+        <div class="column">
+          <label class="label">Phone</label>
+          <input type="text" class="input" v-model="identification.phone">
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <label class="label">Official E-Mail Address</label>
+          <input type="email" class="input" v-model="identification.email">
+        </div>
+        <div class="column">
+          <div class="columns">
+            <div class="column">
+              <label class="label">Job Title</label>
+              <input type="text" class="input" v-model="identification.job.title">
+            </div>
+            <div class="column">
+              <label class="label">Grade/Rank</label>
+              <input type="text" class="input" v-model="identification.job.rank">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column">
+          <label class="label">Official Mailing Address</label>
+          <input type="text" class="input" v-model="identification.mailing_address.street">
+          <input type="text" class="input" v-model="identification.mailing_address.line_two">
+          <div class="columns">
+            <div class="column">
+              <input type="text" class="input" v-model="identification.mailing_address.city">
+            </div>
+            <div class="column">
+              <input type="text" class="input" v-model="identification.mailing_address.state">
+            </div>
+            <div class="column">
+              <input type="text" class="input" v-model="identification.mailing_address.postal">
+            </div>
+          </div>
+          <input type="text" class="input" v-model="identification.mailing_address.country">
+          <input type="text" class="input" v-model="identification.mailing_address.planet">
+        </div>
+
+        <div class="column">
+          <label class="label">Citizenship</label>
+          <div class="columns">
+            <div class="column">
+              <input type="checkbox" v-model="identification.citizenship.us"> US
+              <input type="checkbox" v-model="identification.citizenship.fn"> FN
+              <input type="checkbox" v-model="identification.citizenship.other"> Other
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <label class="label">Designation of Person</label>
+          <div class="columns">
+            <div class="column">
+              <input type="checkbox" v-model="identification.designation.military"> Military
+              <input type="checkbox" v-model="identification.designation.civilian"> Civilian
+              <input type="checkbox" v-model="identification.designation.contractor"> Contractor
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="column">
+        <label class="label">IA Training and Awareness Certification Requirements (Complete as required for user or functional level access.)</label>
+        <div class="columns">
+          <div class="column">
+            <input type="checkbox" v-model="training.information_assurance.complete"> I have completed Annual Information Awareness Training.
+          </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Date (YYYYMMDD)</label>
+              <input type="text" class="input" v-model="training.information_assurance.date_completed">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="columns">
+      <div class="column">
+        <button class="button is-primary" @click="sendToSupervisor">Submit for Supervisor Review</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import moment from 'moment';
+import moment from "moment";
 export default {
   data() {
     return {
       request: {
-        type: 'Initial',
-        date: moment.now(),
-        system_name: 'FACET-Acq Post Award',
-        location: 'Anywhere you need it'
+        type: {
+          initial: false,
+          modification: false,
+          deactivation: false
+        },
+        date: moment().format('YYYYMMDD'),
+        system: {
+          name: 'FACET-Acq Post Award',
+          location: 'Anywhere you need it'
+        }
       },
       identification: {
         name: '',
@@ -68,7 +233,8 @@ export default {
           city: '',
           state: '',
           postal: '',
-          country: 'USA'
+          country: 'USA',
+          planet: 'Earth'
         },
         citizenship: {
           us: false,
@@ -84,7 +250,7 @@ export default {
       training: {
         information_assurance: {
           complete: false,
-          date_complted: ''
+          date_completed: ''
         }
       },
       justification: {
@@ -142,7 +308,14 @@ export default {
         owner: false,
         ioa: false
       }
+    };
+  },
+
+  methods: {
+    sendToSupervisor() {
+      this.attestation.applicant = true;
+      alert('This will eventually post to the server and add to supervisor queue');
     }
   }
-}
+};
 </script>

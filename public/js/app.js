@@ -4610,16 +4610,179 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       request: {
-        type: 'Initial',
-        date: __WEBPACK_IMPORTED_MODULE_0_moment___default.a.now(),
-        system_name: 'FACET-Acq Post Award',
-        location: 'Anywhere you need it'
+        type: {
+          initial: false,
+          modification: false,
+          deactivation: false
+        },
+        date: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('YYYYMMDD'),
+        system: {
+          name: 'FACET-Acq Post Award',
+          location: 'Anywhere you need it'
+        }
       },
       identification: {
         name: '',
@@ -4637,7 +4800,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           city: '',
           state: '',
           postal: '',
-          country: 'USA'
+          country: 'USA',
+          planet: 'Earth'
         },
         citizenship: {
           us: false,
@@ -4653,7 +4817,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       training: {
         information_assurance: {
           complete: false,
-          date_complted: ''
+          date_completed: ''
         }
       },
       justification: {
@@ -4712,6 +4876,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ioa: false
       }
     };
+  },
+
+
+  methods: {
+    sendToSupervisor: function sendToSupervisor() {
+      this.attestation.applicant = true;
+      alert('This will eventually post to the server and add to supervisor queue');
+    }
   }
 });
 
@@ -4724,71 +4896,1178 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "container", attrs: { id: "dd2875" } }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _c("section", { staticClass: "section" }, [
+      _c("div", { staticClass: "columns" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("div", { staticClass: "field is-grouped" }, [
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.request.type.initial,
+                    expression: "request.type.initial"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.request.type.initial)
+                    ? _vm._i(_vm.request.type.initial, null) > -1
+                    : _vm.request.type.initial
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.request.type.initial,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.request.type,
+                            "initial",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.request.type,
+                            "initial",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.request.type, "initial", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" Initial\n            "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.request.type.modification,
+                    expression: "request.type.modification"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.request.type.modification)
+                    ? _vm._i(_vm.request.type.modification, null) > -1
+                    : _vm.request.type.modification
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.request.type.modification,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.request.type,
+                            "modification",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.request.type,
+                            "modification",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.request.type, "modification", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" Modification\n            "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.request.type.deactivation,
+                    expression: "request.type.deactivation"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.request.type.deactivation)
+                    ? _vm._i(_vm.request.type.deactivation, null) > -1
+                    : _vm.request.type.deactivation
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.request.type.deactivation,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.request.type,
+                            "deactivation",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.request.type,
+                            "deactivation",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.request.type, "deactivation", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" Deactivate\n          ")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(3),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label" }, [_vm._v("Date (YYYYMMDD)")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.request.date,
+                  expression: "request.date"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "text", disabled: "true" },
+              domProps: { value: _vm.request.date },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.request, "date", $event.target.value)
+                }
+              }
+            })
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column is-two-thirds" }, [
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label" }, [
+              _vm._v("System Name (Platform or Applications)")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.request.system.name,
+                  expression: "request.system.name"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "text", disabled: "true" },
+              domProps: { value: _vm.request.system.name },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.request.system, "name", $event.target.value)
+                }
+              }
+            })
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column is-one-third" }, [
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label" }, [
+              _vm._v("Location (Physical Location of System)")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.request.system.location,
+                  expression: "request.system.location"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "text", disabled: "true" },
+              domProps: { value: _vm.request.system.location },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.request.system, "location", $event.target.value)
+                }
+              }
+            })
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("section", [
+      _vm._m(4),
+      _vm._v(" "),
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column" }, [
+          _c("label", { staticClass: "label" }, [
+            _vm._v("Name (Last, First, Middle Initial)")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.identification.name,
+                expression: "identification.name"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.identification.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.identification, "name", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("label", { staticClass: "label" }, [_vm._v("Organization")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.identification.organization,
+                expression: "identification.organization"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.identification.organization },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.identification,
+                  "organization",
+                  $event.target.value
+                )
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column" }, [
+          _c("label", { staticClass: "label" }, [
+            _vm._v("Office Symbol/Department")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.identification.department,
+                expression: "identification.department"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.identification.department },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.identification, "department", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("label", { staticClass: "label" }, [_vm._v("Phone")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.identification.phone,
+                expression: "identification.phone"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.identification.phone },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.identification, "phone", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column" }, [
+          _c("label", { staticClass: "label" }, [
+            _vm._v("Official E-Mail Address")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.identification.email,
+                expression: "identification.email"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "email" },
+            domProps: { value: _vm.identification.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.identification, "email", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("div", { staticClass: "columns" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("label", { staticClass: "label" }, [_vm._v("Job Title")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.job.title,
+                    expression: "identification.job.title"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text" },
+                domProps: { value: _vm.identification.job.title },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.identification.job,
+                      "title",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c("label", { staticClass: "label" }, [_vm._v("Grade/Rank")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.job.rank,
+                    expression: "identification.job.rank"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text" },
+                domProps: { value: _vm.identification.job.rank },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.identification.job,
+                      "rank",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column" }, [
+          _c("label", { staticClass: "label" }, [
+            _vm._v("Official Mailing Address")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.identification.mailing_address.street,
+                expression: "identification.mailing_address.street"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.identification.mailing_address.street },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.identification.mailing_address,
+                  "street",
+                  $event.target.value
+                )
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.identification.mailing_address.line_two,
+                expression: "identification.mailing_address.line_two"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.identification.mailing_address.line_two },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.identification.mailing_address,
+                  "line_two",
+                  $event.target.value
+                )
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "columns" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.mailing_address.city,
+                    expression: "identification.mailing_address.city"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text" },
+                domProps: { value: _vm.identification.mailing_address.city },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.identification.mailing_address,
+                      "city",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.mailing_address.state,
+                    expression: "identification.mailing_address.state"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text" },
+                domProps: { value: _vm.identification.mailing_address.state },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.identification.mailing_address,
+                      "state",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "column" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.mailing_address.postal,
+                    expression: "identification.mailing_address.postal"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text" },
+                domProps: { value: _vm.identification.mailing_address.postal },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.identification.mailing_address,
+                      "postal",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.identification.mailing_address.country,
+                expression: "identification.mailing_address.country"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.identification.mailing_address.country },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.identification.mailing_address,
+                  "country",
+                  $event.target.value
+                )
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.identification.mailing_address.planet,
+                expression: "identification.mailing_address.planet"
+              }
+            ],
+            staticClass: "input",
+            attrs: { type: "text" },
+            domProps: { value: _vm.identification.mailing_address.planet },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.identification.mailing_address,
+                  "planet",
+                  $event.target.value
+                )
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("label", { staticClass: "label" }, [_vm._v("Citizenship")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "columns" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.citizenship.us,
+                    expression: "identification.citizenship.us"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.identification.citizenship.us)
+                    ? _vm._i(_vm.identification.citizenship.us, null) > -1
+                    : _vm.identification.citizenship.us
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.identification.citizenship.us,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.identification.citizenship,
+                            "us",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.identification.citizenship,
+                            "us",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.identification.citizenship, "us", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" US\n            "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.citizenship.fn,
+                    expression: "identification.citizenship.fn"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.identification.citizenship.fn)
+                    ? _vm._i(_vm.identification.citizenship.fn, null) > -1
+                    : _vm.identification.citizenship.fn
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.identification.citizenship.fn,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.identification.citizenship,
+                            "fn",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.identification.citizenship,
+                            "fn",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.identification.citizenship, "fn", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" FN\n            "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.citizenship.other,
+                    expression: "identification.citizenship.other"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.identification.citizenship.other)
+                    ? _vm._i(_vm.identification.citizenship.other, null) > -1
+                    : _vm.identification.citizenship.other
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.identification.citizenship.other,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.identification.citizenship,
+                            "other",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.identification.citizenship,
+                            "other",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.identification.citizenship, "other", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" Other\n          ")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("label", { staticClass: "label" }, [
+            _vm._v("Designation of Person")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "columns" }, [
+            _c("div", { staticClass: "column" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.designation.military,
+                    expression: "identification.designation.military"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(
+                    _vm.identification.designation.military
+                  )
+                    ? _vm._i(_vm.identification.designation.military, null) > -1
+                    : _vm.identification.designation.military
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.identification.designation.military,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.identification.designation,
+                            "military",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.identification.designation,
+                            "military",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.identification.designation, "military", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" Military\n            "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.designation.civilian,
+                    expression: "identification.designation.civilian"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(
+                    _vm.identification.designation.civilian
+                  )
+                    ? _vm._i(_vm.identification.designation.civilian, null) > -1
+                    : _vm.identification.designation.civilian
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.identification.designation.civilian,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.identification.designation,
+                            "civilian",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.identification.designation,
+                            "civilian",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(_vm.identification.designation, "civilian", $$c)
+                    }
+                  }
+                }
+              }),
+              _vm._v(" Civilian\n            "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.identification.designation.contractor,
+                    expression: "identification.designation.contractor"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(
+                    _vm.identification.designation.contractor
+                  )
+                    ? _vm._i(_vm.identification.designation.contractor, null) >
+                      -1
+                    : _vm.identification.designation.contractor
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.identification.designation.contractor,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 &&
+                          _vm.$set(
+                            _vm.identification.designation,
+                            "contractor",
+                            $$a.concat([$$v])
+                          )
+                      } else {
+                        $$i > -1 &&
+                          _vm.$set(
+                            _vm.identification.designation,
+                            "contractor",
+                            $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                          )
+                      }
+                    } else {
+                      _vm.$set(
+                        _vm.identification.designation,
+                        "contractor",
+                        $$c
+                      )
+                    }
+                  }
+                }
+              }),
+              _vm._v(" Contractor\n          ")
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "column" }, [
+        _c("label", { staticClass: "label" }, [
+          _vm._v(
+            "IA Training and Awareness Certification Requirements (Complete as required for user or functional level access.)"
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "columns" }, [
+          _c("div", { staticClass: "column" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.training.information_assurance.complete,
+                  expression: "training.information_assurance.complete"
+                }
+              ],
+              attrs: { type: "checkbox" },
+              domProps: {
+                checked: Array.isArray(
+                  _vm.training.information_assurance.complete
+                )
+                  ? _vm._i(_vm.training.information_assurance.complete, null) >
+                    -1
+                  : _vm.training.information_assurance.complete
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.training.information_assurance.complete,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(
+                          _vm.training.information_assurance,
+                          "complete",
+                          $$a.concat([$$v])
+                        )
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.training.information_assurance,
+                          "complete",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(
+                      _vm.training.information_assurance,
+                      "complete",
+                      $$c
+                    )
+                  }
+                }
+              }
+            }),
+            _vm._v(
+              " I have completed Annual Information Awareness Training.\n        "
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "column" }, [
+            _c("div", { staticClass: "field" }, [
+              _c("label", { staticClass: "label" }, [
+                _vm._v("Date (YYYYMMDD)")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.training.information_assurance.date_completed,
+                    expression: "training.information_assurance.date_completed"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "text" },
+                domProps: {
+                  value: _vm.training.information_assurance.date_completed
+                },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.training.information_assurance,
+                      "date_completed",
+                      $event.target.value
+                    )
+                  }
+                }
+              })
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column" }, [
+        _c(
+          "button",
+          {
+            staticClass: "button is-primary",
+            on: { click: _vm.sendToSupervisor }
+          },
+          [_vm._v("Submit for Supervisor Review")]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container", attrs: { id: "dd2875" } }, [
-      _c("section", { staticClass: "section" }, [
-        _c("h1", { staticClass: "title is-centered" }, [
-          _vm._v("SYSTEM AUTHORIZATION ACCESS REQUEST (SAAR)")
+    return _c("section", { staticClass: "section" }, [
+      _c("h1", { staticClass: "title is-centered" }, [
+        _vm._v("SYSTEM AUTHORIZATION ACCESS REQUEST (SAAR)")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("section", { staticClass: "section" }, [
+      _c("h2", { staticClass: "subtitle is-centered" }, [
+        _vm._v("Privacy Act Statement")
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column is-one-quarter" }, [
+          _c("h3", [_vm._v("Authority")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("div", { staticClass: "content" }, [
+            _vm._v(
+              "Executive Order 10450, 9397; and Public Law 99-474, the Computer Fraud and Abuse Act."
+            )
+          ])
         ])
       ]),
       _vm._v(" "),
-      _c("section", { staticClass: "section" }, [
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column is-one-quarter" }, [
+          _c("h2", [_vm._v("Principle Purpose")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("div", { staticClass: "content" }, [
+            _vm._v(
+              "To record names, signatures and other identifiers for the purpose of validating the trustworthiness of individuals requesting access to Daprtment of Defense (DoD) systems and information. Note: Records may be maintained in both electronic and/or paper form."
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "columns" }, [
+        _c("div", { staticClass: "column is-one-quarter" }, [
+          _c("h3", [_vm._v("Disclosure")])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "column" }, [
+          _c("div", { staticClass: "content" }, [
+            _vm._v(
+              "Disclosure of this infromation is voluntary; however, failure to provide the requested information may impede, delay or prevent further processing of this request."
+            )
+          ])
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column" }, [
+      _c("h3", [_vm._v("Type of Request")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column" }, [
+      _c("div", { staticClass: "field" }, [
+        _c("label", { staticClass: "label" }, [_vm._v("User Id")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "control" }, [
+          _c("input", {
+            staticClass: "input",
+            attrs: { type: "text", placeholder: "User ID here" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column" }, [
         _c("h2", { staticClass: "subtitle is-centered" }, [
-          _vm._v("Privacy Act Statement")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "columns" }, [
-          _c("div", { staticClass: "column is-one-quarter" }, [
-            _c("h3", [_vm._v("Authority")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column" }, [
-            _c("div", { staticClass: "content" }, [
-              _vm._v(
-                "Executive Order 10450, 9397; and Public Law 99-474, the Computer Fraud and Abuse Act."
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "columns" }, [
-          _c("div", { staticClass: "column is-one-quarter" }, [
-            _c("h2", [_vm._v("Principle Purpose")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column" }, [
-            _c("div", { staticClass: "content" }, [
-              _vm._v(
-                "To record names, signatures and other identifiers for the purpose of validating the trustworthiness of individuals requesting access to Daprtment of Defense (DoD) systems and information. Note: Records may be maintained in both electronic and/or paper form."
-              )
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "columns" }, [
-          _c("div", { staticClass: "column is-one-quarter" }, [
-            _c("h3", [_vm._v("Disclosure")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "column" }, [
-            _c("div", { staticClass: "content" }, [
-              _vm._v(
-                "Disclosure of this infromation is voluntary; however, failure to provide the requested information may impede, delay or prevent further processing of this request."
-              )
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("section", { staticClass: "section" }, [
-        _c("div", { staticClass: "content" }, [
-          _vm._v("The reqeust starts here")
+          _c("strong", [_vm._v("Part 1")]),
+          _vm._v(" (To be completed by Requestor)")
         ])
       ])
     ])
@@ -4941,6 +6220,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+//
+//
 //
 //
 //
