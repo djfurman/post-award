@@ -4731,20 +4731,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { attrs: { id: "dd2875" } }, [
+    return _c("div", { staticClass: "container", attrs: { id: "dd2875" } }, [
       _c("section", { staticClass: "section" }, [
-        _c("div", { staticClass: "container is-centered" }, [
-          _c("h1", { staticClass: "title" }, [
-            _vm._v("SYSTEM AUTHORIZATION ACCESS REQUEST (SAAR)")
-          ])
+        _c("h1", { staticClass: "title is-centered" }, [
+          _vm._v("SYSTEM AUTHORIZATION ACCESS REQUEST (SAAR)")
         ])
       ]),
       _vm._v(" "),
       _c("section", { staticClass: "section" }, [
-        _c("h2", [_vm._v("Privacy Act Statement")]),
+        _c("h2", { staticClass: "subtitle is-centered" }, [
+          _vm._v("Privacy Act Statement")
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "columns" }, [
-          _c("div", { staticClass: "column" }, [
+          _c("div", { staticClass: "column is-one-quarter" }, [
             _c("h3", [_vm._v("Authority")])
           ]),
           _vm._v(" "),
@@ -4758,7 +4758,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "columns" }, [
-          _c("div", { staticClass: "column" }, [
+          _c("div", { staticClass: "column is-one-quarter" }, [
             _c("h2", [_vm._v("Principle Purpose")])
           ]),
           _vm._v(" "),
@@ -4772,7 +4772,7 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "columns" }, [
-          _c("div", { staticClass: "column" }, [
+          _c("div", { staticClass: "column is-one-quarter" }, [
             _c("h3", [_vm._v("Disclosure")])
           ]),
           _vm._v(" "),
@@ -4941,8 +4941,6 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
-//
-//
 //
 //
 //

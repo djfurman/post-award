@@ -1,17 +1,15 @@
 <template>
-  <div id="dd2875">
+  <div id="dd2875" class="container">
     <!-- Title -->
     <section class="section">
-      <div class="container is-centered">
-        <h1 class="title">SYSTEM AUTHORIZATION ACCESS REQUEST (SAAR)</h1>
-      </div>
+      <h1 class="title is-centered">SYSTEM AUTHORIZATION ACCESS REQUEST (SAAR)</h1>
     </section>
 
     <!-- Privacy Act -->
     <section class="section">
-      <h2>Privacy Act Statement</h2>
+      <h2 class="subtitle is-centered">Privacy Act Statement</h2>
       <div class="columns">
-        <div class="column">
+        <div class="column is-one-quarter">
           <h3>Authority</h3>
         </div>
         <div class="column">
@@ -19,7 +17,7 @@
         </div>
       </div>
       <div class="columns">
-        <div class="column">
+        <div class="column is-one-quarter">
           <h2>Principle Purpose</h2>
         </div>
         <div class="column">
@@ -27,7 +25,7 @@
         </div>
       </div>
       <div class="columns">
-        <div class="column">
+        <div class="column is-one-quarter">
           <h3>Disclosure</h3>
         </div>
         <div class="column">
