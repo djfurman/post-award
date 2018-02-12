@@ -4882,8 +4882,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   methods: {
     sendToSupervisor: function sendToSupervisor() {
       this.attestation.applicant = true;
-      alert('This will eventually post to the server and add to supervisor queue');
+      window.axios.post('/api/v1/access/request', this.$data).then(function (response) {
+        console.log(response.data);
+        window.flash('Your request has been successfully submitted to your supervisor');
+      }).catch(function (error) {
+        console.log(error);
+        window.flash('Your request failed to post');
+      });
+    },
+    populateFromJson: function populateFromJson(saar) {
+      this.request = saar.request;
+      this.identification = saar.identification;
+      this.training = saar.training;
+      this.justification = saar.justification;
+      this.investigation = saar.investigation;
+      this.attestation = saar.attestation;
     }
+  },
+
+  created: function created() {
+    var _this = this;
+
+    window.axios.get('/api/v1/access/temp').then(function (response) {
+      _this.populateFromJson(response.data);
+    });
   }
 });
 

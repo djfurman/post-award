@@ -23,6 +23,8 @@ Route::group(['namespace' => 'Api'], function () {
         'namespace' => 'V1'
     ], function () {
         Route::post('notifications', 'SystemNotificationController@create');
+        Route::post('access/request', 'AccessRequestController@sendToSupervisor');
+        Route::get('access/temp', 'AccessRequestController@redirectWithData');
         Route::group([
             'prefix' => 'interface',
             'namespace' => 'Edi'
