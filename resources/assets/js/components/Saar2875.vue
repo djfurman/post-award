@@ -55,7 +55,7 @@
           <div class="field">
             <label class="label">User Id</label>
             <div class="control">
-              <input type="text" class="input" placeholder="User ID here">
+              <input type="text" class="input" placeholder="User ID here" v-model="identification.ldap">
             </div>
           </div>
         </div>
@@ -94,40 +94,64 @@
 
       <div class="columns">
         <div class="column">
-          <label class="label">Name (Last, First, Middle Initial)</label>
-          <input type="text" class="input" v-model="identification.name">
+          <div class="field">
+            <label class="label">Name (Last, First, Middle Initial)</label>
+            <div class="columns">
+              <div class="column field">
+                <input type="text" class="input" placeholder="Last Name or Surname" v-model="identification.name.sur">
+              </div>
+              <div class="column field">
+                <input type="text" class="input" placeholder="First or Given Name" v-model="identification.name.given">
+              </div>
+              <div class="column field">
+                <input type="text" class="input" placeholder="Middle Initial" v-model="identification.name.middle_initial">
+              </div>
+            </div>
+          </div>
         </div>
         <div class="column">
-          <label class="label">Organization</label>
-          <input type="text" class="input" v-model="identification.organization">
+          <div class="field">
+            <label class="label">Organization</label>
+            <input type="text" class="input" v-model="identification.organization">
+          </div>
         </div>
       </div>
 
       <div class="columns">
         <div class="column">
-          <label class="label">Office Symbol/Department</label>
-          <input type="text" class="input" v-model="identification.department">
+          <div class="field">
+            <label class="label">Office Symbol/Department</label>
+            <input type="text" class="input" v-model="identification.department">
+          </div>
         </div>
         <div class="column">
-          <label class="label">Phone</label>
-          <input type="text" class="input" v-model="identification.phone">
+          <div class="field">
+            <label class="label">Phone</label>
+            <input type="text" class="input" v-model="identification.phone">
+          </div>
         </div>
       </div>
 
       <div class="columns">
         <div class="column">
-          <label class="label">Official E-Mail Address</label>
-          <input type="email" class="input" v-model="identification.email">
+          <div class="field">
+            <label class="label">Official E-Mail Address</label>
+            <input type="email" class="input" v-model="identification.email">
+          </div>
         </div>
         <div class="column">
           <div class="columns">
             <div class="column">
-              <label class="label">Job Title</label>
-              <input type="text" class="input" v-model="identification.job.title">
+              <div class="field">
+                <label class="label">Job Title</label>
+                <input type="text" class="input" v-model="identification.job.title">
+              </div>
             </div>
             <div class="column">
-              <label class="label">Grade/Rank</label>
-              <input type="text" class="input" v-model="identification.job.rank">
+              <div class="field">
+                <label class="label">Grade/Rank</label>
+                <input type="text" class="input" v-model="identification.job.rank">
+              </div>
             </div>
           </div>
         </div>
@@ -218,7 +242,13 @@ export default {
         }
       },
       identification: {
-        name: '',
+        ldap: '',
+        mfa_token: '',
+        name: {
+          given: '',
+          sur: '',
+          middle_initial: ''
+        },
         organization: '',
         department: '',
         phone: '',
@@ -311,19 +341,26 @@ export default {
     };
   },
 
+  computed: {
+    applicant_name() {
+      return this.identification.name.sur + ', ' + this.identification.name.given + ', ' + this.identification.name.middle_initial + '.';
+    }
+  },
+
   methods: {
     sendToSupervisor() {
       this.attestation.applicant = true;
-      window.axios.post('/api/v1/access/request', this.$data)
-        .then(response => {
-          console.log(response.data);
+      const payload = this.$data;
+      // this should be a method call to sign with the NON-EMAIL cert, then remit that value to the server
+      window.axios.post('/api/v1/access/request', payload)
+        .then(() => {
           window.flash('Your request has been successfully submitted to your supervisor');
         })
-        .catch(error => {
-          console.log(error);
+        .catch(() => {
           window.flash('Your request failed to post');
         })
     },
+
     populateFromJson(saar) {
       this.request = saar.request;
       this.identification = saar.identification;
