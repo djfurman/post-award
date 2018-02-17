@@ -24,7 +24,7 @@ class AccessRequestController extends ApiController
                     'modification' => false,
                     'deactivation' => false,
                 ),
-                'date' => '20180211',
+                'date' => '2018-02-11',
                 'system' =>
                     array(
                     'name' => 'FACET-Acq Post Award',
@@ -72,7 +72,7 @@ class AccessRequestController extends ApiController
                 'information_assurance' =>
                     array(
                     'complete' => true,
-                    'date_completed' => '20170305',
+                    'date_completed' => '2017-03-05',
                 ),
             ),
             'justification' =>
