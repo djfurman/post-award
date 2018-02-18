@@ -4918,6 +4918,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4957,7 +4981,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           city: '',
           state: '',
           postal: '',
-          country: 'USA',
+          country: 'United States',
           planet: 'Earth'
         },
         citizenship: {
@@ -4981,7 +5005,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         reason: '',
         type: {
           authorized: false,
-          privilaged: false
+          privileged: false
         },
         classification: {
           unclassified: true,
@@ -5007,9 +5031,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           phone: ''
         },
         ioa: {
-          organization: '',
-          department: '',
-          phone: ''
+          organization: 'Open Source',
+          department: 'Information Technology',
+          phone: '202-867-5309'
         },
         additional_details: ''
       },
@@ -5034,7 +5058,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         ioa: false
       },
       groups: {
-        available: [{ name: 'SuperAdmin', help: 'Global administration that can manage users and take nearly any action within the system' }, { name: 'SuperViewer', help: 'Unrestricted read-only access can review any agreement and all artifacts under management regardless of assigned parties; suitable for analysts and system admins' }, { name: 'SuperReviewer', help: 'Agreement review and correction of digitial input or manual agreement processing; not tied to specific parties' }, { name: 'AgreementReview', help: 'Agreement review and correction of digital input or manual agreement processing; tied to specific parties' }, { name: 'Entitlement', help: 'Invoice review and processing along with recieving reports and inspection/acceptances; tied to delivery locations and/or admin offices as specific parties' }, { name: 'FundsValidation', help: 'Payment schedule review to handle so called pre-validation of funds in the accounting system of record prior to payment release' }, { name: 'InspectionAcceptance', help: 'Delivery and agreement review for field inspection of delivered goods or services to validate quality and accept on behalf of US government' }, { name: 'Auditor', help: 'Similar to SuperViewer access in access to agreement and all artifacts under management regardless of assigned parties; must be tied to actual review actions for information control' }],
+        available: [],
         requested: []
       },
       preSaar: true
@@ -5067,16 +5091,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.investigation = saar.investigation;
       this.attestation = saar.attestation;
     },
+    calculateAccessRequired: function calculateAccessRequired() {
+      return true;
+    },
+    fetchAccessTypes: function fetchAccessTypes() {
+      var _this = this;
+
+      window.axios.get('/api/v1/access/types').then(function (result) {
+        _this.groups.available = result.data.result;
+      }).catch(function (error) {
+        window.flash('Access types could not be loaded');
+        console.log(error);
+      });
+    },
     moveToSaar: function moveToSaar() {
       this.preSaar = false;
     }
   },
 
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
+    this.fetchAccessTypes();
     window.axios.get('/api/v1/access/temp').then(function (response) {
-      _this.populateFromJson(response.data);
+      _this2.populateFromJson(response.data);
+    }).catch(function (error) {
+      console.log(error);
+      window.flash('Could not populate details from server');
     });
   }
 });
@@ -5776,209 +5817,287 @@ var render = function() {
                     _vm._v("Official Mailing Address")
                   ]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.identification.mailing_address.street,
-                        expression: "identification.mailing_address.street"
-                      }
-                    ],
-                    staticClass: "input",
-                    attrs: { type: "text" },
-                    domProps: {
-                      value: _vm.identification.mailing_address.street
-                    },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c("div", { staticClass: "field" }, [
+                    _c("div", { staticClass: "control" }, [
+                      _c(
+                        "label",
+                        { staticClass: "label", attrs: { for: "line_1" } },
+                        [_vm._v("Street Address")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.identification.mailing_address.street,
+                            expression: "identification.mailing_address.street"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { id: "line_1", type: "text" },
+                        domProps: {
+                          value: _vm.identification.mailing_address.street
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.identification.mailing_address,
+                              "street",
+                              $event.target.value
+                            )
+                          }
                         }
-                        _vm.$set(
-                          _vm.identification.mailing_address,
-                          "street",
-                          $event.target.value
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        { staticClass: "label", attrs: { for: "line_2" } },
+                        [_vm._v("Location")]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.identification.mailing_address.line_two,
+                            expression:
+                              "identification.mailing_address.line_two"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { id: "line_2", type: "text" },
+                        domProps: {
+                          value: _vm.identification.mailing_address.line_two
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.identification.mailing_address,
+                              "line_two",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "columns" }, [
+                        _c(
+                          "div",
+                          { staticClass: "column field is-one-third" },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "label", attrs: { for: "city" } },
+                              [_vm._v("City")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.identification.mailing_address.city,
+                                  expression:
+                                    "identification.mailing_address.city"
+                                }
+                              ],
+                              staticClass: "input",
+                              attrs: { type: "text", id: "city" },
+                              domProps: {
+                                value: _vm.identification.mailing_address.city
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.identification.mailing_address,
+                                    "city",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "column field is-one-third" },
+                          [
+                            _c(
+                              "label",
+                              { staticClass: "label", attrs: { for: "state" } },
+                              [_vm._v("State")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.identification.mailing_address.state,
+                                  expression:
+                                    "identification.mailing_address.state"
+                                }
+                              ],
+                              staticClass: "input",
+                              attrs: { type: "text", id: "state" },
+                              domProps: {
+                                value: _vm.identification.mailing_address.state
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.identification.mailing_address,
+                                    "state",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "column field is-one-third" },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass: "label",
+                                attrs: { for: "postal" }
+                              },
+                              [_vm._v("Postal Code")]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.identification.mailing_address.postal,
+                                  expression:
+                                    "identification.mailing_address.postal"
+                                }
+                              ],
+                              staticClass: "input",
+                              attrs: { type: "text", id: "postal" },
+                              domProps: {
+                                value: _vm.identification.mailing_address.postal
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.identification.mailing_address,
+                                    "postal",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            })
+                          ]
                         )
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.identification.mailing_address.line_two,
-                        expression: "identification.mailing_address.line_two"
-                      }
-                    ],
-                    staticClass: "input",
-                    attrs: { type: "text" },
-                    domProps: {
-                      value: _vm.identification.mailing_address.line_two
-                    },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.identification.mailing_address,
-                          "line_two",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "columns" }, [
-                    _c("div", { staticClass: "column" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.identification.mailing_address.city,
-                            expression: "identification.mailing_address.city"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: { type: "text" },
-                        domProps: {
-                          value: _vm.identification.mailing_address.city
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "columns" }, [
+                        _c("div", { staticClass: "column field is-half" }, [
+                          _c(
+                            "label",
+                            { staticClass: "label", attrs: { for: "country" } },
+                            [_vm._v("Country")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value:
+                                  _vm.identification.mailing_address.country,
+                                expression:
+                                  "identification.mailing_address.country"
+                              }
+                            ],
+                            staticClass: "input",
+                            attrs: { type: "text", id: "country" },
+                            domProps: {
+                              value: _vm.identification.mailing_address.country
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.identification.mailing_address,
+                                  "country",
+                                  $event.target.value
+                                )
+                              }
                             }
-                            _vm.$set(
-                              _vm.identification.mailing_address,
-                              "city",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "column" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.identification.mailing_address.state,
-                            expression: "identification.mailing_address.state"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: { type: "text" },
-                        domProps: {
-                          value: _vm.identification.mailing_address.state
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "column field is-half" }, [
+                          _c(
+                            "label",
+                            { staticClass: "label", attrs: { for: "planet" } },
+                            [_vm._v("Planet")]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value:
+                                  _vm.identification.mailing_address.planet,
+                                expression:
+                                  "identification.mailing_address.planet"
+                              }
+                            ],
+                            staticClass: "input",
+                            attrs: { type: "text", id: "planet" },
+                            domProps: {
+                              value: _vm.identification.mailing_address.planet
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.identification.mailing_address,
+                                  "planet",
+                                  $event.target.value
+                                )
+                              }
                             }
-                            _vm.$set(
-                              _vm.identification.mailing_address,
-                              "state",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "column" }, [
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.identification.mailing_address.postal,
-                            expression: "identification.mailing_address.postal"
-                          }
-                        ],
-                        staticClass: "input",
-                        attrs: { type: "text" },
-                        domProps: {
-                          value: _vm.identification.mailing_address.postal
-                        },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.$set(
-                              _vm.identification.mailing_address,
-                              "postal",
-                              $event.target.value
-                            )
-                          }
-                        }
-                      })
+                          })
+                        ])
+                      ])
                     ])
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.identification.mailing_address.country,
-                        expression: "identification.mailing_address.country"
-                      }
-                    ],
-                    staticClass: "input",
-                    attrs: { type: "text" },
-                    domProps: {
-                      value: _vm.identification.mailing_address.country
-                    },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.identification.mailing_address,
-                          "country",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.identification.mailing_address.planet,
-                        expression: "identification.mailing_address.planet"
-                      }
-                    ],
-                    staticClass: "input",
-                    attrs: { type: "text" },
-                    domProps: {
-                      value: _vm.identification.mailing_address.planet
-                    },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.identification.mailing_address,
-                          "planet",
-                          $event.target.value
-                        )
-                      }
-                    }
-                  })
+                  ])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "column" }, [
@@ -6561,20 +6680,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.justification.type.privilaged,
-                        expression: "justification.type.privilaged"
+                        value: _vm.justification.type.privileged,
+                        expression: "justification.type.privileged"
                       }
                     ],
                     staticClass: "checkbox",
                     attrs: { type: "checkbox", disabled: "true" },
                     domProps: {
-                      checked: Array.isArray(_vm.justification.type.privilaged)
-                        ? _vm._i(_vm.justification.type.privilaged, null) > -1
-                        : _vm.justification.type.privilaged
+                      checked: Array.isArray(_vm.justification.type.privileged)
+                        ? _vm._i(_vm.justification.type.privileged, null) > -1
+                        : _vm.justification.type.privileged
                     },
                     on: {
                       change: function($event) {
-                        var $$a = _vm.justification.type.privilaged,
+                        var $$a = _vm.justification.type.privileged,
                           $$el = $event.target,
                           $$c = $$el.checked ? true : false
                         if (Array.isArray($$a)) {
@@ -6584,24 +6703,24 @@ var render = function() {
                             $$i < 0 &&
                               _vm.$set(
                                 _vm.justification.type,
-                                "privilaged",
+                                "privileged",
                                 $$a.concat([$$v])
                               )
                           } else {
                             $$i > -1 &&
                               _vm.$set(
                                 _vm.justification.type,
-                                "privilaged",
+                                "privileged",
                                 $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                               )
                           }
                         } else {
-                          _vm.$set(_vm.justification.type, "privilaged", $$c)
+                          _vm.$set(_vm.justification.type, "privileged", $$c)
                         }
                       }
                     }
                   }),
-                  _vm._v(" Privilaged\n        ")
+                  _vm._v(" Privileged\n        ")
                 ])
               ]),
               _vm._v(" "),

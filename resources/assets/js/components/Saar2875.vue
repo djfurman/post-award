@@ -105,6 +105,7 @@
         </div>
       </section>
 
+      <!-- Identification -->
       <section id="identification" class="section">
         <div class="columns">
           <div class="column">
@@ -180,21 +181,41 @@
         <div class="columns">
           <div class="column">
             <label class="label">Official Mailing Address</label>
-            <input type="text" class="input" v-model="identification.mailing_address.street">
-            <input type="text" class="input" v-model="identification.mailing_address.line_two">
-            <div class="columns">
-              <div class="column">
-                <input type="text" class="input" v-model="identification.mailing_address.city">
-              </div>
-              <div class="column">
-                <input type="text" class="input" v-model="identification.mailing_address.state">
-              </div>
-              <div class="column">
-                <input type="text" class="input" v-model="identification.mailing_address.postal">
+            <div class="field">
+              <div class="control">
+                <label for="line_1" class="label">Street Address</label>
+                <input id="line_1" type="text" class="input" v-model="identification.mailing_address.street">
+
+                <label for="line_2" class="label">Location</label>
+                <input id="line_2" type="text" class="input" v-model="identification.mailing_address.line_two">
+
+                <div class="columns">
+                  <div class="column field is-one-third">
+                    <label for="city" class="label">City</label>
+                    <input type="text" id="city" class="input" v-model="identification.mailing_address.city">
+                  </div>
+                  <div class="column field is-one-third">
+                    <label for="state" class="label">State</label>
+                    <input type="text" id="state" class="input" v-model="identification.mailing_address.state">
+                  </div>
+                  <div class="column field is-one-third">
+                    <label for="postal" class="label">Postal Code</label>
+                    <input type="text" id="postal" class="input" v-model="identification.mailing_address.postal">
+                  </div>
+                </div>
+
+                <div class="columns">
+                  <div class="column field is-half">
+                    <label for="country" class="label">Country</label>
+                    <input type="text" id="country" class="input" v-model="identification.mailing_address.country">
+                  </div>
+                  <div class="column field is-half">
+                    <label for="planet" class="label">Planet</label>
+                    <input type="text" id="planet" class="input" v-model="identification.mailing_address.planet">
+                  </div>
+                </div>
               </div>
             </div>
-            <input type="text" class="input" v-model="identification.mailing_address.country">
-            <input type="text" class="input" v-model="identification.mailing_address.planet">
           </div>
 
           <div class="column">
@@ -272,9 +293,9 @@
             <input
               type="checkbox"
               class="checkbox"
-              v-model="justification.type.privilaged"
+              v-model="justification.type.privileged"
               disabled="true"
-            > Privilaged
+            > Privileged
           </div>
         </div>
         <div class="columns">
@@ -310,7 +331,9 @@
               v-model="justification.classification.other_description">
           </div>
         </div>
+        <!-- NTK -->
         <div class="columns">
+          <!-- NTK Verified -->
           <div class="column is-half">
             <div class="field">
               <label class="label">Verification of Need to Know</label>
@@ -320,6 +343,7 @@
                 v-model="justification.need_to_know">
               </div>
           </div>
+          <!-- Expiration -->
           <div class="column is-half">
             <div class="field">
               <label for="expire_date" class="label">Access Expiration Date</label>
@@ -390,7 +414,7 @@ export default {
           city: '',
           state: '',
           postal: '',
-          country: 'USA',
+          country: 'United States',
           planet: 'Earth'
         },
         citizenship: {
@@ -414,7 +438,7 @@ export default {
         reason: '',
         type: {
           authorized: false,
-          privilaged: false
+          privileged: false
         },
         classification: {
           unclassified: true,
@@ -440,9 +464,9 @@ export default {
           phone: ''
         },
         ioa: {
-          organization: '',
-          department: '',
-          phone: ''
+          organization: 'Open Source',
+          department: 'Information Technology',
+          phone: '202-867-5309'
         },
         additional_details: ''
       },
@@ -467,16 +491,7 @@ export default {
         ioa: false
       },
       groups: {
-        available: [
-          { name: 'SuperAdmin', help: 'Global administration that can manage users and take nearly any action within the system' },
-          { name: 'SuperViewer', help: 'Unrestricted read-only access can review any agreement and all artifacts under management regardless of assigned parties; suitable for analysts and system admins' },
-          { name: 'SuperReviewer', help: 'Agreement review and correction of digitial input or manual agreement processing; not tied to specific parties' },
-          { name: 'AgreementReview', help: 'Agreement review and correction of digital input or manual agreement processing; tied to specific parties' },
-          { name: 'Entitlement', help: 'Invoice review and processing along with recieving reports and inspection/acceptances; tied to delivery locations and/or admin offices as specific parties' },
-          { name: 'FundsValidation', help: 'Payment schedule review to handle so called pre-validation of funds in the accounting system of record prior to payment release' },
-          { name: 'InspectionAcceptance', help: 'Delivery and agreement review for field inspection of delivered goods or services to validate quality and accept on behalf of US government' },
-          { name: 'Auditor', help: 'Similar to SuperViewer access in access to agreement and all artifacts under management regardless of assigned parties; must be tied to actual review actions for information control'}
-        ],
+        available: [],
         requested: []
       },
       preSaar: true
@@ -512,16 +527,36 @@ export default {
       this.attestation = saar.attestation;
     },
 
+    calculateAccessRequired() {
+      return true;
+    },
+
+    fetchAccessTypes() {
+      window.axios.get('/api/v1/access/types')
+        .then(result => {
+          this.groups.available = result.data.result;
+        })
+        .catch(error => {
+          window.flash('Access types could not be loaded');
+          console.log(error);
+        });
+    },
+
     moveToSaar() {
       this.preSaar = false;
     }
   },
 
   created() {
+    this.fetchAccessTypes();
     window.axios.get('/api/v1/access/temp')
       .then(response => {
         this.populateFromJson(response.data);
       })
+      .catch(error => {
+        console.log(error);
+        window.flash('Could not populate details from server');
+      });
   }
 };
 </script>
