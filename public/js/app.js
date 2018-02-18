@@ -4942,6 +4942,303 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5001,6 +5298,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           date_completed: ''
         }
       },
+      reviewedBy: {
+        supervisor: {
+          name: {
+            sur: '',
+            given: '',
+            middle_initial: ''
+          },
+          signed_date: '',
+          organization: '',
+          department: '',
+          phone: '',
+          email: ''
+        },
+        information_owner: {
+          name: {
+            sur: '',
+            given: '',
+            middle_initial: ''
+          },
+          signed_date: '',
+          organization: '',
+          department: '',
+          phone: '',
+          email: ''
+        },
+        iao: {
+          name: {
+            sur: '',
+            given: '',
+            middle_initial: ''
+          },
+          signed_date: '',
+          organization: '',
+          department: '',
+          phone: '',
+          email: ''
+        },
+        security_manager: {
+          name: {
+            sur: '',
+            given: '',
+            middle_initial: ''
+          },
+          signed_date: '',
+          organization: '',
+          department: '',
+          phone: '',
+          email: ''
+        }
+      },
       justification: {
         reason: '',
         type: {
@@ -5020,22 +5367,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           contract_company_name: '',
           date: ''
         },
-        supervisor: {
-          name: '',
-          organization: '',
-          department: '',
-          phone: '',
-          email: ''
-        },
-        owner: {
-          phone: ''
-        },
-        ioa: {
-          organization: 'Open Source',
-          department: 'Information Technology',
-          phone: '202-867-5309'
-        },
-        additional_details: ''
+        additional_details: 'This section intentionally left blank'
       },
       investigation: {
         type: '',
@@ -5045,17 +5377,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           level_1: false,
           level_2: false,
           level_3: false
-        },
-        verified_by: {
-          name: '',
-          phone: ''
         }
       },
       attestation: {
         applicant: false,
-        manager: false,
-        owner: false,
-        ioa: false
+        supervisor: false,
+        information_owner: false,
+        iao: false,
+        security_manager: false
       },
       groups: {
         available: [],
@@ -5069,10 +5398,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   computed: {
     applicant_name: function applicant_name() {
       return this.identification.name.sur + ', ' + this.identification.name.given + ', ' + this.identification.name.middle_initial + '.';
+    },
+    supervisor_name: function supervisor_name() {
+      return this.nameBuild('supervisor');
+    },
+    information_owner_name: function information_owner_name() {
+      return this.nameBuild('information_owner');
+    },
+    iao_name: function iao_name() {
+      return this.nameBuild('iao');
+    },
+    security_manager_name: function security_manager_name() {
+      return this.nameBuild('security_manager');
     }
   },
 
   methods: {
+    nameBuild: function nameBuild(role) {
+      return this.reviewedBy[role].name.sur + ', ' + this.reviewedBy[role].name.given + ', ' + this.reviewedBy[role].name.middle_initial + '.';
+    },
     sendToSupervisor: function sendToSupervisor() {
       this.attestation.applicant = true;
       var payload = this.$data;
@@ -5091,34 +5435,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.investigation = saar.investigation;
       this.attestation = saar.attestation;
     },
-    calculateAccessRequired: function calculateAccessRequired() {
-      return true;
-    },
     fetchAccessTypes: function fetchAccessTypes() {
       var _this = this;
 
       window.axios.get('/api/v1/access/types').then(function (result) {
         _this.groups.available = result.data.result;
-      }).catch(function (error) {
+      }).catch(function () {
         window.flash('Access types could not be loaded');
-        console.log(error);
       });
     },
     moveToSaar: function moveToSaar() {
       this.preSaar = false;
+    },
+    signBy: function signBy(role) {
+      // todo use PkiJS to extract name elements and email from PKI
+      this.attestation[role] = true;
+      this.reviewedBy[role].signed_date = __WEBPACK_IMPORTED_MODULE_0_moment___default()().format();
+      // todo update the workflow
+      window.flash(role.replace("_", " ").toUpperCase() + ' has successfully signed & endorsed this application');
     }
   },
 
   created: function created() {
-    var _this2 = this;
-
     this.fetchAccessTypes();
-    window.axios.get('/api/v1/access/temp').then(function (response) {
-      _this2.populateFromJson(response.data);
-    }).catch(function (error) {
-      console.log(error);
-      window.flash('Could not populate details from server');
-    });
   }
 });
 
@@ -5194,7 +5533,10 @@ var render = function() {
             _c("div", { staticClass: "column" }, [
               _c(
                 "button",
-                { staticClass: "button", on: { click: _vm.moveToSaar } },
+                {
+                  staticClass: "button is-primary",
+                  on: { click: _vm.moveToSaar }
+                },
                 [_vm._v("Submit")]
               )
             ])
@@ -5402,7 +5744,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "input",
-                    attrs: { type: "date", disabled: "true" },
+                    attrs: { type: "text", disabled: "true" },
                     domProps: { value: _vm.request.date },
                     on: {
                       input: function($event) {
@@ -6530,7 +6872,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: { id: "ia_date", type: "date" },
+                        attrs: { id: "ia_date", type: "text" },
                         domProps: {
                           value:
                             _vm.training.information_assurance.date_completed
@@ -6570,7 +6912,7 @@ var render = function() {
           _vm._v(" "),
           _c(
             "section",
-            { staticClass: "section", attrs: { id: "endorsment" } },
+            { staticClass: "section", attrs: { id: "endorsement" } },
             [
               _c("div", { staticClass: "columns" }, [
                 _c("div", { staticClass: "column" }, [
@@ -6724,236 +7066,243 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "columns" }, [
-                _c("div", { staticClass: "column field" }, [
-                  _c("div", { staticClass: "label" }, [
-                    _vm._v("User requires access to:")
-                  ]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.justification.classification.unclassified,
-                        expression: "justification.classification.unclassified"
-                      }
-                    ],
-                    staticClass: "checkbox",
-                    attrs: { type: "checkbox" },
-                    domProps: {
-                      checked: Array.isArray(
-                        _vm.justification.classification.unclassified
-                      )
-                        ? _vm._i(
-                            _vm.justification.classification.unclassified,
-                            null
-                          ) > -1
-                        : _vm.justification.classification.unclassified
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.justification.classification.unclassified,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.justification.classification,
-                                "unclassified",
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.justification.classification,
-                                "unclassified",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(
-                            _vm.justification.classification,
-                            "unclassified",
-                            $$c
-                          )
+              _c("div", { staticClass: "is-grouped" }, [
+                _c("div", { staticClass: "columns" }, [
+                  _c("div", { staticClass: "column field" }, [
+                    _c("div", { staticClass: "label" }, [
+                      _vm._v("User requires access to:")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.justification.classification.unclassified,
+                          expression:
+                            "justification.classification.unclassified"
                         }
-                      }
-                    }
-                  }),
-                  _vm._v(" Unclassified\n          "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.justification.classification.classified,
-                        expression: "justification.classification.classified"
-                      }
-                    ],
-                    staticClass: "checkbox",
-                    attrs: { type: "checkbox" },
-                    domProps: {
-                      checked: Array.isArray(
-                        _vm.justification.classification.classified
-                      )
-                        ? _vm._i(
-                            _vm.justification.classification.classified,
-                            null
-                          ) > -1
-                        : _vm.justification.classification.classified
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.justification.classification.classified,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.justification.classification,
-                                "classified",
-                                $$a.concat([$$v])
-                              )
-                          } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.justification.classification,
-                                "classified",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
-                          }
-                        } else {
-                          _vm.$set(
-                            _vm.justification.classification,
-                            "classified",
-                            $$c
-                          )
-                        }
-                      }
-                    }
-                  }),
-                  _vm._v(" Classified\n          "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.justification.classification.category,
-                        expression: "justification.classification.category"
-                      }
-                    ],
-                    staticClass: "input",
-                    attrs: { type: "text", placeholder: "Specify Category" },
-                    domProps: {
-                      value: _vm.justification.classification.category
-                    },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.justification.classification,
-                          "category",
-                          $event.target.value
+                      ],
+                      staticClass: "checkbox",
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(
+                          _vm.justification.classification.unclassified
                         )
-                      }
-                    }
-                  })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "columns" }, [
-                _c("div", { staticClass: "column field" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.justification.classification.other,
-                        expression: "justification.classification.other"
-                      }
-                    ],
-                    staticClass: "checkbox",
-                    attrs: { type: "checkbox" },
-                    domProps: {
-                      checked: Array.isArray(
-                        _vm.justification.classification.other
-                      )
-                        ? _vm._i(_vm.justification.classification.other, null) >
-                          -1
-                        : _vm.justification.classification.other
-                    },
-                    on: {
-                      change: function($event) {
-                        var $$a = _vm.justification.classification.other,
-                          $$el = $event.target,
-                          $$c = $$el.checked ? true : false
-                        if (Array.isArray($$a)) {
-                          var $$v = null,
-                            $$i = _vm._i($$a, $$v)
-                          if ($$el.checked) {
-                            $$i < 0 &&
-                              _vm.$set(
-                                _vm.justification.classification,
-                                "other",
-                                $$a.concat([$$v])
-                              )
+                          ? _vm._i(
+                              _vm.justification.classification.unclassified,
+                              null
+                            ) > -1
+                          : _vm.justification.classification.unclassified
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a =
+                              _vm.justification.classification.unclassified,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.justification.classification,
+                                  "unclassified",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.justification.classification,
+                                  "unclassified",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
                           } else {
-                            $$i > -1 &&
-                              _vm.$set(
-                                _vm.justification.classification,
-                                "other",
-                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                              )
+                            _vm.$set(
+                              _vm.justification.classification,
+                              "unclassified",
+                              $$c
+                            )
                           }
-                        } else {
+                        }
+                      }
+                    }),
+                    _vm._v(" Unclassified\n            "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.justification.classification.classified,
+                          expression: "justification.classification.classified"
+                        }
+                      ],
+                      staticClass: "checkbox",
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(
+                          _vm.justification.classification.classified
+                        )
+                          ? _vm._i(
+                              _vm.justification.classification.classified,
+                              null
+                            ) > -1
+                          : _vm.justification.classification.classified
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.justification.classification.classified,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.justification.classification,
+                                  "classified",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.justification.classification,
+                                  "classified",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(
+                              _vm.justification.classification,
+                              "classified",
+                              $$c
+                            )
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" Classified\n            "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.justification.classification.category,
+                          expression: "justification.classification.category"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text", placeholder: "Specify Category" },
+                      domProps: {
+                        value: _vm.justification.classification.category
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
                           _vm.$set(
                             _vm.justification.classification,
-                            "other",
-                            $$c
+                            "category",
+                            $event.target.value
                           )
                         }
                       }
-                    }
-                  }),
-                  _vm._v(" Other\n          "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "columns" }, [
+                  _c("div", { staticClass: "column field" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.justification.classification.other,
+                          expression: "justification.classification.other"
+                        }
+                      ],
+                      staticClass: "checkbox",
+                      attrs: { type: "checkbox" },
+                      domProps: {
+                        checked: Array.isArray(
+                          _vm.justification.classification.other
+                        )
+                          ? _vm._i(
+                              _vm.justification.classification.other,
+                              null
+                            ) > -1
+                          : _vm.justification.classification.other
+                      },
+                      on: {
+                        change: function($event) {
+                          var $$a = _vm.justification.classification.other,
+                            $$el = $event.target,
+                            $$c = $$el.checked ? true : false
+                          if (Array.isArray($$a)) {
+                            var $$v = null,
+                              $$i = _vm._i($$a, $$v)
+                            if ($$el.checked) {
+                              $$i < 0 &&
+                                _vm.$set(
+                                  _vm.justification.classification,
+                                  "other",
+                                  $$a.concat([$$v])
+                                )
+                            } else {
+                              $$i > -1 &&
+                                _vm.$set(
+                                  _vm.justification.classification,
+                                  "other",
+                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                                )
+                            }
+                          } else {
+                            _vm.$set(
+                              _vm.justification.classification,
+                              "other",
+                              $$c
+                            )
+                          }
+                        }
+                      }
+                    }),
+                    _vm._v(" Other\n            "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value:
+                            _vm.justification.classification.other_description,
+                          expression:
+                            "justification.classification.other_description"
+                        }
+                      ],
+                      staticClass: "input is-primary",
+                      attrs: { type: "text" },
+                      domProps: {
                         value:
-                          _vm.justification.classification.other_description,
-                        expression:
-                          "justification.classification.other_description"
-                      }
-                    ],
-                    staticClass: "input is-primary",
-                    attrs: { type: "text" },
-                    domProps: {
-                      value: _vm.justification.classification.other_description
-                    },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                          _vm.justification.classification.other_description
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.justification.classification,
+                            "other_description",
+                            $event.target.value
+                          )
                         }
-                        _vm.$set(
-                          _vm.justification.classification,
-                          "other_description",
-                          $event.target.value
-                        )
                       }
-                    }
-                  })
+                    })
+                  ])
                 ])
               ]),
               _vm._v(" "),
@@ -7030,7 +7379,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "input",
-                      attrs: { id: "expire_date", type: "date" },
+                      attrs: { id: "expire_date", type: "text" },
                       domProps: { value: _vm.justification.expiration.date },
                       on: {
                         input: function($event) {
@@ -7142,9 +7491,1717 @@ var render = function() {
                       : _vm._e()
                   ])
                 ])
+              ]),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _c("div", { staticClass: "columns" }, [
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Last Name (Surname)")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.supervisor.name.sur,
+                            expression: "reviewedBy.supervisor.name.sur"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.reviewedBy.supervisor.name.sur },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.supervisor.name,
+                              "sur",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("First Name (Given)")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.supervisor.name.given,
+                            expression: "reviewedBy.supervisor.name.given"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.reviewedBy.supervisor.name.given
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.supervisor.name,
+                              "given",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Middle Initial")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value:
+                              _vm.reviewedBy.supervisor.name.middle_initial,
+                            expression:
+                              "reviewedBy.supervisor.name.middle_initial"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.reviewedBy.supervisor.name.middle_initial
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.supervisor.name,
+                              "middle_initial",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [_vm._v("Signature")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.attestation.manager,
+                        expression: "attestation.manager"
+                      }
+                    ],
+                    attrs: { type: "checkbox", disabled: "true" },
+                    domProps: {
+                      checked: Array.isArray(_vm.attestation.manager)
+                        ? _vm._i(_vm.attestation.manager, null) > -1
+                        : _vm.attestation.manager
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.attestation.manager,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.attestation,
+                                "manager",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.attestation,
+                                "manager",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.attestation, "manager", $$c)
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" Signed\n        ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Signature Date")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reviewedBy.supervisor.signed_date,
+                        expression: "reviewedBy.supervisor.signed_date"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { type: "text", disabled: "true" },
+                    domProps: { value: _vm.reviewedBy.supervisor.signed_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.reviewedBy.supervisor,
+                          "signed_date",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-warning",
+                    on: {
+                      click: function($event) {
+                        _vm.signBy("supervisor")
+                      }
+                    }
+                  },
+                  [_vm._v("Sign")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "columns is-grouped" }, [
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column is-half" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Organization")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.supervisor.organization,
+                            expression: "reviewedBy.supervisor.organization"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.reviewedBy.supervisor.organization
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.supervisor,
+                              "organization",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-half" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Department")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.supervisor.department,
+                            expression: "reviewedBy.supervisor.department"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.reviewedBy.supervisor.department
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.supervisor,
+                              "department",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Email Address")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reviewedBy.supervisor.email,
+                        expression: "reviewedBy.supervisor.email"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.reviewedBy.supervisor.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.reviewedBy.supervisor,
+                          "email",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Phone Number")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reviewedBy.supervisor.phone,
+                        expression: "reviewedBy.supervisor.phone"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { type: "tel" },
+                    domProps: { value: _vm.reviewedBy.supervisor.phone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.reviewedBy.supervisor,
+                          "phone",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _c("div", { staticClass: "columns" }, [
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Last Name (Surname)")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.information_owner.name.sur,
+                            expression: "reviewedBy.information_owner.name.sur"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.reviewedBy.information_owner.name.sur
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.information_owner.name,
+                              "sur",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("First Name (Given)")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.information_owner.name.given,
+                            expression:
+                              "reviewedBy.information_owner.name.given"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.reviewedBy.information_owner.name.given
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.information_owner.name,
+                              "given",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Middle Initial")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value:
+                              _vm.reviewedBy.information_owner.name
+                                .middle_initial,
+                            expression:
+                              "reviewedBy.information_owner.name.middle_initial"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value:
+                            _vm.reviewedBy.information_owner.name.middle_initial
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.information_owner.name,
+                              "middle_initial",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [_vm._v("Signature")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.attestation.information_owner,
+                        expression: "attestation.information_owner"
+                      }
+                    ],
+                    attrs: { type: "checkbox", disabled: "true" },
+                    domProps: {
+                      checked: Array.isArray(_vm.attestation.information_owner)
+                        ? _vm._i(_vm.attestation.information_owner, null) > -1
+                        : _vm.attestation.information_owner
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.attestation.information_owner,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.attestation,
+                                "information_owner",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.attestation,
+                                "information_owner",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.attestation, "information_owner", $$c)
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" Signed\n        ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Signature Date")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reviewedBy.information_owner.signed_date,
+                        expression: "reviewedBy.information_owner.signed_date"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { type: "text", disabled: "true" },
+                    domProps: {
+                      value: _vm.reviewedBy.information_owner.signed_date
+                    },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.reviewedBy.information_owner,
+                          "signed_date",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-warning",
+                    on: {
+                      click: function($event) {
+                        _vm.signBy("information_owner")
+                      }
+                    }
+                  },
+                  [_vm._v("Sign")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "columns is-grouped" }, [
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column is-half" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Organization")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value:
+                              _vm.reviewedBy.information_owner.organization,
+                            expression:
+                              "reviewedBy.information_owner.organization"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.reviewedBy.information_owner.organization
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.information_owner,
+                              "organization",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-half" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Department")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.information_owner.department,
+                            expression:
+                              "reviewedBy.information_owner.department"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.reviewedBy.information_owner.department
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.information_owner,
+                              "department",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Email Address")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reviewedBy.information_owner.email,
+                        expression: "reviewedBy.information_owner.email"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.reviewedBy.information_owner.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.reviewedBy.information_owner,
+                          "email",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Phone Number")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reviewedBy.information_owner.phone,
+                        expression: "reviewedBy.information_owner.phone"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { type: "tel" },
+                    domProps: { value: _vm.reviewedBy.information_owner.phone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.reviewedBy.information_owner,
+                          "phone",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _vm._m(7),
+              _vm._v(" "),
+              _c("div", { staticClass: "columns" }, [
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Last Name (Surname)")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.iao.name.sur,
+                            expression: "reviewedBy.iao.name.sur"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.reviewedBy.iao.name.sur },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.iao.name,
+                              "sur",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("First Name (Given)")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.iao.name.given,
+                            expression: "reviewedBy.iao.name.given"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.reviewedBy.iao.name.given },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.iao.name,
+                              "given",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Middle Initial")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.iao.name.middle_initial,
+                            expression: "reviewedBy.iao.name.middle_initial"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: {
+                          value: _vm.reviewedBy.iao.name.middle_initial
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.iao.name,
+                              "middle_initial",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [_vm._v("Signature")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.attestation.iao,
+                        expression: "attestation.iao"
+                      }
+                    ],
+                    attrs: { type: "checkbox", disabled: "true" },
+                    domProps: {
+                      checked: Array.isArray(_vm.attestation.iao)
+                        ? _vm._i(_vm.attestation.iao, null) > -1
+                        : _vm.attestation.iao
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.attestation.iao,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.attestation,
+                                "iao",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.attestation,
+                                "iao",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.attestation, "iao", $$c)
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" Signed\n        ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Signature Date")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reviewedBy.iao.signed_date,
+                        expression: "reviewedBy.iao.signed_date"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { type: "text", disabled: "true" },
+                    domProps: { value: _vm.reviewedBy.iao.signed_date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.reviewedBy.iao,
+                          "signed_date",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "button is-warning",
+                    on: {
+                      click: function($event) {
+                        _vm.signBy("iao")
+                      }
+                    }
+                  },
+                  [_vm._v("Sign")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "columns is-grouped" }, [
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column is-half" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Organization")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.iao.organization,
+                            expression: "reviewedBy.iao.organization"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.reviewedBy.iao.organization },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.iao,
+                              "organization",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-half" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Department")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.reviewedBy.iao.department,
+                            expression: "reviewedBy.iao.department"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.reviewedBy.iao.department },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.reviewedBy.iao,
+                              "department",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Email Address")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reviewedBy.iao.email,
+                        expression: "reviewedBy.iao.email"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.reviewedBy.iao.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.reviewedBy.iao,
+                          "email",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Phone Number")
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.reviewedBy.iao.phone,
+                        expression: "reviewedBy.iao.phone"
+                      }
+                    ],
+                    staticClass: "input",
+                    attrs: { type: "tel" },
+                    domProps: { value: _vm.reviewedBy.iao.phone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.reviewedBy.iao,
+                          "phone",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
               ])
             ]
-          )
+          ),
+          _vm._v(" "),
+          _c("section", { staticClass: "section" }, [
+            _c("div", { staticClass: "columns" }, [
+              _c("div", { staticClass: "column" }, [
+                _c("label", { staticClass: "label" }, [_vm._v("Name")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.applicant_name,
+                      expression: "applicant_name"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: { type: "text", disabled: "true" },
+                  domProps: { value: _vm.applicant_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.applicant_name = $event.target.value
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "columns" }, [
+              _c("div", { staticClass: "column" }, [
+                _c("label", { staticClass: "label" }, [
+                  _vm._v("Optional Information")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.justification.additional_details,
+                      expression: "justification.additional_details"
+                    }
+                  ],
+                  staticClass: "textarea",
+                  attrs: { disabled: "true", rows: "10" },
+                  domProps: { value: _vm.justification.additional_details },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.justification,
+                        "additional_details",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "columns" }, [
+              _vm._m(8),
+              _vm._v(" "),
+              _c("div", { staticClass: "column" }, [
+                _c("div", { staticClass: "columns" }, [
+                  _c("div", { staticClass: "column is-half" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("Type of Investigation")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.investigation.type,
+                          expression: "investigation.type"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.investigation.type },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.investigation,
+                            "type",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "column is-half" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("Date of Investigation")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.investigation.date,
+                          expression: "investigation.date"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text" },
+                      domProps: { value: _vm.investigation.date },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.investigation,
+                            "date",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "columns" }, [
+              _c("div", { staticClass: "column is-half" }, [
+                _c("label", { staticClass: "label" }, [
+                  _vm._v("Clearance Level")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.investigation.clearance,
+                      expression: "investigation.clearance"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.investigation.clearance },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.investigation,
+                        "clearance",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "column is-half" }, [
+                _c("label", { staticClass: "label" }, [
+                  _vm._v("IT Level Designation")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.investigation.it_designation.level_1,
+                      expression: "investigation.it_designation.level_1"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(
+                      _vm.investigation.it_designation.level_1
+                    )
+                      ? _vm._i(_vm.investigation.it_designation.level_1, null) >
+                        -1
+                      : _vm.investigation.it_designation.level_1
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.investigation.it_designation.level_1,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.investigation.it_designation,
+                              "level_1",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.investigation.it_designation,
+                              "level_1",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(
+                          _vm.investigation.it_designation,
+                          "level_1",
+                          $$c
+                        )
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" Level I\n          "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.investigation.it_designation.level_2,
+                      expression: "investigation.it_designation.level_2"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(
+                      _vm.investigation.it_designation.level_2
+                    )
+                      ? _vm._i(_vm.investigation.it_designation.level_2, null) >
+                        -1
+                      : _vm.investigation.it_designation.level_2
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.investigation.it_designation.level_2,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.investigation.it_designation,
+                              "level_2",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.investigation.it_designation,
+                              "level_2",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(
+                          _vm.investigation.it_designation,
+                          "level_2",
+                          $$c
+                        )
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" Level II\n          "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.investigation.it_designation.level_3,
+                      expression: "investigation.it_designation.level_3"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(
+                      _vm.investigation.it_designation.level_3
+                    )
+                      ? _vm._i(_vm.investigation.it_designation.level_3, null) >
+                        -1
+                      : _vm.investigation.it_designation.level_3
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.investigation.it_designation.level_3,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.investigation.it_designation,
+                              "level_3",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.investigation.it_designation,
+                              "level_3",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(
+                          _vm.investigation.it_designation,
+                          "level_3",
+                          $$c
+                        )
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" Level III\n        ")
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "columns" }, [
+              _c("div", { staticClass: "column is-one-third" }, [
+                _c("div", { staticClass: "columns" }, [
+                  _c("div", { staticClass: "column is-one-third" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("Last Name (Surname)")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.reviewedBy.security_manager.name.sur,
+                          expression: "reviewedBy.security_manager.name.sur"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text" },
+                      domProps: {
+                        value: _vm.reviewedBy.security_manager.name.sur
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.reviewedBy.security_manager.name,
+                            "sur",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "column is-one-third" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("First Name (Given)")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.reviewedBy.security_manager.name.given,
+                          expression: "reviewedBy.security_manager.name.given"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text" },
+                      domProps: {
+                        value: _vm.reviewedBy.security_manager.name.given
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.reviewedBy.security_manager.name,
+                            "given",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "column is-one-third" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("Middle Initial")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value:
+                            _vm.reviewedBy.security_manager.name.middle_initial,
+                          expression:
+                            "reviewedBy.security_manager.name.middle_initial"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text" },
+                      domProps: {
+                        value:
+                          _vm.reviewedBy.security_manager.name.middle_initial
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.reviewedBy.security_manager.name,
+                            "middle_initial",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "column is-one-third" }, [
+                _c("label", { staticClass: "label" }, [_vm._v("Signature")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.attestation.security_manager,
+                      expression: "attestation.security_manager"
+                    }
+                  ],
+                  attrs: { type: "checkbox", disabled: "true" },
+                  domProps: {
+                    checked: Array.isArray(_vm.attestation.security_manager)
+                      ? _vm._i(_vm.attestation.security_manager, null) > -1
+                      : _vm.attestation.security_manager
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.attestation.security_manager,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 &&
+                            _vm.$set(
+                              _vm.attestation,
+                              "security_manager",
+                              $$a.concat([$$v])
+                            )
+                        } else {
+                          $$i > -1 &&
+                            _vm.$set(
+                              _vm.attestation,
+                              "security_manager",
+                              $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                            )
+                        }
+                      } else {
+                        _vm.$set(_vm.attestation, "security_manager", $$c)
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" Signed\n        ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "column is-one-third" }, [
+                _c("label", { staticClass: "label" }, [
+                  _vm._v("Signature Date")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.reviewedBy.security_manager.signed_date,
+                      expression: "reviewedBy.security_manager.signed_date"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: { type: "text", disabled: "true" },
+                  domProps: {
+                    value: _vm.reviewedBy.security_manager.signed_date
+                  },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.reviewedBy.security_manager,
+                        "signed_date",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "button is-warning",
+                  on: {
+                    click: function($event) {
+                      _vm.signBy("security_manager")
+                    }
+                  }
+                },
+                [_vm._v("Sign")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "columns is-grouped" }, [
+              _c("div", { staticClass: "column is-one-third" }, [
+                _c("div", { staticClass: "columns" }, [
+                  _c("div", { staticClass: "column is-half" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("Organization")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.reviewedBy.security_manager.organization,
+                          expression: "reviewedBy.security_manager.organization"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text" },
+                      domProps: {
+                        value: _vm.reviewedBy.security_manager.organization
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.reviewedBy.security_manager,
+                            "organization",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "column is-half" }, [
+                    _c("label", { staticClass: "label" }, [
+                      _vm._v("Department")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.reviewedBy.security_manager.department,
+                          expression: "reviewedBy.security_manager.department"
+                        }
+                      ],
+                      staticClass: "input",
+                      attrs: { type: "text" },
+                      domProps: {
+                        value: _vm.reviewedBy.security_manager.department
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.reviewedBy.security_manager,
+                            "department",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "column is-one-third" }, [
+                _c("label", { staticClass: "label" }, [
+                  _vm._v("Email Address")
+                ]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.reviewedBy.security_manager.email,
+                      expression: "reviewedBy.security_manager.email"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: { type: "text" },
+                  domProps: { value: _vm.reviewedBy.security_manager.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.reviewedBy.security_manager,
+                        "email",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "column is-one-third" }, [
+                _c("label", { staticClass: "label" }, [_vm._v("Phone Number")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.reviewedBy.security_manager.phone,
+                      expression: "reviewedBy.security_manager.phone"
+                    }
+                  ],
+                  staticClass: "input",
+                  attrs: { type: "tel" },
+                  domProps: { value: _vm.reviewedBy.security_manager.phone },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.reviewedBy.security_manager,
+                        "phone",
+                        $event.target.value
+                      )
+                    }
+                  }
+                })
+              ])
+            ])
+          ])
         ])
       : _vm._e()
   ])
@@ -7191,7 +9248,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "column" }, [
           _c("div", { staticClass: "content" }, [
             _vm._v(
-              "To record names, signatures and other identifiers for the purpose of validating the trustworthiness of individuals requesting access to Daprtment of Defense (DoD) systems and information. Note: Records may be maintained in both electronic and/or paper form."
+              "To record names, signatures and other identifiers for the purpose of validating the trustworthiness of individuals requesting access to Department of Defense (DoD) systems and information. Note: Records may be maintained in both electronic and/or paper form."
             )
           ])
         ])
@@ -7205,7 +9262,7 @@ var staticRenderFns = [
         _c("div", { staticClass: "column" }, [
           _c("div", { staticClass: "content" }, [
             _vm._v(
-              "Disclosure of this infromation is voluntary; however, failure to provide the requested information may impede, delay or prevent further processing of this request."
+              "Disclosure of this information is voluntary; however, failure to provide the requested information may impede, delay or prevent further processing of this request."
             )
           ])
         ])
@@ -7240,8 +9297,55 @@ var staticRenderFns = [
     return _c("h2", { staticClass: "subtitle is-centered" }, [
       _c("strong", [_vm._v("Part 2")]),
       _vm._v(
-        " Endorsement of Access by Information Owner, User Supervisor or Government Sponsor"
+        " Endorsement of Access by Information information_owner, User Supervisor or Government Sponsor"
       )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("h3", { staticClass: "subtitle" }, [
+          _vm._v("Supervisor Endorsement")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("h3", { staticClass: "subtitle" }, [
+          _vm._v("Information Owner Endorsement")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("h3", { staticClass: "subtitle" }, [_vm._v("IAO Endorsement")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column" }, [
+      _c("h3", { staticClass: "subtitle" }, [
+        _c("strong", [_vm._v("Part 3")]),
+        _vm._v(
+          " Security Manager Validates the Background Investigation or Clearance Information"
+        )
+      ])
     ])
   }
 ]

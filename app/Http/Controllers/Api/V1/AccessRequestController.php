@@ -8,14 +8,14 @@ use Illuminate\Support\Facades\Log;
 class AccessRequestController extends ApiController
 {
     protected $permissions = [
-        [ 'name' => 'SuperAdmin', 'authorized' => true, 'privileged' => true, 'help' => 'Global administration that can manage users and take nearly any action within the system' ],
-        [ 'name' => 'SuperViewer', 'authorized' => true, 'privileged' => false, 'help' => 'Unrestricted read-only access can review any agreement and all artifacts under management regardless of assigned parties; suitable for analysts and system admins' ],
-        [ 'name' => 'SuperReviewer', 'authorized' => true, 'privileged' => true, 'help' => 'Agreement review and correction of digitial input or manual agreement processing; not tied to specific parties' ],
-        [ 'name' => 'AgreementReview', 'authorized' => false, 'privileged' => true, 'help' => 'Agreement review and correction of digital input or manual agreement processing; tied to specific parties' ],
-        [ 'name' => 'Entitlement', 'authorized' => false, 'privileged' => true, 'help' => 'Invoice review and processing along with recieving reports and inspection/acceptances; tied to delivery locations and/or admin offices as specific parties' ],
-        [ 'name' => 'FundsValidation', 'authorized' => false, 'privileged' => true, 'help' => 'Payment schedule review to handle so called pre-validation of funds in the accounting system of record prior to payment release' ],
-        [ 'name' => 'InspectionAcceptance', 'authorized' => false, 'privileged' => true, 'help' => 'Delivery and agreement review for field inspection of delivered goods or services to validate quality and accept on behalf of US government' ],
-        [ 'name' => 'Auditor', 'authorized' => true, 'privileged' => false, 'help' => 'Similar to SuperViewer access in access to agreement and all artifacts under management regardless of assigned parties; must be tied to actual review actions for information control']
+        ['name' => 'SuperAdmin', 'authorized' => true, 'privileged' => true, 'help' => 'Global administration that can manage users and take nearly any action within the system'],
+        ['name' => 'SuperViewer', 'authorized' => true, 'privileged' => false, 'help' => 'Unrestricted read-only access can review any agreement and all artifacts under management regardless of assigned parties; suitable for analysts and system admins'],
+        ['name' => 'SuperReviewer', 'authorized' => true, 'privileged' => true, 'help' => 'Agreement review and correction of digital input or manual agreement processing; not tied to specific parties'],
+        ['name' => 'AgreementReview', 'authorized' => false, 'privileged' => true, 'help' => 'Agreement review and correction of digital input or manual agreement processing; tied to specific parties'],
+        ['name' => 'Entitlement', 'authorized' => false, 'privileged' => true, 'help' => 'Invoice review and processing along with receiving reports and inspection/acceptances; tied to delivery locations and/or admin offices as specific parties'],
+        ['name' => 'FundsValidation', 'authorized' => false, 'privileged' => true, 'help' => 'Payment schedule review to handle so called pre-validation of funds in the accounting system of record prior to payment release'],
+        ['name' => 'InspectionAcceptance', 'authorized' => false, 'privileged' => true, 'help' => 'Delivery and agreement review for field inspection of delivered goods or services to validate quality and accept on behalf of US government'],
+        ['name' => 'Auditor', 'authorized' => true, 'privileged' => false, 'help' => 'Similar to SuperViewer access in access to agreement and all artifacts under management regardless of assigned parties; must be tied to actual review actions for information control']
     ];
 
     public function sendToSupervisor()
@@ -24,7 +24,8 @@ class AccessRequestController extends ApiController
         return $this->respondSuccess(request()->all());
     }
 
-    public function accessTypes() {
+    public function accessTypes()
+    {
         return $this->respondSuccess($this->permissions);
     }
 
@@ -49,7 +50,7 @@ class AccessRequestController extends ApiController
             'identification' =>
                 array(
                 'ldap' => 'DC21797',
-                'name' => array('given' => 'Daniel', 'sur' => 'Furman', 'middle_initial'=> 'J'),
+                'name' => array('given' => 'Daniel', 'sur' => 'Furman', 'middle_initial' => 'J'),
                 'organization' => 'FACET',
                 'department' => 'N/A',
                 'phone' => '1234567890',
@@ -114,7 +115,7 @@ class AccessRequestController extends ApiController
                 ),
                 'supervisor' =>
                     array(
-                    'name' => null,
+                    'name' => array('given' => '', 'sur' => '', 'middle_initial' => ''),
                     'organization' => null,
                     'department' => null,
                     'phone' => null,
@@ -122,15 +123,21 @@ class AccessRequestController extends ApiController
                 ),
                 'owner' =>
                     array(
-                    'phone' => null,
-                ),
-                'ioa' =>
-                    array(
+                    'name' => array('given' => '', 'sur' => '', 'middle_initial' => ''),
                     'organization' => null,
                     'department' => null,
                     'phone' => null,
+                    'email' => null,
                 ),
-                'additional_details' => null,
+                'iao' =>
+                    array(
+                    'name' => array('given' => '', 'sur' => '', 'middle_initial' => ''),
+                    'organization' => null,
+                    'department' => null,
+                    'phone' => null,
+                    'email' => null,
+                ),
+                'additional_details' => 'This section intentionally left blank',
             ),
             'investigation' =>
                 array(
@@ -143,10 +150,13 @@ class AccessRequestController extends ApiController
                     'level_2' => false,
                     'level_3' => false,
                 ),
-                'verified_by' =>
+                'security_manager' =>
                     array(
-                    'name' => null,
+                    'name' => array('given' => '', 'sur' => '', 'middle_initial' => ''),
+                    'organization' => null,
+                    'department' => null,
                     'phone' => null,
+                    'email' => null,
                 ),
             ),
             'attestation' =>
@@ -154,7 +164,8 @@ class AccessRequestController extends ApiController
                 'applicant' => true,
                 'manager' => false,
                 'owner' => false,
-                'ioa' => false,
+                'iao' => false,
+                'security_manager' => false,
             ),
         );
     }
