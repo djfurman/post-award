@@ -76,7 +76,7 @@
             <div class="field">
               <label class="label">User Id</label>
               <div class="control">
-                <input type="text" class="input" placeholder="User ID here" v-model="identification.ldap">
+                <input type="text" class="input" placeholder="User ID here" v-model="identification.ldap" v-if="!request.type.initial">
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@
           <div class="column">
             <div class="field">
               <label class="label">Organization</label>
-              <input type="text" class="input" v-model="identification.organization">
+              <input type="text" class="input" placeholder="Agency or Department Name" v-model="identification.organization">
             </div>
           </div>
         </div>
@@ -142,13 +142,13 @@
           <div class="column">
             <div class="field">
               <label class="label">Office Symbol/Department</label>
-              <input type="text" class="input" v-model="identification.department">
+              <input type="text" class="input" placeholder="Organization Symbol e.g., J6" v-model="identification.department">
             </div>
           </div>
           <div class="column">
             <div class="field">
               <label class="label">Phone</label>
-              <input type="tel" class="input" v-model="identification.phone">
+              <input type="tel" class="input" placeholder="202-867-5309" v-model="identification.phone">
             </div>
           </div>
         </div>
@@ -158,7 +158,7 @@
           <div class="column">
             <div class="field">
               <label class="label">Official E-Mail Address</label>
-              <input type="email" class="input" v-model="identification.email">
+              <input type="email" class="input" placeholder="firstName.lastName@mail.mil" v-model="identification.email">
             </div>
           </div>
           <div class="column">
@@ -166,13 +166,13 @@
               <div class="column">
                 <div class="field">
                   <label class="label">Job Title</label>
-                  <input type="text" class="input" v-model="identification.job.title">
+                  <input type="text" class="input" placeholder="e.g., Contract Technician" v-model="identification.job.title">
                 </div>
               </div>
               <div class="column">
                 <div class="field">
                   <label class="label">Grade/Rank</label>
-                  <input type="text" class="input" v-model="identification.job.rank">
+                  <input type="text" class="input" placeholder="e.g., GS-4, Lt. Col." v-model="identification.job.rank">
                 </div>
               </div>
             </div>
@@ -186,34 +186,34 @@
             <div class="field">
               <div class="control">
                 <label for="line_1" class="label">Street Address</label>
-                <input id="line_1" type="text" class="input" v-model="identification.mailing_address.street">
+                <input id="line_1" type="text" class="input" placeholder="1600 Pennsylvania Ave" v-model="identification.mailing_address.street">
 
                 <label for="line_2" class="label">Location</label>
-                <input id="line_2" type="text" class="input" v-model="identification.mailing_address.line_two">
+                <input id="line_2" type="text" class="input" placeholder="Chief of Staff" v-model="identification.mailing_address.line_two">
 
                 <div class="columns">
                   <div class="column field is-one-third">
                     <label for="city" class="label">City</label>
-                    <input type="text" id="city" class="input" v-model="identification.mailing_address.city">
+                    <input type="text" id="city" class="input" placeholder="Washington" v-model="identification.mailing_address.city">
                   </div>
                   <div class="column field is-one-third">
                     <label for="state" class="label">State</label>
-                    <input type="text" id="state" class="input" v-model="identification.mailing_address.state">
+                    <input type="text" id="state" class="input" placeholder="DC" v-model="identification.mailing_address.state">
                   </div>
                   <div class="column field is-one-third">
                     <label for="postal" class="label">Postal Code</label>
-                    <input type="text" id="postal" class="input" v-model="identification.mailing_address.postal">
+                    <input type="text" id="postal" class="input" placeholder="20500" v-model="identification.mailing_address.postal">
                   </div>
                 </div>
 
                 <div class="columns">
                   <div class="column field is-half">
                     <label for="country" class="label">Country</label>
-                    <input type="text" id="country" class="input" v-model="identification.mailing_address.country">
+                    <input type="text" id="country" class="input" placeholder="United States" v-model="identification.mailing_address.country">
                   </div>
                   <div class="column field is-half">
                     <label for="planet" class="label">Planet</label>
-                    <input type="text" id="planet" class="input" v-model="identification.mailing_address.planet">
+                    <input type="text" id="planet" class="input" placeholder="Earth" v-model="identification.mailing_address.planet">
                   </div>
                 </div>
               </div>
@@ -253,7 +253,7 @@
             <div class="column">
               <div class="field">
                 <label for="ia_date" class="label">Date</label>
-                <input id="ia_date" type="text" class="input" v-model="training.information_assurance.date_completed">
+                <input id="ia_date" type="date" class="input" v-model="training.information_assurance.date_completed">
               </div>
             </div>
           </div>
@@ -337,7 +337,7 @@
                 v-model="justification.classification.other"> Other
               <input
                 type="text"
-                class="input is-primary"
+                class="input"
                 v-model="justification.classification.other_description">
             </div>
           </div>
@@ -361,21 +361,21 @@
               <label for="expire_date" class="label">Access Expiration Date</label>
               <input
                 id="expire_date"
-                type="text"
+                type="date"
                 class="input"
                 v-model="justification.expiration.date">
               <div id="contractors_only" v-if="identification.designation.contractor">
                 <label class="label">Contractors must specify Company Name, Contract Number and Expiration Date</label>
-                <label for="contract_number" class="label">Contract Number</label>
+                <label class="label">Contract Number</label>
                 <input
-                  id="contract_number"
                   type="text"
+                  placeholder="BCD123-18-A-0001"
                   class="input"
                   v-model="justification.expiration.contract_number">
-                <label for="contract_company_name" class="label">Contractor Company Name</label>
+                <label class="label">Contractor Company Name</label>
                 <input
-                  id="contract_company_name"
                   type="text"
+                  placeholder="Acme, Inc."
                   class="input"
                   v-model="justification.expiration.contract_company_name">
               </div>
@@ -452,19 +452,17 @@
         <!-- information_owner ID -->
         <div class="columns">
           <div class="column is-one-third">
+            <label class="label">Name (Last, First, Middle Initial)</label>
             <!-- Name Breakdown -->
             <div class="columns">
               <div class="column is-one-third">
-                <label class="label">Last Name (Surname)</label>
-                <input type="text" class="input" v-model="reviewedBy.information_owner.name.sur">
+                <input type="text" class="input" placeholder="Last Name or Surname" v-model="reviewedBy.information_owner.name.sur">
               </div>
               <div class="column is-one-third">
-                <label class="label">First Name (Given)</label>
-                <input type="text" class="input" v-model="reviewedBy.information_owner.name.given">
+                <input type="text" class="input" placeholder="First Name or Given name" v-model="reviewedBy.information_owner.name.given">
               </div>
               <div class="column is-one-third">
-                <label class="label">Middle Initial</label>
-                <input type="text" class="input" v-model="reviewedBy.information_owner.name.middle_initial">
+                <input type="text" class="input" placeholder="Middle Initial" v-model="reviewedBy.information_owner.name.middle_initial">
               </div>
             </div>
           </div>
@@ -485,21 +483,21 @@
             <div class="columns">
               <div class="column is-half">
                 <label class="label">Organization</label>
-                <input type="text" class="input" v-model="reviewedBy.information_owner.organization">
+                <input type="text" class="input" placeholder="Agency or Department Name" v-model="reviewedBy.information_owner.organization">
               </div>
               <div class="column is-half">
                 <label class="label">Department</label>
-                <input type="text" class="input" v-model="reviewedBy.information_owner.department">
+                <input type="text" class="input" placeholder="Organization Symbol e.g., J6" v-model="reviewedBy.information_owner.department">
               </div>
             </div>
           </div>
           <div class="column is-one-third">
             <label class="label">Email Address</label>
-            <input type="text" class="input" v-model="reviewedBy.information_owner.email">
+            <input type="text" class="input" placeholder="firstName.lastName@mail.mil" v-model="reviewedBy.information_owner.email">
           </div>
           <div class="column is-one-third">
             <label class="label">Phone Number</label>
-            <input type="tel" class="input" v-model="reviewedBy.information_owner.phone">
+            <input type="tel" class="input" placeholder="202-867-5309" v-model="reviewedBy.information_owner.phone">
           </div>
         </div>
 
@@ -683,7 +681,7 @@ export default {
           modification: false,
           deactivation: false
         },
-        date: moment().format('YYYY-MM-DD'),
+        date: moment().format(),
         system: {
           name: 'FACET-Acq Post Award',
           location: 'Anywhere you need it'

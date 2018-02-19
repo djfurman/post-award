@@ -5237,8 +5237,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5250,7 +5248,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           modification: false,
           deactivation: false
         },
-        date: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format('YYYY-MM-DD'),
+        date: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format(),
         system: {
           name: 'FACET-Acq Post Award',
           location: 'Anywhere you need it'
@@ -5701,31 +5699,33 @@ var render = function() {
                   _c("label", { staticClass: "label" }, [_vm._v("User Id")]),
                   _vm._v(" "),
                   _c("div", { staticClass: "control" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.identification.ldap,
-                          expression: "identification.ldap"
-                        }
-                      ],
-                      staticClass: "input",
-                      attrs: { type: "text", placeholder: "User ID here" },
-                      domProps: { value: _vm.identification.ldap },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
+                    !_vm.request.type.initial
+                      ? _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.identification.ldap,
+                              expression: "identification.ldap"
+                            }
+                          ],
+                          staticClass: "input",
+                          attrs: { type: "text", placeholder: "User ID here" },
+                          domProps: { value: _vm.identification.ldap },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.identification,
+                                "ldap",
+                                $event.target.value
+                              )
+                            }
                           }
-                          _vm.$set(
-                            _vm.identification,
-                            "ldap",
-                            $event.target.value
-                          )
-                        }
-                      }
-                    })
+                        })
+                      : _vm._e()
                   ])
                 ])
               ]),
@@ -5958,7 +5958,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "input",
-                      attrs: { type: "text" },
+                      attrs: {
+                        type: "text",
+                        placeholder: "Agency or Department Name"
+                      },
                       domProps: { value: _vm.identification.organization },
                       on: {
                         input: function($event) {
@@ -5994,7 +5997,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "input",
-                      attrs: { type: "text" },
+                      attrs: {
+                        type: "text",
+                        placeholder: "Organization Symbol e.g., J6"
+                      },
                       domProps: { value: _vm.identification.department },
                       on: {
                         input: function($event) {
@@ -6026,7 +6032,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "input",
-                      attrs: { type: "tel" },
+                      attrs: { type: "tel", placeholder: "202-867-5309" },
                       domProps: { value: _vm.identification.phone },
                       on: {
                         input: function($event) {
@@ -6062,7 +6068,10 @@ var render = function() {
                         }
                       ],
                       staticClass: "input",
-                      attrs: { type: "email" },
+                      attrs: {
+                        type: "email",
+                        placeholder: "firstName.lastName@mail.mil"
+                      },
                       domProps: { value: _vm.identification.email },
                       on: {
                         input: function($event) {
@@ -6098,7 +6107,10 @@ var render = function() {
                             }
                           ],
                           staticClass: "input",
-                          attrs: { type: "text" },
+                          attrs: {
+                            type: "text",
+                            placeholder: "e.g., Contract Technician"
+                          },
                           domProps: { value: _vm.identification.job.title },
                           on: {
                             input: function($event) {
@@ -6132,7 +6144,10 @@ var render = function() {
                             }
                           ],
                           staticClass: "input",
-                          attrs: { type: "text" },
+                          attrs: {
+                            type: "text",
+                            placeholder: "e.g., GS-4, Lt. Col."
+                          },
                           domProps: { value: _vm.identification.job.rank },
                           on: {
                             input: function($event) {
@@ -6177,7 +6192,11 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: { id: "line_1", type: "text" },
+                        attrs: {
+                          id: "line_1",
+                          type: "text",
+                          placeholder: "1600 Pennsylvania Ave"
+                        },
                         domProps: {
                           value: _vm.identification.mailing_address.street
                         },
@@ -6212,7 +6231,11 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: { id: "line_2", type: "text" },
+                        attrs: {
+                          id: "line_2",
+                          type: "text",
+                          placeholder: "Chief of Staff"
+                        },
                         domProps: {
                           value: _vm.identification.mailing_address.line_two
                         },
@@ -6253,7 +6276,11 @@ var render = function() {
                                 }
                               ],
                               staticClass: "input",
-                              attrs: { type: "text", id: "city" },
+                              attrs: {
+                                type: "text",
+                                id: "city",
+                                placeholder: "Washington"
+                              },
                               domProps: {
                                 value: _vm.identification.mailing_address.city
                               },
@@ -6295,7 +6322,11 @@ var render = function() {
                                 }
                               ],
                               staticClass: "input",
-                              attrs: { type: "text", id: "state" },
+                              attrs: {
+                                type: "text",
+                                id: "state",
+                                placeholder: "DC"
+                              },
                               domProps: {
                                 value: _vm.identification.mailing_address.state
                               },
@@ -6340,7 +6371,11 @@ var render = function() {
                                 }
                               ],
                               staticClass: "input",
-                              attrs: { type: "text", id: "postal" },
+                              attrs: {
+                                type: "text",
+                                id: "postal",
+                                placeholder: "20500"
+                              },
                               domProps: {
                                 value: _vm.identification.mailing_address.postal
                               },
@@ -6381,7 +6416,11 @@ var render = function() {
                               }
                             ],
                             staticClass: "input",
-                            attrs: { type: "text", id: "country" },
+                            attrs: {
+                              type: "text",
+                              id: "country",
+                              placeholder: "United States"
+                            },
                             domProps: {
                               value: _vm.identification.mailing_address.country
                             },
@@ -6419,7 +6458,11 @@ var render = function() {
                               }
                             ],
                             staticClass: "input",
-                            attrs: { type: "text", id: "planet" },
+                            attrs: {
+                              type: "text",
+                              id: "planet",
+                              placeholder: "Earth"
+                            },
                             domProps: {
                               value: _vm.identification.mailing_address.planet
                             },
@@ -6872,7 +6915,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: { id: "ia_date", type: "text" },
+                        attrs: { id: "ia_date", type: "date" },
                         domProps: {
                           value:
                             _vm.training.information_assurance.date_completed
@@ -7283,7 +7326,7 @@ var render = function() {
                             "justification.classification.other_description"
                         }
                       ],
-                      staticClass: "input is-primary",
+                      staticClass: "input",
                       attrs: { type: "text" },
                       domProps: {
                         value:
@@ -7379,7 +7422,7 @@ var render = function() {
                         }
                       ],
                       staticClass: "input",
-                      attrs: { id: "expire_date", type: "text" },
+                      attrs: { id: "expire_date", type: "date" },
                       domProps: { value: _vm.justification.expiration.date },
                       on: {
                         input: function($event) {
@@ -7403,14 +7446,9 @@ var render = function() {
                             )
                           ]),
                           _vm._v(" "),
-                          _c(
-                            "label",
-                            {
-                              staticClass: "label",
-                              attrs: { for: "contract_number" }
-                            },
-                            [_vm._v("Contract Number")]
-                          ),
+                          _c("label", { staticClass: "label" }, [
+                            _vm._v("Contract Number")
+                          ]),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -7424,7 +7462,10 @@ var render = function() {
                               }
                             ],
                             staticClass: "input",
-                            attrs: { id: "contract_number", type: "text" },
+                            attrs: {
+                              type: "text",
+                              placeholder: "BCD123-18-A-0001"
+                            },
                             domProps: {
                               value:
                                 _vm.justification.expiration.contract_number
@@ -7443,14 +7484,9 @@ var render = function() {
                             }
                           }),
                           _vm._v(" "),
-                          _c(
-                            "label",
-                            {
-                              staticClass: "label",
-                              attrs: { for: "contract_company_name" }
-                            },
-                            [_vm._v("Contractor Company Name")]
-                          ),
+                          _c("label", { staticClass: "label" }, [
+                            _vm._v("Contractor Company Name")
+                          ]),
                           _vm._v(" "),
                           _c("input", {
                             directives: [
@@ -7465,10 +7501,7 @@ var render = function() {
                               }
                             ],
                             staticClass: "input",
-                            attrs: {
-                              id: "contract_company_name",
-                              type: "text"
-                            },
+                            attrs: { type: "text", placeholder: "Acme, Inc." },
                             domProps: {
                               value:
                                 _vm.justification.expiration
@@ -7497,12 +7530,12 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "columns" }, [
                 _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Name (Last, First, Middle Initial)")
+                  ]),
+                  _vm._v(" "),
                   _c("div", { staticClass: "columns" }, [
                     _c("div", { staticClass: "column is-one-third" }, [
-                      _c("label", { staticClass: "label" }, [
-                        _vm._v("Last Name (Surname)")
-                      ]),
-                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -7531,10 +7564,6 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "column is-one-third" }, [
-                      _c("label", { staticClass: "label" }, [
-                        _vm._v("First Name (Given)")
-                      ]),
-                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -7565,10 +7594,6 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "column is-one-third" }, [
-                      _c("label", { staticClass: "label" }, [
-                        _vm._v("Middle Initial")
-                      ]),
-                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -7856,7 +7881,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: { type: "text" },
+                        attrs: {
+                          type: "text",
+                          placeholder: "Last Name or Surname"
+                        },
                         domProps: {
                           value: _vm.reviewedBy.information_owner.name.sur
                         },
@@ -7891,7 +7919,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: { type: "text" },
+                        attrs: {
+                          type: "text",
+                          placeholder: "First Name or Given name"
+                        },
                         domProps: {
                           value: _vm.reviewedBy.information_owner.name.given
                         },
@@ -7928,7 +7959,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: { type: "text" },
+                        attrs: { type: "text", placeholder: "Middle Initial" },
                         domProps: {
                           value:
                             _vm.reviewedBy.information_owner.name.middle_initial
@@ -8068,7 +8099,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: { type: "text" },
+                        attrs: {
+                          type: "text",
+                          placeholder: "Agency or Department Name"
+                        },
                         domProps: {
                           value: _vm.reviewedBy.information_owner.organization
                         },
@@ -8103,7 +8137,10 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: { type: "text" },
+                        attrs: {
+                          type: "text",
+                          placeholder: "Organization Symbol e.g., J6"
+                        },
                         domProps: {
                           value: _vm.reviewedBy.information_owner.department
                         },
@@ -8139,7 +8176,10 @@ var render = function() {
                       }
                     ],
                     staticClass: "input",
-                    attrs: { type: "text" },
+                    attrs: {
+                      type: "text",
+                      placeholder: "firstName.lastName@mail.mil"
+                    },
                     domProps: { value: _vm.reviewedBy.information_owner.email },
                     on: {
                       input: function($event) {
@@ -8171,7 +8211,7 @@ var render = function() {
                       }
                     ],
                     staticClass: "input",
-                    attrs: { type: "tel" },
+                    attrs: { type: "tel", placeholder: "202-867-5309" },
                     domProps: { value: _vm.reviewedBy.information_owner.phone },
                     on: {
                       input: function($event) {
