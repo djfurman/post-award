@@ -49,7 +49,7 @@ export default {
   .alert-flash {
     position: fixed;
     right: 25px;
-    bottom: 25px;
+    top: 25px;
   }
 </style>
 

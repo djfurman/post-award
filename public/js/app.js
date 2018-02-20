@@ -5237,117 +5237,116 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       request: {
-        type: {
-          initial: false,
-          modification: false,
-          deactivation: false
-        },
+        type: "",
         date: __WEBPACK_IMPORTED_MODULE_0_moment___default()().format(),
         system: {
-          name: 'FACET-Acq Post Award',
-          location: 'Anywhere you need it'
+          name: "FACET-Acq Post Award",
+          location: "Anywhere you need it"
         }
       },
       identification: {
-        ldap: '',
-        mfa_token: '',
+        ldap: "",
+        mfa_token: "",
         name: {
-          given: '',
-          sur: '',
-          middle_initial: ''
+          given: "",
+          sur: "",
+          middle_initial: ""
         },
-        organization: '',
-        department: '',
-        phone: '',
-        email: '',
+        organization: "",
+        department: "",
+        phone: "",
+        email: "",
         job: {
-          title: '',
-          rank: ''
+          title: "",
+          rank: ""
         },
         mailing_address: {
-          street: '',
-          line_two: '',
-          city: '',
-          state: '',
-          postal: '',
-          country: 'United States',
-          planet: 'Earth'
+          street: "",
+          line_two: "",
+          city: "",
+          state: "",
+          postal: "",
+          country: "United States",
+          planet: "Earth"
         },
         citizenship: {
           us: false,
           fn: false,
           other: false
         },
-        designation: {
-          military: false,
-          civilian: false,
-          contractor: false
-        }
+        designation: ''
       },
       training: {
         information_assurance: {
           complete: false,
-          date_completed: ''
+          date_completed: ""
         }
       },
       reviewedBy: {
         supervisor: {
           name: {
-            sur: '',
-            given: '',
-            middle_initial: ''
+            sur: "",
+            given: "",
+            middle_initial: ""
           },
-          signed_date: '',
-          organization: '',
-          department: '',
-          phone: '',
-          email: ''
+          signed_date: "",
+          organization: "",
+          department: "",
+          phone: "",
+          email: ""
         },
         information_owner: {
           name: {
-            sur: '',
-            given: '',
-            middle_initial: ''
+            sur: "",
+            given: "",
+            middle_initial: ""
           },
-          signed_date: '',
-          organization: '',
-          department: '',
-          phone: '',
-          email: ''
+          signed_date: "",
+          organization: "",
+          department: "",
+          phone: "",
+          email: ""
         },
         iao: {
           name: {
-            sur: '',
-            given: '',
-            middle_initial: ''
+            sur: "",
+            given: "",
+            middle_initial: ""
           },
-          signed_date: '',
-          organization: '',
-          department: '',
-          phone: '',
-          email: ''
+          signed_date: "",
+          organization: "",
+          department: "",
+          phone: "",
+          email: ""
         },
         security_manager: {
           name: {
-            sur: '',
-            given: '',
-            middle_initial: ''
+            sur: "",
+            given: "",
+            middle_initial: ""
           },
-          signed_date: '',
-          organization: '',
-          department: '',
-          phone: '',
-          email: ''
+          signed_date: "",
+          organization: "",
+          department: "",
+          phone: "",
+          email: ""
         }
       },
       justification: {
-        reason: '',
+        reason: "",
         type: {
           authorized: false,
           privileged: false
@@ -5355,22 +5354,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         classification: {
           unclassified: true,
           classified: false,
-          category: '',
+          category: "",
           other: false,
-          other_description: ''
+          other_description: ""
         },
         need_to_know: true,
         expiration: {
-          contract_number: '',
-          contract_company_name: '',
-          date: ''
+          contract_number: "",
+          contract_company_name: "",
+          date: ""
         },
-        additional_details: 'This section intentionally left blank'
+        additional_details: "This section intentionally left blank"
       },
       investigation: {
-        type: '',
-        date: '',
-        clearance: '',
+        type: "",
+        date: "",
+        clearance: "",
         it_designation: {
           level_1: false,
           level_2: false,
@@ -5395,34 +5394,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   computed: {
     applicant_name: function applicant_name() {
-      return this.identification.name.sur + ', ' + this.identification.name.given + ', ' + this.identification.name.middle_initial + '.';
+      var applicant = this.identification.name;
+      if (applicant.sur.length != 0 && applicant.given.length != 0 && applicant.middle_initial.length != 0) {
+        return applicant.sur + ", " + applicant.given + ", " + applicant.middle_initial + ".";
+      }
+      return '';
     },
     supervisor_name: function supervisor_name() {
-      return this.nameBuild('supervisor');
+      return this.nameBuild("supervisor");
     },
     information_owner_name: function information_owner_name() {
-      return this.nameBuild('information_owner');
+      return this.nameBuild("information_owner");
     },
     iao_name: function iao_name() {
-      return this.nameBuild('iao');
+      return this.nameBuild("iao");
     },
     security_manager_name: function security_manager_name() {
-      return this.nameBuild('security_manager');
+      return this.nameBuild("security_manager");
     }
   },
 
   methods: {
     nameBuild: function nameBuild(role) {
-      return this.reviewedBy[role].name.sur + ', ' + this.reviewedBy[role].name.given + ', ' + this.reviewedBy[role].name.middle_initial + '.';
+      return this.reviewedBy[role].name.sur + ", " + this.reviewedBy[role].name.given + ", " + this.reviewedBy[role].name.middle_initial + ".";
     },
     sendToSupervisor: function sendToSupervisor() {
       this.attestation.applicant = true;
       var payload = this.$data;
       // this should be a method call to sign with the NON-EMAIL cert, then remit that value to the server
-      window.axios.post('/api/v1/access/request', payload).then(function () {
-        window.flash('Your request has been successfully submitted to your supervisor');
+      window.axios.post("/api/v1/access/request", payload).then(function () {
+        window.flash("Your request has been successfully submitted to your supervisor");
       }).catch(function () {
-        window.flash('Your request failed to post');
+        window.flash("Your request failed to post");
       });
     },
     populateFromJson: function populateFromJson(saar) {
@@ -5436,10 +5439,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     fetchAccessTypes: function fetchAccessTypes() {
       var _this = this;
 
-      window.axios.get('/api/v1/access/types').then(function (result) {
+      window.axios.get("/api/v1/access/types").then(function (result) {
         _this.groups.available = result.data.result;
       }).catch(function () {
-        window.flash('Access types could not be loaded');
+        window.flash("Access types could not be loaded");
       });
     },
     moveToSaar: function moveToSaar() {
@@ -5450,7 +5453,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.attestation[role] = true;
       this.reviewedBy[role].signed_date = __WEBPACK_IMPORTED_MODULE_0_moment___default()().format();
       // todo update the workflow
-      window.flash(role.replace("_", " ").toUpperCase() + ' has successfully signed & endorsed this application');
+      window.flash(role.replace("_", " ").toUpperCase() + " has successfully signed & endorsed this application");
     }
   },
 
@@ -5553,49 +5556,28 @@ var render = function() {
               _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "column" }, [
-                _c("div", { staticClass: "field is-grouped" }, [
+                _c("div", { staticClass: "field" }, [
                   _c("div", { staticClass: "control" }, [
                     _c("input", {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.request.type.initial,
-                          expression: "request.type.initial"
+                          value: _vm.request.type,
+                          expression: "request.type"
                         }
                       ],
-                      attrs: { type: "checkbox" },
+                      attrs: {
+                        type: "radio",
+                        name: "request_type",
+                        value: "initial"
+                      },
                       domProps: {
-                        checked: Array.isArray(_vm.request.type.initial)
-                          ? _vm._i(_vm.request.type.initial, null) > -1
-                          : _vm.request.type.initial
+                        checked: _vm._q(_vm.request.type, "initial")
                       },
                       on: {
                         change: function($event) {
-                          var $$a = _vm.request.type.initial,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = null,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(
-                                  _vm.request.type,
-                                  "initial",
-                                  $$a.concat([$$v])
-                                )
-                            } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  _vm.request.type,
-                                  "initial",
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
-                            }
-                          } else {
-                            _vm.$set(_vm.request.type, "initial", $$c)
-                          }
+                          _vm.$set(_vm.request, "type", "initial")
                         }
                       }
                     }),
@@ -5605,42 +5587,21 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.request.type.modification,
-                          expression: "request.type.modification"
+                          value: _vm.request.type,
+                          expression: "request.type"
                         }
                       ],
-                      attrs: { type: "checkbox" },
+                      attrs: {
+                        type: "radio",
+                        name: "request_type",
+                        value: "modification"
+                      },
                       domProps: {
-                        checked: Array.isArray(_vm.request.type.modification)
-                          ? _vm._i(_vm.request.type.modification, null) > -1
-                          : _vm.request.type.modification
+                        checked: _vm._q(_vm.request.type, "modification")
                       },
                       on: {
                         change: function($event) {
-                          var $$a = _vm.request.type.modification,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = null,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(
-                                  _vm.request.type,
-                                  "modification",
-                                  $$a.concat([$$v])
-                                )
-                            } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  _vm.request.type,
-                                  "modification",
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
-                            }
-                          } else {
-                            _vm.$set(_vm.request.type, "modification", $$c)
-                          }
+                          _vm.$set(_vm.request, "type", "modification")
                         }
                       }
                     }),
@@ -5650,42 +5611,21 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.request.type.deactivation,
-                          expression: "request.type.deactivation"
+                          value: _vm.request.type,
+                          expression: "request.type"
                         }
                       ],
-                      attrs: { type: "checkbox" },
+                      attrs: {
+                        type: "radio",
+                        name: "request_type",
+                        value: "deactivate"
+                      },
                       domProps: {
-                        checked: Array.isArray(_vm.request.type.deactivation)
-                          ? _vm._i(_vm.request.type.deactivation, null) > -1
-                          : _vm.request.type.deactivation
+                        checked: _vm._q(_vm.request.type, "deactivate")
                       },
                       on: {
                         change: function($event) {
-                          var $$a = _vm.request.type.deactivation,
-                            $$el = $event.target,
-                            $$c = $$el.checked ? true : false
-                          if (Array.isArray($$a)) {
-                            var $$v = null,
-                              $$i = _vm._i($$a, $$v)
-                            if ($$el.checked) {
-                              $$i < 0 &&
-                                _vm.$set(
-                                  _vm.request.type,
-                                  "deactivation",
-                                  $$a.concat([$$v])
-                                )
-                            } else {
-                              $$i > -1 &&
-                                _vm.$set(
-                                  _vm.request.type,
-                                  "deactivation",
-                                  $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                )
-                            }
-                          } else {
-                            _vm.$set(_vm.request.type, "deactivation", $$c)
-                          }
+                          _vm.$set(_vm.request, "type", "deactivate")
                         }
                       }
                     }),
@@ -5695,12 +5635,14 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "column" }, [
-                _c("div", { staticClass: "field" }, [
-                  _c("label", { staticClass: "label" }, [_vm._v("User Id")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "control" }, [
-                    !_vm.request.type.initial
-                      ? _c("input", {
+                _vm.request.type != "initial"
+                  ? _c("div", { staticClass: "field" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("User Id")
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "control" }, [
+                        _c("input", {
                           directives: [
                             {
                               name: "model",
@@ -5725,9 +5667,9 @@ var render = function() {
                             }
                           }
                         })
-                      : _vm._e()
-                  ])
-                ])
+                      ])
+                    ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "column" }, [
@@ -6497,49 +6439,21 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.identification.citizenship.us,
-                            expression: "identification.citizenship.us"
+                            value: _vm.identification.citizenship,
+                            expression: "identification.citizenship"
                           }
                         ],
-                        attrs: { type: "checkbox" },
+                        attrs: {
+                          type: "radio",
+                          name: "id_citizenship",
+                          value: "US"
+                        },
                         domProps: {
-                          checked: Array.isArray(
-                            _vm.identification.citizenship.us
-                          )
-                            ? _vm._i(_vm.identification.citizenship.us, null) >
-                              -1
-                            : _vm.identification.citizenship.us
+                          checked: _vm._q(_vm.identification.citizenship, "US")
                         },
                         on: {
                           change: function($event) {
-                            var $$a = _vm.identification.citizenship.us,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.identification.citizenship,
-                                    "us",
-                                    $$a.concat([$$v])
-                                  )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.identification.citizenship,
-                                    "us",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
-                              }
-                            } else {
-                              _vm.$set(
-                                _vm.identification.citizenship,
-                                "us",
-                                $$c
-                              )
-                            }
+                            _vm.$set(_vm.identification, "citizenship", "US")
                           }
                         }
                       }),
@@ -6549,49 +6463,21 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.identification.citizenship.fn,
-                            expression: "identification.citizenship.fn"
+                            value: _vm.identification.citizenship,
+                            expression: "identification.citizenship"
                           }
                         ],
-                        attrs: { type: "checkbox" },
+                        attrs: {
+                          type: "radio",
+                          name: "id_citizenship",
+                          value: "FN"
+                        },
                         domProps: {
-                          checked: Array.isArray(
-                            _vm.identification.citizenship.fn
-                          )
-                            ? _vm._i(_vm.identification.citizenship.fn, null) >
-                              -1
-                            : _vm.identification.citizenship.fn
+                          checked: _vm._q(_vm.identification.citizenship, "FN")
                         },
                         on: {
                           change: function($event) {
-                            var $$a = _vm.identification.citizenship.fn,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.identification.citizenship,
-                                    "fn",
-                                    $$a.concat([$$v])
-                                  )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.identification.citizenship,
-                                    "fn",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
-                              }
-                            } else {
-                              _vm.$set(
-                                _vm.identification.citizenship,
-                                "fn",
-                                $$c
-                              )
-                            }
+                            _vm.$set(_vm.identification, "citizenship", "FN")
                           }
                         }
                       }),
@@ -6601,51 +6487,24 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.identification.citizenship.other,
-                            expression: "identification.citizenship.other"
+                            value: _vm.identification.citizenship,
+                            expression: "identification.citizenship"
                           }
                         ],
-                        attrs: { type: "checkbox" },
+                        attrs: {
+                          type: "radio",
+                          name: "id_citizenship",
+                          value: "Other"
+                        },
                         domProps: {
-                          checked: Array.isArray(
-                            _vm.identification.citizenship.other
+                          checked: _vm._q(
+                            _vm.identification.citizenship,
+                            "Other"
                           )
-                            ? _vm._i(
-                                _vm.identification.citizenship.other,
-                                null
-                              ) > -1
-                            : _vm.identification.citizenship.other
                         },
                         on: {
                           change: function($event) {
-                            var $$a = _vm.identification.citizenship.other,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.identification.citizenship,
-                                    "other",
-                                    $$a.concat([$$v])
-                                  )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.identification.citizenship,
-                                    "other",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
-                              }
-                            } else {
-                              _vm.$set(
-                                _vm.identification.citizenship,
-                                "other",
-                                $$c
-                              )
-                            }
+                            _vm.$set(_vm.identification, "citizenship", "Other")
                           }
                         }
                       }),
@@ -6666,51 +6525,28 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.identification.designation.military,
-                            expression: "identification.designation.military"
+                            value: _vm.identification.designation,
+                            expression: "identification.designation"
                           }
                         ],
-                        attrs: { type: "checkbox" },
+                        attrs: {
+                          type: "radio",
+                          name: "id_designation",
+                          value: "Military"
+                        },
                         domProps: {
-                          checked: Array.isArray(
-                            _vm.identification.designation.military
+                          checked: _vm._q(
+                            _vm.identification.designation,
+                            "Military"
                           )
-                            ? _vm._i(
-                                _vm.identification.designation.military,
-                                null
-                              ) > -1
-                            : _vm.identification.designation.military
                         },
                         on: {
                           change: function($event) {
-                            var $$a = _vm.identification.designation.military,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.identification.designation,
-                                    "military",
-                                    $$a.concat([$$v])
-                                  )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.identification.designation,
-                                    "military",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
-                              }
-                            } else {
-                              _vm.$set(
-                                _vm.identification.designation,
-                                "military",
-                                $$c
-                              )
-                            }
+                            _vm.$set(
+                              _vm.identification,
+                              "designation",
+                              "Military"
+                            )
                           }
                         }
                       }),
@@ -6720,51 +6556,28 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.identification.designation.civilian,
-                            expression: "identification.designation.civilian"
+                            value: _vm.identification.designation,
+                            expression: "identification.designation"
                           }
                         ],
-                        attrs: { type: "checkbox" },
+                        attrs: {
+                          type: "radio",
+                          name: "id_designation",
+                          value: "Civilian"
+                        },
                         domProps: {
-                          checked: Array.isArray(
-                            _vm.identification.designation.civilian
+                          checked: _vm._q(
+                            _vm.identification.designation,
+                            "Civilian"
                           )
-                            ? _vm._i(
-                                _vm.identification.designation.civilian,
-                                null
-                              ) > -1
-                            : _vm.identification.designation.civilian
                         },
                         on: {
                           change: function($event) {
-                            var $$a = _vm.identification.designation.civilian,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.identification.designation,
-                                    "civilian",
-                                    $$a.concat([$$v])
-                                  )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.identification.designation,
-                                    "civilian",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
-                              }
-                            } else {
-                              _vm.$set(
-                                _vm.identification.designation,
-                                "civilian",
-                                $$c
-                              )
-                            }
+                            _vm.$set(
+                              _vm.identification,
+                              "designation",
+                              "Civilian"
+                            )
                           }
                         }
                       }),
@@ -6774,51 +6587,28 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.identification.designation.contractor,
-                            expression: "identification.designation.contractor"
+                            value: _vm.identification.designation,
+                            expression: "identification.designation"
                           }
                         ],
-                        attrs: { type: "checkbox" },
+                        attrs: {
+                          type: "radio",
+                          name: "id_designation",
+                          value: "Contractor"
+                        },
                         domProps: {
-                          checked: Array.isArray(
-                            _vm.identification.designation.contractor
+                          checked: _vm._q(
+                            _vm.identification.designation,
+                            "Contractor"
                           )
-                            ? _vm._i(
-                                _vm.identification.designation.contractor,
-                                null
-                              ) > -1
-                            : _vm.identification.designation.contractor
                         },
                         on: {
                           change: function($event) {
-                            var $$a = _vm.identification.designation.contractor,
-                              $$el = $event.target,
-                              $$c = $$el.checked ? true : false
-                            if (Array.isArray($$a)) {
-                              var $$v = null,
-                                $$i = _vm._i($$a, $$v)
-                              if ($$el.checked) {
-                                $$i < 0 &&
-                                  _vm.$set(
-                                    _vm.identification.designation,
-                                    "contractor",
-                                    $$a.concat([$$v])
-                                  )
-                              } else {
-                                $$i > -1 &&
-                                  _vm.$set(
-                                    _vm.identification.designation,
-                                    "contractor",
-                                    $$a.slice(0, $$i).concat($$a.slice($$i + 1))
-                                  )
-                              }
-                            } else {
-                              _vm.$set(
-                                _vm.identification.designation,
-                                "contractor",
-                                $$c
-                              )
-                            }
+                            _vm.$set(
+                              _vm.identification,
+                              "designation",
+                              "Contractor"
+                            )
                           }
                         }
                       }),
@@ -6961,7 +6751,7 @@ var render = function() {
                 _c("div", { staticClass: "column" }, [
                   _vm._m(4),
                   _vm._v(" "),
-                  _vm.identification.designation.contractor
+                  _vm.identification.designation == "Contractor"
                     ? _c("span", { staticClass: "content" }, [
                         _vm._v(
                           "If individual is a contractor - provide company name, contract number, and date of contract expiration."
@@ -7530,12 +7320,12 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "columns" }, [
                 _c("div", { staticClass: "column is-one-third" }, [
-                  _c("label", { staticClass: "label" }, [
-                    _vm._v("Name (Last, First, Middle Initial)")
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "columns" }, [
                     _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Last Name (Surname)")
+                      ]),
+                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -7564,6 +7354,10 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("First Name (Given)")
+                      ]),
+                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -7594,6 +7388,10 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "column is-one-third" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Middle Initial")
+                      ]),
+                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -7635,19 +7433,19 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.attestation.manager,
-                        expression: "attestation.manager"
+                        value: _vm.attestation.supervisor,
+                        expression: "attestation.supervisor"
                       }
                     ],
                     attrs: { type: "checkbox", disabled: "true" },
                     domProps: {
-                      checked: Array.isArray(_vm.attestation.manager)
-                        ? _vm._i(_vm.attestation.manager, null) > -1
-                        : _vm.attestation.manager
+                      checked: Array.isArray(_vm.attestation.supervisor)
+                        ? _vm._i(_vm.attestation.supervisor, null) > -1
+                        : _vm.attestation.supervisor
                     },
                     on: {
                       change: function($event) {
-                        var $$a = _vm.attestation.manager,
+                        var $$a = _vm.attestation.supervisor,
                           $$el = $event.target,
                           $$c = $$el.checked ? true : false
                         if (Array.isArray($$a)) {
@@ -7657,19 +7455,19 @@ var render = function() {
                             $$i < 0 &&
                               _vm.$set(
                                 _vm.attestation,
-                                "manager",
+                                "supervisor",
                                 $$a.concat([$$v])
                               )
                           } else {
                             $$i > -1 &&
                               _vm.$set(
                                 _vm.attestation,
-                                "manager",
+                                "supervisor",
                                 $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                               )
                           }
                         } else {
-                          _vm.$set(_vm.attestation, "manager", $$c)
+                          _vm.$set(_vm.attestation, "supervisor", $$c)
                         }
                       }
                     }
@@ -7865,12 +7663,12 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "columns" }, [
                 _c("div", { staticClass: "column is-one-third" }, [
+                  _c("label", { staticClass: "label" }, [
+                    _vm._v("Name (Last, First, Middle Initial)")
+                  ]),
+                  _vm._v(" "),
                   _c("div", { staticClass: "columns" }, [
                     _c("div", { staticClass: "column is-one-third" }, [
-                      _c("label", { staticClass: "label" }, [
-                        _vm._v("Last Name (Surname)")
-                      ]),
-                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -7904,10 +7702,6 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "column is-one-third" }, [
-                      _c("label", { staticClass: "label" }, [
-                        _vm._v("First Name (Given)")
-                      ]),
-                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -7942,10 +7736,6 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "column is-one-third" }, [
-                      _c("label", { staticClass: "label" }, [
-                        _vm._v("Middle Initial")
-                      ]),
-                      _vm._v(" "),
                       _c("input", {
                         directives: [
                           {
@@ -8627,11 +8417,13 @@ var render = function() {
                   }
                 })
               ])
-            ]),
+            ])
+          ]),
+          _vm._v(" "),
+          _c("section", { staticClass: "section" }, [
+            _vm._m(8),
             _vm._v(" "),
             _c("div", { staticClass: "columns" }, [
-              _vm._m(8),
-              _vm._v(" "),
               _c("div", { staticClass: "column" }, [
                 _c("div", { staticClass: "columns" }, [
                   _c("div", { staticClass: "column is-half" }, [
@@ -9314,7 +9106,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "column" }, [
-      _c("h3", [_vm._v("Type of Request")])
+      _c("h3", { staticClass: "subtitle" }, [_vm._v("Type of Request")])
     ])
   },
   function() {
@@ -9379,12 +9171,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "column" }, [
-      _c("h3", { staticClass: "subtitle" }, [
-        _c("strong", [_vm._v("Part 3")]),
-        _vm._v(
-          " Security Manager Validates the Background Investigation or Clearance Information"
-        )
+    return _c("div", { staticClass: "columns" }, [
+      _c("div", { staticClass: "column" }, [
+        _c("h3", { staticClass: "subtitle" }, [
+          _c("strong", [_vm._v("Part 3")]),
+          _vm._v(
+            " Security Manager Validates the Background Investigation or Clearance Information"
+          )
+        ])
       ])
     ])
   }
@@ -9950,7 +9744,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n.alert-flash {\n  position: fixed;\n  right: 25px;\n  bottom: 25px;\n}\n", ""]);
+exports.push([module.i, "\n.alert-flash {\n  position: fixed;\n  right: 25px;\n  top: 25px;\n}\n", ""]);
 
 // exports
 

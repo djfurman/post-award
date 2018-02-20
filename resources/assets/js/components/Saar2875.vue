@@ -59,24 +59,24 @@
       <section id="request" class="section">
         <div class="columns">
           <div class="column">
-            <h3>Type of Request</h3>
+            <h3 class="subtitle">Type of Request</h3>
           </div>
 
           <div class="column">
-            <div class="field is-grouped">
+            <div class="field">
               <div class="control">
-                <input type="checkbox" v-model="request.type.initial"> Initial
-                <input type="checkbox" v-model="request.type.modification"> Modification
-                <input type="checkbox" v-model="request.type.deactivation"> Deactivate
+                <input type="radio" name="request_type" value="initial" v-model="request.type"> Initial
+                <input type="radio" name="request_type" value="modification" v-model="request.type"> Modification
+                <input type="radio" name="request_type" value="deactivate" v-model="request.type"> Deactivate
               </div>
             </div>
           </div>
 
           <div class="column">
-            <div class="field">
+            <div class="field" v-if="request.type != 'initial'">
               <label class="label">User Id</label>
               <div class="control">
-                <input type="text" class="input" placeholder="User ID here" v-model="identification.ldap" v-if="!request.type.initial">
+                <input type="text" class="input" placeholder="User ID here" v-model="identification.ldap">
               </div>
             </div>
           </div>
@@ -224,9 +224,9 @@
             <label class="label">Citizenship</label>
             <div class="columns">
               <div class="column">
-                <input type="checkbox" v-model="identification.citizenship.us"> US
-                <input type="checkbox" v-model="identification.citizenship.fn"> FN
-                <input type="checkbox" v-model="identification.citizenship.other"> Other
+                <input type="radio" name="id_citizenship" value="US" v-model="identification.citizenship"> US
+                <input type="radio" name="id_citizenship" value="FN" v-model="identification.citizenship"> FN
+                <input type="radio" name="id_citizenship" value="Other" v-model="identification.citizenship"> Other
               </div>
             </div>
           </div>
@@ -235,9 +235,9 @@
             <label class="label">Designation of Person</label>
             <div class="columns">
               <div class="column">
-                <input type="checkbox" v-model="identification.designation.military"> Military
-                <input type="checkbox" v-model="identification.designation.civilian"> Civilian
-                <input type="checkbox" v-model="identification.designation.contractor"> Contractor
+                <input type="radio" name="id_designation" value="Military" v-model="identification.designation"> Military
+                <input type="radio" name="id_designation" value="Civilian" v-model="identification.designation"> Civilian
+                <input type="radio" name="id_designation" value="Contractor" v-model="identification.designation"> Contractor
               </div>
             </div>
           </div>
@@ -260,6 +260,7 @@
         </div>
       </section>
 
+      <!-- Submission -->
       <div class="columns">
         <div class="column">
           <button class="button is-primary" @click="sendToSupervisor">Submit for Supervisor Review</button>
@@ -271,7 +272,7 @@
         <div class="columns">
           <div class="column">
             <h2 class="subtitle is-centered"><strong>Part 2</strong> Endorsement of Access by Information information_owner, User Supervisor or Government Sponsor</h2>
-            <span class="content" v-if="identification.designation.contractor">If individual is a contractor - provide company name, contract number, and date of contract expiration.</span>
+            <span class="content" v-if="identification.designation == 'Contractor'">If individual is a contractor - provide company name, contract number, and date of contract expiration.</span>
           </div>
         </div>
 
@@ -411,7 +412,7 @@
           <!-- Signature -->
           <div class="column is-one-third">
             <label class="label">Signature</label>
-            <input type="checkbox" disabled="true" v-model="attestation.manager"> Signed
+            <input type="checkbox" disabled="true" v-model="attestation.supervisor"> Signed
           </div>
           <div class="column is-one-third">
             <label class="label">Signature Date</label>
@@ -579,12 +580,17 @@
             <textarea class="textarea" disabled="true" v-model="justification.additional_details" rows="10"></textarea>
           </div>
         </div>
+      </section>
 
+      <!-- Third Page -->
+      <section class="section">
         <!-- Part 3 -->
         <div class="columns">
           <div class="column">
             <h3 class="subtitle"><strong>Part 3</strong> Security Manager Validates the Background Investigation or Clearance Information</h3>
           </div>
+        </div>
+        <div class="columns">
           <!-- Investigation Details -->
           <div class="column">
             <div class="columns">
@@ -666,6 +672,7 @@
           </div>
         </div>
       </section>
+
     </div>
   </div>
 </template>
@@ -676,111 +683,103 @@ export default {
   data() {
     return {
       request: {
-        type: {
-          initial: false,
-          modification: false,
-          deactivation: false
-        },
+        type: "",
         date: moment().format(),
         system: {
-          name: 'FACET-Acq Post Award',
-          location: 'Anywhere you need it'
+          name: "FACET-Acq Post Award",
+          location: "Anywhere you need it"
         }
       },
       identification: {
-        ldap: '',
-        mfa_token: '',
+        ldap: "",
+        mfa_token: "",
         name: {
-          given: '',
-          sur: '',
-          middle_initial: ''
+          given: "",
+          sur: "",
+          middle_initial: ""
         },
-        organization: '',
-        department: '',
-        phone: '',
-        email: '',
+        organization: "",
+        department: "",
+        phone: "",
+        email: "",
         job: {
-          title: '',
-          rank: ''
+          title: "",
+          rank: ""
         },
         mailing_address: {
-          street: '',
-          line_two: '',
-          city: '',
-          state: '',
-          postal: '',
-          country: 'United States',
-          planet: 'Earth'
+          street: "",
+          line_two: "",
+          city: "",
+          state: "",
+          postal: "",
+          country: "United States",
+          planet: "Earth"
         },
         citizenship: {
           us: false,
           fn: false,
           other: false
         },
-        designation: {
-          military: false,
-          civilian: false,
-          contractor: false
-        }
+        designation: ''
       },
       training: {
         information_assurance: {
           complete: false,
-          date_completed: ''
+          date_completed: ""
         }
       },
       reviewedBy: {
         supervisor: {
           name: {
-            sur: '',
-            given: '',
-            middle_initial: ''
+            sur: "",
+            given: "",
+            middle_initial: ""
           },
-          signed_date: '',
-          organization: '',
-          department: '',
-          phone: '',
-          email: ''
+          signed_date: "",
+          organization: "",
+          department: "",
+          phone: "",
+          email: ""
         },
         information_owner: {
           name: {
-            sur: '',
-            given: '',
-            middle_initial: ''
+            sur: "",
+            given: "",
+            middle_initial: ""
           },
-          signed_date: '',
-          organization: '',
-          department: '',
-          phone: '',
-          email: ''
+          signed_date: "",
+          organization: "",
+          department: "",
+          phone: "",
+          email: ""
         },
         iao: {
           name: {
-            sur: '',
-            given: '',
-            middle_initial: ''
+            sur: "",
+            given: "",
+            middle_initial: ""
           },
-          signed_date: '',
-          organization: '',
-          department: '',
-          phone: '',
-          email: ''
+          signed_date: "",
+          organization: "",
+          department: "",
+          phone: "",
+          email: ""
         },
         security_manager: {
           name: {
-            sur: '',
-            given: '',
-            middle_initial: ''
+            sur: "",
+            given: "",
+            middle_initial: ""
           },
-          signed_date: '',
-          organization: '',
-          department: '',
-          phone: '',
-          email: ''
-        },
+          signed_date: "",
+          organization: "",
+          department: "",
+          phone: "",
+          email: ""
+        }
       },
       justification: {
-        reason: '',
+        reason: "",
         type: {
           authorized: false,
           privileged: false
@@ -788,22 +787,22 @@ export default {
         classification: {
           unclassified: true,
           classified: false,
-          category: '',
+          category: "",
           other: false,
-          other_description: ''
+          other_description: ""
         },
         need_to_know: true,
         expiration: {
-          contract_number: '',
-          contract_company_name: '',
-          date: ''
+          contract_number: "",
+          contract_company_name: "",
+          date: ""
         },
-        additional_details: 'This section intentionally left blank'
+        additional_details: "This section intentionally left blank"
       },
       investigation: {
-        type: '',
-        date: '',
-        clearance: '',
+        type: "",
+        date: "",
+        clearance: "",
         it_designation: {
           level_1: false,
           level_2: false,
@@ -827,42 +826,56 @@ export default {
 
   computed: {
     applicant_name() {
-      return this.identification.name.sur + ', ' + this.identification.name.given + ', ' + this.identification.name.middle_initial + '.';
+      const applicant = this.identification.name;
+      if (applicant.sur.length != 0 && applicant.given.length != 0 && applicant.middle_initial.length != 0){
+        return (`${applicant.sur}, ${applicant.given}, ${applicant.middle_initial}.`);
+      }
+      return '';
     },
 
     supervisor_name() {
-      return this.nameBuild('supervisor');
+      return this.nameBuild("supervisor");
     },
 
     information_owner_name() {
-      return this.nameBuild('information_owner');
+      return this.nameBuild("information_owner");
     },
 
     iao_name() {
-      return this.nameBuild('iao');
+      return this.nameBuild("iao");
     },
 
     security_manager_name() {
-      return this.nameBuild('security_manager');
+      return this.nameBuild("security_manager");
     }
   },
 
   methods: {
     nameBuild(role) {
-      return this.reviewedBy[role].name.sur + ', ' + this.reviewedBy[role].name.given + ', ' + this.reviewedBy[role].name.middle_initial + '.';
+      return (
+        this.reviewedBy[role].name.sur +
+        ", " +
+        this.reviewedBy[role].name.given +
+        ", " +
+        this.reviewedBy[role].name.middle_initial +
+        "."
+      );
     },
 
     sendToSupervisor() {
       this.attestation.applicant = true;
       const payload = this.$data;
       // this should be a method call to sign with the NON-EMAIL cert, then remit that value to the server
-      window.axios.post('/api/v1/access/request', payload)
+      window.axios
+        .post("/api/v1/access/request", payload)
         .then(() => {
-          window.flash('Your request has been successfully submitted to your supervisor');
+          window.flash(
+            "Your request has been successfully submitted to your supervisor"
+          );
         })
         .catch(() => {
-          window.flash('Your request failed to post');
-        })
+          window.flash("Your request failed to post");
+        });
     },
 
     populateFromJson(saar) {
@@ -875,12 +888,13 @@ export default {
     },
 
     fetchAccessTypes() {
-      window.axios.get('/api/v1/access/types')
+      window.axios
+        .get("/api/v1/access/types")
         .then(result => {
           this.groups.available = result.data.result;
         })
         .catch(() => {
-          window.flash('Access types could not be loaded');
+          window.flash("Access types could not be loaded");
         });
     },
 
@@ -893,7 +907,11 @@ export default {
       this.attestation[role] = true;
       this.reviewedBy[role].signed_date = moment().format();
       // todo update the workflow
-      window.flash(`${role.replace("_"," ").toUpperCase()} has successfully signed & endorsed this application`);
+      window.flash(
+        `${role
+          .replace("_", " ")
+          .toUpperCase()} has successfully signed & endorsed this application`
+      );
     }
   },
 
