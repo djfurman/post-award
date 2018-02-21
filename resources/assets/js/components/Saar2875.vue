@@ -58,7 +58,7 @@
       <!-- Request -->
       <section id="request" class="section">
         <div class="columns">
-          <div class="column">
+          <div class="column is-one-fifth">
             <h3 class="subtitle">Type of Request</h3>
           </div>
 
@@ -89,6 +89,7 @@
           </div>
         </div>
 
+        <!-- System Name & Location -->
         <div class="columns">
           <div class="column is-two-thirds">
             <div class="field">
@@ -113,6 +114,7 @@
           </div>
         </div>
 
+        <!-- Name & Org -->
         <div class="columns">
           <div class="column">
             <div class="field">
@@ -138,6 +140,7 @@
           </div>
         </div>
 
+        <!-- Phone & Office -->
         <div class="columns">
           <div class="column">
             <div class="field">
@@ -271,7 +274,7 @@
       <section id="endorsement" class="section">
         <div class="columns">
           <div class="column">
-            <h2 class="subtitle is-centered"><strong>Part 2</strong> Endorsement of Access by Information information_owner, User Supervisor or Government Sponsor</h2>
+            <h2 class="subtitle is-centered"><strong>Part 2</strong> Endorsement of Access by Information Owner, User Supervisor or Government Sponsor</h2>
             <span class="content" v-if="identification.designation == 'Contractor'">If individual is a contractor - provide company name, contract number, and date of contract expiration.</span>
           </div>
         </div>
@@ -384,183 +387,9 @@
           </div>
         </div>
 
-        <!-- Supervisor Endorsement -->
-        <div class="columns">
-          <div class="column">
-            <h3 class="subtitle">Supervisor Endorsement</h3>
-          </div>
-        </div>
-        <!-- Supervisor ID -->
-        <div class="columns">
-          <div class="column is-one-third">
-            <!-- Name Breakdown -->
-            <div class="columns">
-              <div class="column is-one-third">
-                <label class="label">Last Name (Surname)</label>
-                <input type="text" class="input" v-model="reviewedBy.supervisor.name.sur">
-              </div>
-              <div class="column is-one-third">
-                <label class="label">First Name (Given)</label>
-                <input type="text" class="input" v-model="reviewedBy.supervisor.name.given">
-              </div>
-              <div class="column is-one-third">
-                <label class="label">Middle Initial</label>
-                <input type="text" class="input" v-model="reviewedBy.supervisor.name.middle_initial">
-              </div>
-            </div>
-          </div>
-          <!-- Signature -->
-          <div class="column is-one-third">
-            <label class="label">Signature</label>
-            <input type="checkbox" disabled="true" v-model="attestation.supervisor"> Signed
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Signature Date</label>
-            <input type="text" class="input" disabled="true" v-model="reviewedBy.supervisor.signed_date">
-          </div>
-          <button class="button is-warning" @click="signBy('supervisor')">Sign</button>
-        </div>
-        <!-- Supervisor Contact -->
-        <div class="columns is-grouped">
-          <div class="column is-one-third">
-            <div class="columns">
-              <div class="column is-half">
-                <label class="label">Organization</label>
-                <input type="text" class="input" v-model="reviewedBy.supervisor.organization">
-              </div>
-              <div class="column is-half">
-                <label class="label">Department</label>
-                <input type="text" class="input" v-model="reviewedBy.supervisor.department">
-              </div>
-            </div>
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Email Address</label>
-            <input type="text" class="input" v-model="reviewedBy.supervisor.email">
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Phone Number</label>
-            <input type="tel" class="input" v-model="reviewedBy.supervisor.phone">
-          </div>
-        </div>
-
-        <!-- information_owner Endorsement -->
-        <div class="columns">
-          <div class="column">
-            <h3 class="subtitle">Information Owner Endorsement</h3>
-          </div>
-        </div>
-        <!-- information_owner ID -->
-        <div class="columns">
-          <div class="column is-one-third">
-            <label class="label">Name (Last, First, Middle Initial)</label>
-            <!-- Name Breakdown -->
-            <div class="columns">
-              <div class="column is-one-third">
-                <input type="text" class="input" placeholder="Last Name or Surname" v-model="reviewedBy.information_owner.name.sur">
-              </div>
-              <div class="column is-one-third">
-                <input type="text" class="input" placeholder="First Name or Given name" v-model="reviewedBy.information_owner.name.given">
-              </div>
-              <div class="column is-one-third">
-                <input type="text" class="input" placeholder="Middle Initial" v-model="reviewedBy.information_owner.name.middle_initial">
-              </div>
-            </div>
-          </div>
-          <!-- Signature -->
-          <div class="column is-one-third">
-            <label class="label">Signature</label>
-            <input type="checkbox" disabled="true" v-model="attestation.information_owner"> Signed
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Signature Date</label>
-            <input type="text" class="input" disabled="true" v-model="reviewedBy.information_owner.signed_date">
-          </div>
-          <button class="button is-warning" @click="signBy('information_owner')">Sign</button>
-        </div>
-        <!-- Information information_owner Contact -->
-        <div class="columns is-grouped">
-          <div class="column is-one-third">
-            <div class="columns">
-              <div class="column is-half">
-                <label class="label">Organization</label>
-                <input type="text" class="input" placeholder="Agency or Department Name" v-model="reviewedBy.information_owner.organization">
-              </div>
-              <div class="column is-half">
-                <label class="label">Department</label>
-                <input type="text" class="input" placeholder="Organization Symbol e.g., J6" v-model="reviewedBy.information_owner.department">
-              </div>
-            </div>
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Email Address</label>
-            <input type="text" class="input" placeholder="firstName.lastName@mail.mil" v-model="reviewedBy.information_owner.email">
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Phone Number</label>
-            <input type="tel" class="input" placeholder="202-867-5309" v-model="reviewedBy.information_owner.phone">
-          </div>
-        </div>
-
-        <!-- IAO Endorsement -->
-        <div class="columns">
-          <div class="column">
-            <h3 class="subtitle">IAO Endorsement</h3>
-          </div>
-        </div>
-        <!-- IAO ID -->
-        <div class="columns">
-          <div class="column is-one-third">
-            <!-- Name Breakdown -->
-            <div class="columns">
-              <div class="column is-one-third">
-                <label class="label">Last Name (Surname)</label>
-                <input type="text" class="input" v-model="reviewedBy.iao.name.sur">
-              </div>
-              <div class="column is-one-third">
-                <label class="label">First Name (Given)</label>
-                <input type="text" class="input" v-model="reviewedBy.iao.name.given">
-              </div>
-              <div class="column is-one-third">
-                <label class="label">Middle Initial</label>
-                <input type="text" class="input" v-model="reviewedBy.iao.name.middle_initial">
-              </div>
-            </div>
-          </div>
-          <!-- Signature -->
-          <div class="column is-one-third">
-            <label class="label">Signature</label>
-            <input type="checkbox" disabled="true" v-model="attestation.iao"> Signed
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Signature Date</label>
-            <input type="text" class="input" disabled="true" v-model="reviewedBy.iao.signed_date">
-          </div>
-          <button class="button is-warning" @click="signBy('iao')">Sign</button>
-        </div>
-        <!-- Information information_owner Contact -->
-        <div class="columns is-grouped">
-          <div class="column is-one-third">
-            <div class="columns">
-              <div class="column is-half">
-                <label class="label">Organization</label>
-                <input type="text" class="input" v-model="reviewedBy.iao.organization">
-              </div>
-              <div class="column is-half">
-                <label class="label">Department</label>
-                <input type="text" class="input" v-model="reviewedBy.iao.department">
-              </div>
-            </div>
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Email Address</label>
-            <input type="text" class="input" v-model="reviewedBy.iao.email">
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Phone Number</label>
-            <input type="tel" class="input" v-model="reviewedBy.iao.phone">
-          </div>
-        </div>
+        <sign-off role="Supervisor"></sign-off>
+        <sign-off role="Information Owner"></sign-off>
+        <sign-off role="IAO"></sign-off>
       </section>
 
       <!-- Second Page -->
@@ -618,59 +447,7 @@
             <input type="checkbox" v-model="investigation.it_designation.level_3"> Level III
           </div>
         </div>
-        <!-- Verified By -->
-        <div class="columns">
-          <div class="column is-one-third">
-            <!-- Name Breakdown -->
-            <div class="columns">
-              <div class="column is-one-third">
-                <label class="label">Last Name (Surname)</label>
-                <input type="text" class="input" v-model="reviewedBy.security_manager.name.sur">
-              </div>
-              <div class="column is-one-third">
-                <label class="label">First Name (Given)</label>
-                <input type="text" class="input" v-model="reviewedBy.security_manager.name.given">
-              </div>
-              <div class="column is-one-third">
-                <label class="label">Middle Initial</label>
-                <input type="text" class="input" v-model="reviewedBy.security_manager.name.middle_initial">
-              </div>
-            </div>
-          </div>
-          <!-- Signature -->
-          <div class="column is-one-third">
-            <label class="label">Signature</label>
-            <input type="checkbox" disabled="true" v-model="attestation.security_manager"> Signed
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Signature Date</label>
-            <input type="text" class="input" disabled="true" v-model="reviewedBy.security_manager.signed_date">
-          </div>
-          <button class="button is-warning" @click="signBy('security_manager')">Sign</button>
-        </div>
-        <!-- Information information_owner Contact -->
-        <div class="columns is-grouped">
-          <div class="column is-one-third">
-            <div class="columns">
-              <div class="column is-half">
-                <label class="label">Organization</label>
-                <input type="text" class="input" v-model="reviewedBy.security_manager.organization">
-              </div>
-              <div class="column is-half">
-                <label class="label">Department</label>
-                <input type="text" class="input" v-model="reviewedBy.security_manager.department">
-              </div>
-            </div>
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Email Address</label>
-            <input type="text" class="input" v-model="reviewedBy.security_manager.email">
-          </div>
-          <div class="column is-one-third">
-            <label class="label">Phone Number</label>
-            <input type="tel" class="input" v-model="reviewedBy.security_manager.phone">
-          </div>
-        </div>
+        <sign-off role="Security Manager"></sign-off>
       </section>
 
     </div>
@@ -679,6 +456,7 @@
 
 <script>
 import moment from "moment";
+import SignOff from "./SignOff.vue";
 export default {
   data() {
     return {
@@ -827,7 +605,7 @@ export default {
   computed: {
     applicant_name() {
       const applicant = this.identification.name;
-      if (applicant.sur.length != 0 && applicant.given.length != 0 && applicant.middle_initial.length != 0){
+      if (applicant.sur.length && applicant.given.length && applicant.middle_initial.length){
         return (`${applicant.sur}, ${applicant.given}, ${applicant.middle_initial}.`);
       }
       return '';
@@ -917,6 +695,10 @@ export default {
 
   created() {
     this.fetchAccessTypes();
+  },
+
+  components: {
+    SignOff
   }
 };
 </script>
