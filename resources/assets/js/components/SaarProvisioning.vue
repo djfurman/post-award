@@ -1,4 +1,4 @@
-<template>
+lear<template>
   <div class="columns">
     <div class="column is-one-fifth">
       <label class="label">Title</label>
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       section_label: '',
-      section_value: 'All',
+      section_value: '',
       code_label: '',
       code_value_value: ''
     }
