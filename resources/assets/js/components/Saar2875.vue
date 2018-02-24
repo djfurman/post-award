@@ -449,7 +449,22 @@
         </div>
         <sign-off role="Security Manager"></sign-off>
       </section>
-
+      <section class="section">
+        <div class="columns">
+          <div class="column">
+            <h3 class="subtitle"><strong>Part 4</strong> Completion by Authorized Staff Preparing Account Information</h3>
+          </div>
+        </div>
+        <saar-provisioning section="System" value="FACET"></saar-provisioning>
+        <saar-provisioning section="Domain" :value="groups_requested"></saar-provisioning>
+        <saar-provisioning section="Server" value="N/A"></saar-provisioning>
+        <saar-provisioning section="Application" value="Post Award"></saar-provisioning>
+        <saar-provisioning section="Directories" value="N/A"></saar-provisioning>
+        <saar-provisioning section="Files" value="N/A"></saar-provisioning>
+        <saar-provisioning section="Datasets" :value="groups_assigned"></saar-provisioning>
+        <saar-provisioning section="Processed By" value="FACET Online Information Assurance" code="Date" code_value="moment()"></saar-provisioning>
+        <saar-provisioning section="Revalidated By" value="N/A" code="Date"></saar-provisioning>
+      </section>
     </div>
   </div>
 </template>
@@ -457,6 +472,7 @@
 <script>
 import moment from "moment";
 import SignOff from "./SignOff.vue";
+import SaarProvisioning from "./SaarProvisioning.vue";
 export default {
   data() {
     return {
@@ -595,6 +611,7 @@ export default {
         security_manager: false
       },
       groups: {
+        assigned: [],
         available: [],
         requested: []
       },
@@ -606,40 +623,19 @@ export default {
     applicant_name() {
       const applicant = this.identification.name;
       if (applicant.sur.length && applicant.given.length && applicant.middle_initial.length){
-        return (`${applicant.sur}, ${applicant.given}, ${applicant.middle_initial}.`);
+        return `${applicant.sur}, ${applicant.given}, ${applicant.middle_initial}.`;
       }
       return '';
     },
-
-    supervisor_name() {
-      return this.nameBuild("supervisor");
+    groups_assigned() {
+      return this.groups.assigned.join(', ');
     },
-
-    information_owner_name() {
-      return this.nameBuild("information_owner");
-    },
-
-    iao_name() {
-      return this.nameBuild("iao");
-    },
-
-    security_manager_name() {
-      return this.nameBuild("security_manager");
+    groups_requested() {
+      return this.groups.requested.join(', ');
     }
   },
 
   methods: {
-    nameBuild(role) {
-      return (
-        this.reviewedBy[role].name.sur +
-        ", " +
-        this.reviewedBy[role].name.given +
-        ", " +
-        this.reviewedBy[role].name.middle_initial +
-        "."
-      );
-    },
-
     sendToSupervisor() {
       this.attestation.applicant = true;
       const payload = this.$data;
@@ -647,22 +643,11 @@ export default {
       window.axios
         .post("/api/v1/access/request", payload)
         .then(() => {
-          window.flash(
-            "Your request has been successfully submitted to your supervisor"
-          );
+          window.flash("Your request has been successfully submitted to your supervisor");
         })
         .catch(() => {
           window.flash("Your request failed to post");
         });
-    },
-
-    populateFromJson(saar) {
-      this.request = saar.request;
-      this.identification = saar.identification;
-      this.training = saar.training;
-      this.justification = saar.justification;
-      this.investigation = saar.investigation;
-      this.attestation = saar.attestation;
     },
 
     fetchAccessTypes() {
@@ -678,18 +663,6 @@ export default {
 
     moveToSaar() {
       this.preSaar = false;
-    },
-
-    signBy(role) {
-      // todo use PkiJS to extract name elements and email from PKI
-      this.attestation[role] = true;
-      this.reviewedBy[role].signed_date = moment().format();
-      // todo update the workflow
-      window.flash(
-        `${role
-          .replace("_", " ")
-          .toUpperCase()} has successfully signed & endorsed this application`
-      );
     }
   },
 
@@ -698,6 +671,7 @@ export default {
   },
 
   components: {
+    SaarProvisioning,
     SignOff
   }
 };
