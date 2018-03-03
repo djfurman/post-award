@@ -2,6 +2,7 @@
 import FacetLandingPage  from './components/FacetLandingPage';
 import Temp from './components/Temp';
 import SystemAccessRequest from './components/Saar2875';
+import WorkflowInbox from './components/WorkflowInbox';
 
 export default [
   {
@@ -18,5 +19,10 @@ export default [
     path: '/login',
     name: 'saar',
     component: SystemAccessRequest
+  },
+  {
+    path: '/inbox',
+    name: 'inbox',
+    component: WorkflowInbox
   }
 ];

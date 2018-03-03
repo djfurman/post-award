@@ -60,6 +60,7 @@ export default {
       menu: [
         { label: "Home", link: "/" },
         { label: "About", link: "/temp" },
+        { label: "Inbox", link: "/inbox" },
         { label: "Login", link: "/login" }
       ]
     };

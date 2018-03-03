@@ -1,4 +1,4 @@
-lear<template>
+<template>
   <div class="columns">
     <div class="column is-one-fifth">
       <label class="label">Title</label>

@@ -264,14 +264,15 @@
       </section>
 
       <!-- Submission -->
-      <div class="columns">
+      <div class="columns" v-if="!attestation.applicant">
         <div class="column">
           <button class="button is-primary" @click="sendToSupervisor">Submit for Supervisor Review</button>
         </div>
       </div>
 
+
       <!-- Part 2 -->
-      <section id="endorsement" class="section">
+      <section id="endorsement" class="section" v-if="attestation.applicant">
         <div class="columns">
           <div class="column">
             <h2 class="subtitle is-centered"><strong>Part 2</strong> Endorsement of Access by Information Owner, User Supervisor or Government Sponsor</h2>
@@ -387,9 +388,9 @@
           </div>
         </div>
 
-        <sign-off role="Supervisor"></sign-off>
-        <sign-off role="Information Owner"></sign-off>
-        <sign-off role="IAO"></sign-off>
+        <sign-off role="Supervisor" v-if="attestation.applicant && !attestation.information_owner"></sign-off>
+        <sign-off role="Information Owner" v-if="attestation.supervisor && !attestation.iao"></sign-off>
+        <sign-off role="IAO" v-if="attestation.information_owner && !attestation.iao"></sign-off>
       </section>
 
       <!-- Second Page -->
@@ -449,21 +450,24 @@
         </div>
         <sign-off role="Security Manager"></sign-off>
       </section>
+      <!-- Part 4 -->
       <section class="section">
         <div class="columns">
           <div class="column">
             <h3 class="subtitle"><strong>Part 4</strong> Completion by Authorized Staff Preparing Account Information</h3>
           </div>
         </div>
-        <saar-provisioning section="System" value="FACET"></saar-provisioning>
-        <saar-provisioning section="Domain" :value="groups_requested"></saar-provisioning>
-        <saar-provisioning section="Server" value="N/A"></saar-provisioning>
-        <saar-provisioning section="Application" value="Post Award"></saar-provisioning>
-        <saar-provisioning section="Directories" value="N/A"></saar-provisioning>
-        <saar-provisioning section="Files" value="N/A"></saar-provisioning>
-        <saar-provisioning section="Datasets" :value="groups_assigned"></saar-provisioning>
-        <saar-provisioning section="Processed By" value="FACET Online Information Assurance" code="Date" code_value="moment()"></saar-provisioning>
-        <saar-provisioning section="Revalidated By" value="N/A" code="Date"></saar-provisioning>
+        <div class="container" v-if="saar_complete">
+          <saar-provisioning section="System" value="FACET"></saar-provisioning>
+          <saar-provisioning section="Domain" :value="groups_requested"></saar-provisioning>
+          <saar-provisioning section="Server" value="N/A"></saar-provisioning>
+          <saar-provisioning section="Application" value="Post Award"></saar-provisioning>
+          <saar-provisioning section="Directories" value="N/A"></saar-provisioning>
+          <saar-provisioning section="Files" value="N/A"></saar-provisioning>
+          <saar-provisioning section="Datasets" :value="groups_assigned"></saar-provisioning>
+          <saar-provisioning section="Processed By" value="FACET Online Information Assurance" code="Date" code_value="moment()"></saar-provisioning>
+          <saar-provisioning section="Revalidated By" value="N/A" code="Date"></saar-provisioning>
+        </div>
       </section>
     </div>
   </div>
@@ -632,6 +636,13 @@ export default {
     },
     groups_requested() {
       return this.groups.requested.join(', ');
+    },
+    saar_complete() {
+      const signOffs = this.attestation;
+      if(signOffs.applicant && signOffs.supervisor && signOffs.information_owner && signOffs.iao && signOffs.security_manager) {
+        return true;
+      }
+      return false;
     }
   },
 

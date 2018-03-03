@@ -3,7 +3,11 @@ webpackJsonp([1],{
 /***/ 140:
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(141);
+=======
+__webpack_require__(136);
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 module.exports = __webpack_require__(241);
 
 
@@ -20,9 +24,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_typeface_fira_sans___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_typeface_fira_sans__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue__);
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_router__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_App_vue__ = __webpack_require__(227);
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_vue_router__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__routes__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_App_vue__ = __webpack_require__(225);
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_App_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_App_vue__);
 
 
@@ -4034,7 +4044,10 @@ if (inBrowser && window.Vue) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Temp___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Temp__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Saar2875__ = __webpack_require__(216);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Saar2875___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Saar2875__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_WorkflowInbox__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_WorkflowInbox___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_WorkflowInbox__);
 // Vue Component
+
 
 
 
@@ -4051,6 +4064,10 @@ if (inBrowser && window.Vue) {
   path: '/login',
   name: 'saar',
   component: __WEBPACK_IMPORTED_MODULE_2__components_Saar2875___default.a
+}, {
+  path: '/inbox',
+  name: 'inbox',
+  component: __WEBPACK_IMPORTED_MODULE_3__components_WorkflowInbox___default.a
 }]);
 
 /***/ }),
@@ -4518,7 +4535,11 @@ var normalizeComponent = __webpack_require__(2)
 /* script */
 var __vue_script__ = __webpack_require__(217)
 /* template */
+<<<<<<< HEAD
 var __vue_template__ = __webpack_require__(226)
+=======
+var __vue_template__ = __webpack_require__(218)
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -4567,8 +4588,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SignOff_vue__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__SignOff_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__SignOff_vue__);
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SaarProvisioning_vue__ = __webpack_require__(223);
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SaarProvisioning_vue__ = __webpack_require__(215);
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SaarProvisioning_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SaarProvisioning_vue__);
+//
+//
+//
+//
 //
 //
 //
@@ -5204,6 +5233,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     groups_requested: function groups_requested() {
       return this.groups.requested.join(', ');
+    },
+    saar_complete: function saar_complete() {
+      var signOffs = this.attestation;
+      if (signOffs.applicant && signOffs.supervisor && signOffs.information_owner && signOffs.iao && signOffs.security_manager) {
+        return true;
+      }
+      return false;
     }
   },
 
@@ -5879,6 +5915,207 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ }),
 
 /***/ 225:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(216)
+/* template */
+var __vue_template__ = __webpack_require__(217)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/SaarProvisioning.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2df7b87a", Component.options)
+  } else {
+    hotAPI.reload("data-v-2df7b87a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 216:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    this.section_label = this.section;
+    this.section_value = this.value;
+    this.code_label = this.code;
+    this.code_value_value = this.code_value;
+  },
+  data: function data() {
+    return {
+      section_label: '',
+      section_value: '',
+      code_label: '',
+      code_value_value: ''
+    };
+  },
+
+
+  props: {
+    section: {
+      type: String,
+      default: ''
+    },
+    value: {
+      type: String,
+      default: ''
+    },
+    code: {
+      type: String,
+      default: 'Account Code'
+    },
+    code_value: {
+      type: String,
+      default: ''
+    }
+  }
+});
+
+/***/ }),
+
+/***/ 217:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "columns" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "column" }, [
+      _c("label", { staticClass: "label" }, [
+        _vm._v(_vm._s(_vm.section_label))
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.section_value,
+            expression: "section_value"
+          }
+        ],
+        staticClass: "input",
+        attrs: { type: "text", disabled: "true" },
+        domProps: { value: _vm.section_value },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.section_value = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "column" }, [
+      _c("label", { staticClass: "label" }, [_vm._v(_vm._s(_vm.code_label))]),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.code_value_value,
+            expression: "code_value_value"
+          }
+        ],
+        staticClass: "input",
+        attrs: { type: "text", disabled: "true" },
+        domProps: { value: _vm.code_value_value },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.code_value_value = $event.target.value
+          }
+        }
+      })
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "column is-one-fifth" }, [
+      _c("label", { staticClass: "label" }, [_vm._v("Title")]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "input",
+        attrs: { type: "text", disabled: "true" }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2df7b87a", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 218:
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -7235,43 +7472,41 @@ var render = function() {
             ]
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "columns" }, [
-            _c("div", { staticClass: "column" }, [
-              _c(
-                "button",
-                {
-                  staticClass: "button is-primary",
-                  on: { click: _vm.sendToSupervisor }
-                },
-                [_vm._v("Submit for Supervisor Review")]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "section",
-            { staticClass: "section", attrs: { id: "endorsement" } },
-            [
-              _c("div", { staticClass: "columns" }, [
+          !_vm.attestation.applicant
+            ? _c("div", { staticClass: "columns" }, [
                 _c("div", { staticClass: "column" }, [
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _vm.identification.designation == "Contractor"
-                    ? _c("span", { staticClass: "content" }, [
-                        _vm._v(
-                          "If individual is a contractor - provide company name, contract number, and date of contract expiration."
-                        )
-                      ])
-                    : _vm._e()
+                  _c(
+                    "button",
+                    {
+                      staticClass: "button is-primary",
+                      on: { click: _vm.sendToSupervisor }
+                    },
+                    [_vm._v("Submit for Supervisor Review")]
+                  )
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "columns" }, [
-                _c("div", { staticClass: "column field" }, [
-                  _c("label", { staticClass: "label" }, [
-                    _vm._v("Justification for Access")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.attestation.applicant
+            ? _c(
+                "section",
+                { staticClass: "section", attrs: { id: "endorsement" } },
+                [
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column" }, [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _vm.identification.designation == "Contractor"
+                        ? _c("span", { staticClass: "content" }, [
+                            _vm._v(
+                              "If individual is a contractor - provide company name, contract number, and date of contract expiration."
+                            )
+                          ])
+                        : _vm._e()
+                    ])
                   ]),
                   _vm._v(" "),
+<<<<<<< HEAD
                   _c("textarea", {
                     directives: [
                       {
@@ -7598,15 +7833,42 @@ var render = function() {
                                   "other",
                                   $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                                 )
+=======
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column field" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Justification for Access")
+                      ]),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.justification.reason,
+                            expression: "justification.reason"
+                          }
+                        ],
+                        staticClass: "textarea",
+                        attrs: {
+                          placeholder:
+                            "As a [role] in order to [function] for [customer], I need [access level] access to Post-Award"
+                        },
+                        domProps: { value: _vm.justification.reason },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
                             }
-                          } else {
                             _vm.$set(
-                              _vm.justification.classification,
-                              "other",
-                              $$c
+                              _vm.justification,
+                              "reason",
+                              $event.target.value
                             )
                           }
                         }
+<<<<<<< HEAD
                       }
                     }),
                     _vm._v(" Other\n            "),
@@ -7689,146 +7951,557 @@ var render = function() {
                                   "need_to_know",
                                   $$a.slice(0, $$i).concat($$a.slice($$i + 1))
                                 )
-                            }
-                          } else {
-                            _vm.$set(_vm.justification, "need_to_know", $$c)
+=======
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column field is-grouped" }, [
+                      _c("label", { staticClass: "label" }, [
+                        _vm._v("Type of Access Required:")
+                      ]),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.justification.type.authorized,
+                            expression: "justification.type.authorized"
                           }
-                        }
-                      }
-                    })
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "column is-half" }, [
-                  _c("div", { staticClass: "field" }, [
-                    _c(
-                      "label",
-                      { staticClass: "label", attrs: { for: "expire_date" } },
-                      [_vm._v("Access Expiration Date")]
-                    ),
-                    _vm._v(" "),
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.justification.expiration.date,
-                          expression: "justification.expiration.date"
-                        }
-                      ],
-                      staticClass: "input",
-                      attrs: { id: "expire_date", type: "date" },
-                      domProps: { value: _vm.justification.expiration.date },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(
-                            _vm.justification.expiration,
-                            "date",
-                            $event.target.value
+                        ],
+                        staticClass: "checkbox",
+                        attrs: { type: "checkbox", disabled: "true" },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.justification.type.authorized
                           )
+                            ? _vm._i(_vm.justification.type.authorized, null) >
+                              -1
+                            : _vm.justification.type.authorized
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.justification.type.authorized,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.justification.type.authorized = $$a.concat(
+                                    [$$v]
+                                  ))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.justification.type.authorized = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.$set(
+                                _vm.justification.type,
+                                "authorized",
+                                $$c
+                              )
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
+                            }
+                          }
                         }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _vm.identification.designation.contractor
-                      ? _c("div", { attrs: { id: "contractors_only" } }, [
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v(
-                              "Contractors must specify Company Name, Contract Number and Expiration Date"
+                      }),
+                      _vm._v(" Authorized\n          "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.justification.type.privileged,
+                            expression: "justification.type.privileged"
+                          }
+                        ],
+                        staticClass: "checkbox",
+                        attrs: { type: "checkbox", disabled: "true" },
+                        domProps: {
+                          checked: Array.isArray(
+                            _vm.justification.type.privileged
+                          )
+                            ? _vm._i(_vm.justification.type.privileged, null) >
+                              -1
+                            : _vm.justification.type.privileged
+                        },
+                        on: {
+                          change: function($event) {
+                            var $$a = _vm.justification.type.privileged,
+                              $$el = $event.target,
+                              $$c = $$el.checked ? true : false
+                            if (Array.isArray($$a)) {
+                              var $$v = null,
+                                $$i = _vm._i($$a, $$v)
+                              if ($$el.checked) {
+                                $$i < 0 &&
+                                  (_vm.justification.type.privileged = $$a.concat(
+                                    [$$v]
+                                  ))
+                              } else {
+                                $$i > -1 &&
+                                  (_vm.justification.type.privileged = $$a
+                                    .slice(0, $$i)
+                                    .concat($$a.slice($$i + 1)))
+                              }
+                            } else {
+                              _vm.$set(
+                                _vm.justification.type,
+                                "privileged",
+                                $$c
+                              )
+                            }
+                          }
+                        }
+                      }),
+                      _vm._v(" Privileged\n        ")
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "is-grouped" }, [
+                    _c("div", { staticClass: "columns" }, [
+                      _c("div", { staticClass: "column field" }, [
+                        _c("div", { staticClass: "label" }, [
+                          _vm._v("User requires access to:")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value:
+                                _vm.justification.classification.unclassified,
+                              expression:
+                                "justification.classification.unclassified"
+                            }
+                          ],
+                          staticClass: "checkbox",
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(
+                              _vm.justification.classification.unclassified
                             )
-                          ]),
-                          _vm._v(" "),
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Contract Number")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value:
-                                  _vm.justification.expiration.contract_number,
-                                expression:
-                                  "justification.expiration.contract_number"
-                              }
-                            ],
-                            staticClass: "input",
-                            attrs: {
-                              type: "text",
-                              placeholder: "BCD123-18-A-0001"
-                            },
-                            domProps: {
-                              value:
-                                _vm.justification.expiration.contract_number
-                            },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                              ? _vm._i(
+                                  _vm.justification.classification.unclassified,
+                                  null
+                                ) > -1
+                              : _vm.justification.classification.unclassified
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a =
+                                  _vm.justification.classification.unclassified,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.justification.classification.unclassified = $$a.concat(
+                                      [$$v]
+                                    ))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.justification.classification.unclassified = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
                                 }
+                              } else {
                                 _vm.$set(
-                                  _vm.justification.expiration,
-                                  "contract_number",
-                                  $event.target.value
+                                  _vm.justification.classification,
+                                  "unclassified",
+                                  $$c
                                 )
                               }
                             }
-                          }),
-                          _vm._v(" "),
-                          _c("label", { staticClass: "label" }, [
-                            _vm._v("Contractor Company Name")
-                          ]),
-                          _vm._v(" "),
-                          _c("input", {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value:
-                                  _vm.justification.expiration
-                                    .contract_company_name,
-                                expression:
-                                  "justification.expiration.contract_company_name"
-                              }
-                            ],
-                            staticClass: "input",
-                            attrs: { type: "text", placeholder: "Acme, Inc." },
-                            domProps: {
+                          }
+                        }),
+                        _vm._v(" Unclassified\n            "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
                               value:
-                                _vm.justification.expiration
-                                  .contract_company_name
-                            },
-                            on: {
-                              input: function($event) {
-                                if ($event.target.composing) {
-                                  return
+                                _vm.justification.classification.classified,
+                              expression:
+                                "justification.classification.classified"
+                            }
+                          ],
+                          staticClass: "checkbox",
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(
+                              _vm.justification.classification.classified
+                            )
+                              ? _vm._i(
+                                  _vm.justification.classification.classified,
+                                  null
+                                ) > -1
+                              : _vm.justification.classification.classified
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a =
+                                  _vm.justification.classification.classified,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.justification.classification.classified = $$a.concat(
+                                      [$$v]
+                                    ))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.justification.classification.classified = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
                                 }
+                              } else {
                                 _vm.$set(
-                                  _vm.justification.expiration,
-                                  "contract_company_name",
-                                  $event.target.value
+                                  _vm.justification.classification,
+                                  "classified",
+                                  $$c
                                 )
                               }
                             }
-                          })
-                        ])
-                      : _vm._e()
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("sign-off", { attrs: { role: "Supervisor" } }),
-              _vm._v(" "),
-              _c("sign-off", { attrs: { role: "Information Owner" } }),
-              _vm._v(" "),
-              _c("sign-off", { attrs: { role: "IAO" } })
-            ],
-            1
-          ),
+                          }
+                        }),
+                        _vm._v(" Classified\n            "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.justification.classification.category,
+                              expression:
+                                "justification.classification.category"
+                            }
+                          ],
+                          staticClass: "input",
+                          attrs: {
+                            type: "text",
+                            placeholder: "Specify Category"
+                          },
+                          domProps: {
+                            value: _vm.justification.classification.category
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.justification.classification,
+                                "category",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "columns" }, [
+                      _c("div", { staticClass: "column field" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.justification.classification.other,
+                              expression: "justification.classification.other"
+                            }
+                          ],
+                          staticClass: "checkbox",
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(
+                              _vm.justification.classification.other
+                            )
+                              ? _vm._i(
+                                  _vm.justification.classification.other,
+                                  null
+                                ) > -1
+                              : _vm.justification.classification.other
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.justification.classification.other,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.justification.classification.other = $$a.concat(
+                                      [$$v]
+                                    ))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.justification.classification.other = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.$set(
+                                  _vm.justification.classification,
+                                  "other",
+                                  $$c
+                                )
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" Other\n            "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value:
+                                _vm.justification.classification
+                                  .other_description,
+                              expression:
+                                "justification.classification.other_description"
+                            }
+                          ],
+                          staticClass: "input",
+                          attrs: { type: "text" },
+                          domProps: {
+                            value:
+                              _vm.justification.classification.other_description
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.justification.classification,
+                                "other_description",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "columns" }, [
+                    _c("div", { staticClass: "column is-half" }, [
+                      _c("div", { staticClass: "field" }, [
+                        _c("label", { staticClass: "label" }, [
+                          _vm._v("Verification of Need to Know")
+                        ]),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.justification.need_to_know,
+                              expression: "justification.need_to_know"
+                            }
+                          ],
+                          staticClass: "checkbox",
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(
+                              _vm.justification.need_to_know
+                            )
+                              ? _vm._i(_vm.justification.need_to_know, null) >
+                                -1
+                              : _vm.justification.need_to_know
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.justification.need_to_know,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.justification.need_to_know = $$a.concat(
+                                      [$$v]
+                                    ))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.justification.need_to_know = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.$set(_vm.justification, "need_to_know", $$c)
+                              }
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "column is-half" }, [
+                      _c("div", { staticClass: "field" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass: "label",
+                            attrs: { for: "expire_date" }
+                          },
+                          [_vm._v("Access Expiration Date")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.justification.expiration.date,
+                              expression: "justification.expiration.date"
+                            }
+                          ],
+                          staticClass: "input",
+                          attrs: { id: "expire_date", type: "date" },
+                          domProps: {
+                            value: _vm.justification.expiration.date
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.justification.expiration,
+                                "date",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm.identification.designation.contractor
+                          ? _c("div", { attrs: { id: "contractors_only" } }, [
+                              _c("label", { staticClass: "label" }, [
+                                _vm._v(
+                                  "Contractors must specify Company Name, Contract Number and Expiration Date"
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("label", { staticClass: "label" }, [
+                                _vm._v("Contract Number")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value:
+                                      _vm.justification.expiration
+                                        .contract_number,
+                                    expression:
+                                      "justification.expiration.contract_number"
+                                  }
+                                ],
+                                staticClass: "input",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "BCD123-18-A-0001"
+                                },
+                                domProps: {
+                                  value:
+                                    _vm.justification.expiration.contract_number
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.justification.expiration,
+                                      "contract_number",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("label", { staticClass: "label" }, [
+                                _vm._v("Contractor Company Name")
+                              ]),
+                              _vm._v(" "),
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value:
+                                      _vm.justification.expiration
+                                        .contract_company_name,
+                                    expression:
+                                      "justification.expiration.contract_company_name"
+                                  }
+                                ],
+                                staticClass: "input",
+                                attrs: {
+                                  type: "text",
+                                  placeholder: "Acme, Inc."
+                                },
+                                domProps: {
+                                  value:
+                                    _vm.justification.expiration
+                                      .contract_company_name
+                                },
+                                on: {
+                                  input: function($event) {
+                                    if ($event.target.composing) {
+                                      return
+                                    }
+                                    _vm.$set(
+                                      _vm.justification.expiration,
+                                      "contract_company_name",
+                                      $event.target.value
+                                    )
+                                  }
+                                }
+                              })
+                            ])
+                          : _vm._e()
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.attestation.applicant &&
+                  !_vm.attestation.information_owner
+                    ? _c("sign-off", { attrs: { role: "Supervisor" } })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.attestation.supervisor && !_vm.attestation.iao
+                    ? _c("sign-off", { attrs: { role: "Information Owner" } })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.attestation.information_owner && !_vm.attestation.iao
+                    ? _c("sign-off", { attrs: { role: "IAO" } })
+                    : _vm._e()
+                ],
+                1
+              )
+            : _vm._e(),
           _vm._v(" "),
           _c("section", { staticClass: "section" }, [
             _c("div", { staticClass: "columns" }, [
@@ -8178,55 +8851,63 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c(
-            "section",
-            { staticClass: "section" },
-            [
-              _vm._m(6),
-              _vm._v(" "),
-              _c("saar-provisioning", {
-                attrs: { section: "System", value: "FACET" }
-              }),
-              _vm._v(" "),
-              _c("saar-provisioning", {
-                attrs: { section: "Domain", value: _vm.groups_requested }
-              }),
-              _vm._v(" "),
-              _c("saar-provisioning", {
-                attrs: { section: "Server", value: "N/A" }
-              }),
-              _vm._v(" "),
-              _c("saar-provisioning", {
-                attrs: { section: "Application", value: "Post Award" }
-              }),
-              _vm._v(" "),
-              _c("saar-provisioning", {
-                attrs: { section: "Directories", value: "N/A" }
-              }),
-              _vm._v(" "),
-              _c("saar-provisioning", {
-                attrs: { section: "Files", value: "N/A" }
-              }),
-              _vm._v(" "),
-              _c("saar-provisioning", {
-                attrs: { section: "Datasets", value: _vm.groups_assigned }
-              }),
-              _vm._v(" "),
-              _c("saar-provisioning", {
-                attrs: {
-                  section: "Processed By",
-                  value: "FACET Online Information Assurance",
-                  code: "Date",
-                  code_value: "moment()"
-                }
-              }),
-              _vm._v(" "),
-              _c("saar-provisioning", {
-                attrs: { section: "Revalidated By", value: "N/A", code: "Date" }
-              })
-            ],
-            1
-          )
+          _c("section", { staticClass: "section" }, [
+            _vm._m(6),
+            _vm._v(" "),
+            _vm.saar_complete
+              ? _c(
+                  "div",
+                  { staticClass: "container" },
+                  [
+                    _c("saar-provisioning", {
+                      attrs: { section: "System", value: "FACET" }
+                    }),
+                    _vm._v(" "),
+                    _c("saar-provisioning", {
+                      attrs: { section: "Domain", value: _vm.groups_requested }
+                    }),
+                    _vm._v(" "),
+                    _c("saar-provisioning", {
+                      attrs: { section: "Server", value: "N/A" }
+                    }),
+                    _vm._v(" "),
+                    _c("saar-provisioning", {
+                      attrs: { section: "Application", value: "Post Award" }
+                    }),
+                    _vm._v(" "),
+                    _c("saar-provisioning", {
+                      attrs: { section: "Directories", value: "N/A" }
+                    }),
+                    _vm._v(" "),
+                    _c("saar-provisioning", {
+                      attrs: { section: "Files", value: "N/A" }
+                    }),
+                    _vm._v(" "),
+                    _c("saar-provisioning", {
+                      attrs: { section: "Datasets", value: _vm.groups_assigned }
+                    }),
+                    _vm._v(" "),
+                    _c("saar-provisioning", {
+                      attrs: {
+                        section: "Processed By",
+                        value: "FACET Online Information Assurance",
+                        code: "Date",
+                        code_value: "moment()"
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("saar-provisioning", {
+                      attrs: {
+                        section: "Revalidated By",
+                        value: "N/A",
+                        code: "Date"
+                      }
+                    })
+                  ],
+                  1
+                )
+              : _vm._e()
+          ])
         ])
       : _vm._e()
   ])
@@ -8368,13 +9049,387 @@ if (false) {
 
 /***/ }),
 
-/***/ 227:
+/***/ 219:
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
+var __vue_script__ = __webpack_require__(220)
+/* template */
+var __vue_template__ = __webpack_require__(224)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/WorkflowInbox.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-74059440", Component.options)
+  } else {
+    hotAPI.reload("data-v-74059440", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 220:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__WorkflowItem__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__WorkflowItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__WorkflowItem__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    WorkflowItem: __WEBPACK_IMPORTED_MODULE_0__WorkflowItem___default.a
+  },
+
+  created: function created() {
+    this.fetchInboxItems();
+  },
+  data: function data() {
+    return {
+      items: []
+    };
+  },
+
+
+  methods: {
+    fetchInboxItems: function fetchInboxItems() {
+      // todo swap this for a database query using axios
+      this.items.push({
+        id: 1,
+        action: 'Supervisor Approval',
+        name: 'John Doe',
+        summary: 'Super Admin Access',
+        added_at: '2018-02-15T13:21:12-05:00'
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ 221:
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(222)
+/* template */
+var __vue_template__ = __webpack_require__(223)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/WorkflowItem.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1f5fd829", Component.options)
+  } else {
+    hotAPI.reload("data-v-1f5fd829", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ 222:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_moment__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    duration: function duration() {
+      return this.item.added_at.fromNow();
+    }
+  },
+
+  created: function created() {
+    this.action_needed = this.action;
+
+    if (this.added_at) {
+      this.item.added_at = __WEBPACK_IMPORTED_MODULE_0_moment___default()(this.added_at);
+    } else {
+      this.item.added_at = __WEBPACK_IMPORTED_MODULE_0_moment___default()();
+    }
+
+    this.item.name = this.name;
+
+    this.item.summary = this.summary;
+  },
+  data: function data() {
+    return {
+      action_needed: '',
+      item: {
+        name: '',
+        summary: '',
+        added_at: __WEBPACK_IMPORTED_MODULE_0_moment___default()()
+      },
+      more_options: []
+    };
+  },
+
+
+  props: ['action', 'added_at', 'name', 'summary']
+});
+
+/***/ }),
+
+/***/ 223:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _c("header", { staticClass: "card-header" }, [
+      _c("p", { staticClass: "card-header-title" }, [
+        _vm._v("\n      " + _vm._s(_vm.action_needed) + "\n    ")
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-content" }, [
+      _c("div", { staticClass: "content" }, [
+        _vm._v(
+          "\n      " +
+            _vm._s(_vm.item.summary) +
+            " for " +
+            _vm._s(_vm.item.name) +
+            "\n    "
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _vm._m(1),
+        _vm._v(" " + _vm._s(_vm.duration) + "\n    ")
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(2)
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "card-header-icon",
+        attrs: { "aria-label": "more options" }
+      },
+      [
+        _c("span", { staticClass: "icon" }, [
+          _c("i", {
+            staticClass: "fas fa-angle-down",
+            attrs: { "aria-hidden": "true" }
+          })
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "icon is-small" }, [
+      _c("i", { staticClass: "fas fa-calendar-plus" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("footer", { staticClass: "card-footer" }, [
+      _c("a", { staticClass: "card-footer-item", attrs: { href: "#" } }, [
+        _vm._v("Open")
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "card-footer-item", attrs: { href: "#" } }, [
+        _vm._v("Dismiss")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1f5fd829", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ 224:
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "section" }, [
+    _c("h1", { staticClass: "title" }, [_vm._v("Inbox")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "div",
+        { staticClass: "columns" },
+        _vm._l(_vm.items, function(item) {
+          return _c(
+            "div",
+            { key: item.id, staticClass: "column is-one-third" },
+            [
+              _c("workflow-item", {
+                attrs: {
+                  action: item.action,
+                  name: item.name,
+                  summary: item.summary,
+                  added_at: item.added_at
+                }
+              })
+            ],
+            1
+          )
+        })
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-74059440", module.exports)
+  }
+}
+
+/***/ }),
+
+<<<<<<< HEAD
+/***/ 227:
+=======
+/***/ 225:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+<<<<<<< HEAD
 var __vue_script__ = __webpack_require__(228)
+=======
+var __vue_script__ = __webpack_require__(226)
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /* template */
 var __vue_template__ = __webpack_require__(240)
 /* template functional */
@@ -8416,16 +9471,28 @@ module.exports = Component.exports
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 228:
+=======
+/***/ 226:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+<<<<<<< HEAD
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Footer_vue__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Footer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Footer_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NavBar_vue__ = __webpack_require__(232);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NavBar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__NavBar_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FlashMessage_vue__ = __webpack_require__(235);
+=======
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Footer_vue__ = __webpack_require__(227);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Footer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Footer_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NavBar_vue__ = __webpack_require__(230);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__NavBar_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__NavBar_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FlashMessage_vue__ = __webpack_require__(233);
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FlashMessage_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__FlashMessage_vue__);
 //
 //
@@ -8449,15 +9516,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 229:
+=======
+/***/ 227:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
+<<<<<<< HEAD
 var __vue_script__ = __webpack_require__(230)
 /* template */
 var __vue_template__ = __webpack_require__(231)
+=======
+var __vue_script__ = __webpack_require__(228)
+/* template */
+var __vue_template__ = __webpack_require__(229)
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -8497,7 +9574,11 @@ module.exports = Component.exports
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 230:
+=======
+/***/ 228:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8535,7 +9616,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 231:
+=======
+/***/ 229:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -8593,15 +9678,25 @@ if (false) {
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 232:
+=======
+/***/ 230:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(2)
 /* script */
+<<<<<<< HEAD
 var __vue_script__ = __webpack_require__(233)
 /* template */
 var __vue_template__ = __webpack_require__(234)
+=======
+var __vue_script__ = __webpack_require__(231)
+/* template */
+var __vue_template__ = __webpack_require__(232)
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -8641,7 +9736,11 @@ module.exports = Component.exports
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 233:
+=======
+/***/ 231:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -8705,14 +9804,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      menu: [{ label: "Home", link: "/" }, { label: "About", link: "/temp" }, { label: "Login", link: "/login" }]
+      menu: [{ label: "Home", link: "/" }, { label: "About", link: "/temp" }, { label: "Inbox", link: "/inbox" }, { label: "Login", link: "/login" }]
     };
   }
 });
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 234:
+=======
+/***/ 232:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -8831,13 +9934,21 @@ if (false) {
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 235:
+=======
+/***/ 233:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
+<<<<<<< HEAD
   __webpack_require__(236)
+=======
+  __webpack_require__(234)
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 }
 var normalizeComponent = __webpack_require__(2)
 /* script */
@@ -8883,17 +9994,29 @@ module.exports = Component.exports
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 236:
+=======
+/***/ 234:
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
+<<<<<<< HEAD
 var content = __webpack_require__(237);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var update = __webpack_require__(16)("9e76f37a", content, false, {});
+=======
+var content = __webpack_require__(235);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(236)("9e76f37a", content, false, {});
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -8910,12 +10033,261 @@ if(false) {
 
 /***/ }),
 
+<<<<<<< HEAD
 /***/ 237:
 /***/ (function(module, exports, __webpack_require__) {
+=======
+/***/ 235:
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(14)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.alert-flash {\n  position: fixed;\n  right: 25px;\n  top: 25px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ 236:
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(237)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 
 exports = module.exports = __webpack_require__(4)(false);
 // imports
 
+<<<<<<< HEAD
+=======
+/***/ 237:
+/***/ (function(module, exports) {
+>>>>>>> Add very basic workflow UI components to show an inbox of pending actions for a user and allow access to views from which action can be taken.
 
 // module
 exports.push([module.i, "\n.alert-flash {\n  position: fixed;\n  right: 25px;\n  top: 25px;\n}\n", ""]);
