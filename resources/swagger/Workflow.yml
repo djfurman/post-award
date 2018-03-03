@@ -28,9 +28,29 @@ paths:
       - 'application/json'
       responses:
         200:
-          description: A collection of pending workflow items
+          description: A collection of pending workflow items. Returns an empty array if the inbox is empty.
           schema:
             $ref: '#/definitions/WorkflowItemList'
+        400:
+          description: The request could not be processed because it was formed incorrectly
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: The request was denied due to inappropriate access. Check that the request contained authorization information.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: The server experienced and error and cannot recover.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        501:
+          description: The server does not support the functionality needed to fulfull the request.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        503:
+          description: The service is temporarily unavailable.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
 definitions:
   WorkflowItemList:
     type: object
@@ -76,3 +96,27 @@ definitions:
     - added_at
     - name
     - summary
+  ErrorResponse:
+    description: The error response object
+    allOf:
+    - $ref: '#/definitions/docs'
+    - type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+            description: Message about the error
+  docs:
+    description: Relevant documentation that may be of use to the requestor
+    type: array
+    items:
+      type: object
+      properties:
+        purpose:
+          type: string
+          description: To what this document pretains
+        link:
+          type: string
+          description: URI pointer to the documentation
+
