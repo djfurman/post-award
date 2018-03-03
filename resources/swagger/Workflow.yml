@@ -1,0 +1,80 @@
+---
+swagger: '2.0'
+info:
+  description: This is a sample document for workflow interfaces used by the system
+  version: '0.0.1'
+  title: 'Agreement'
+  termsOfService: 'http://example.com'
+  contact:
+    email: djfurman@gmail.com
+  license:
+    name: 'BSD 3-Clause License'
+    url: 'https://raw.githubusercontent.com/facet-acq/post-award/develop/LICENSE.md'
+host: 'facet.danielfurman.net'
+basePath: '/api/v1'
+tags:
+- name: 'workflow'
+  description: 'Notify users of actions'
+  externalDocs:
+    description: 'Learn more!'
+    url: 'https://github.com/facet-acq/post-award/wiki/Getting-Started'
+schemes:
+- 'http'
+paths:
+  /inbox:
+    get:
+      description: Retrieves a list of actions pending for the associated user
+      produces:
+      - 'application/json'
+      responses:
+        200:
+          description: A collection of pending workflow items
+          schema:
+            $ref: '#/definitions/WorkflowItemList'
+    post:
+      description: Add a new item to workflow
+definitions:
+  WorkflowItemList:
+    type: object
+    description: Collection of workflow items
+    properties:
+      inbox:
+        type: array
+        description: List of workflow items
+        items:
+          $ref: '#/definitions/WorkflowItem'
+  WorkflowItem:
+    type: object
+    description: A single item within a workflow
+    properties:
+      resource_type:
+        type: string
+        description: Namespaced resource type for the item in the workflow
+        example: 'App\Security\AccessRequest'
+      resource_id:
+        type: string
+        description: Unique identifier of the workflow item
+        example: 37a350c7-6524-4e69-ad88-5197c2bcef9f
+      action:
+        type: string
+        description: Textual description of the action that is waiting to be taken
+        example: Supervisor Approval
+      added_at:
+        type: string
+        format: date-time
+        description: ISO-8601 compliant representation of the point in time when the item was added to the workflow
+        example: '2019-10-02T11:23:42-05:00'
+      name:
+        type: string
+        description: Human friendly identifier of the resource that will be impacted by the action
+        example: John Doe
+      summary:
+        type: string
+        description: Human friendly description of the goal of the item from the workflow
+        example: FundsValidation
+    required:
+    - id
+    - action
+    - added_at
+    - name
+    - summary
