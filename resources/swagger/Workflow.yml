@@ -31,8 +31,6 @@ paths:
           description: A collection of pending workflow items
           schema:
             $ref: '#/definitions/WorkflowItemList'
-    post:
-      description: Add a new item to workflow
 definitions:
   WorkflowItemList:
     type: object
