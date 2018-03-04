@@ -22,7 +22,6 @@ Route::group(['namespace' => 'Api'], function () {
         'prefix' => 'v1',
         'namespace' => 'V1'
     ], function () {
-        Route::post('notifications', 'SystemNotificationController@create');
         Route::post('access/request', 'AccessRequestController@sendToSupervisor');
         Route::get('access/temp', 'AccessRequestController@redirectWithData');
         Route::get('access/types', 'AccessRequestController@accessTypes');
@@ -33,5 +32,7 @@ Route::group(['namespace' => 'Api'], function () {
             Route::post('file', 'FileController@store');
             Route::get('file/{uuid}', 'FileController@show');
         });
+        Route::get('inbox', 'WorkflowController@index');
+        Route::post('notifications', 'SystemNotificationController@create');
     });
 });
