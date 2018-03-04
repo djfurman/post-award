@@ -14,9 +14,15 @@ class CreateAccessRequestsTable extends Migration
     public function up()
     {
         Schema::create('access_requests', function (Blueprint $table) {
-            $table->string('uuid')->comment('Globally unique UUID-v4 identifier for the access request');
+            $table->string('uuid')
+                ->comment('Globally unique UUID-v4 identifier for the access request');
             $table->primary('uuid');
-            $table->string('type')->comment('Identifier for the access request type; e.g., Initial, Modification, Deletion');
+            $table->string('type')
+                ->comment('Identifier for the access request type; e.g., Initial, Modification, Deletion');
+            $table->timestamp('request_at')
+                ->comment('Timestamp of the requestors submission of the request');
+            $table->string('system')
+                ->comment('The system to which the access request pertains');
             $table->timestamps();
         });
     }
