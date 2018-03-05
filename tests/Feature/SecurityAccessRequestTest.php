@@ -3,11 +3,11 @@
 namespace Tests\Feature;
 
 use Tests\TestCase;
+use Illuminate\Support\Carbon;
 use App\Security\AccessRequest;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Carbon;
-use Illuminate\Database\QueryException;
 
 class SecurityAccessRequestTest extends TestCase
 {
@@ -35,7 +35,7 @@ class SecurityAccessRequestTest extends TestCase
         AccessRequest::truncate();
 
         $requestType = null;
-        $this->expectException('Illuminate\Database\QueryException');
+        $this->expectException(QueryException::class);
         factory(AccessRequest::class)->create(['type' => null]);
         $this->assertCount(0, AccessRequest::all());
     }
