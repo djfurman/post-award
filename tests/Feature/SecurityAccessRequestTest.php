@@ -83,4 +83,18 @@ class SecurityAccessRequestTest extends TestCase
         $this->expectException(QueryException::class);
         factory(AccessRequest::class)->create(['system' => $systemLocation]);
     }
+
+    /** @test */
+    public function it_tracks_the_ldap_common_name_and_allows_it_to_be_null()
+    {
+        $ldap = 'ab1234';
+        factory(AccessRequest::class)->create(['ldap' => $ldap]);
+        $this->assertDatabaseHas('access_requests', ['ldap' => $ldap]);
+
+        $ldap = null;
+        factory(AccessRequest::class)->create(['ldap' => $ldap]);
+        $this->assertDatabaseHas('access_requests', ['ldap' => $ldap]);
+    }
+
+
 }

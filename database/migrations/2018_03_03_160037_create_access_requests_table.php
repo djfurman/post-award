@@ -25,6 +25,9 @@ class CreateAccessRequestsTable extends Migration
                 ->comment('The system to which the access request pertains');
             $table->string('system_location')
                 ->comment('The physical data facility or facilities where the application resides');
+            $table->string('ldap')
+                ->nullable()
+                ->comment('Common name assigned to the organizational unit sub-object referring to the user');
             $table->timestamps();
         });
     }
