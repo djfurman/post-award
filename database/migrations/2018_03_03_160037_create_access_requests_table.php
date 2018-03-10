@@ -23,6 +23,8 @@ class CreateAccessRequestsTable extends Migration
                 ->comment('Timestamp of the requestors submission of the request');
             $table->string('system')
                 ->comment('The system to which the access request pertains');
+            $table->string('system_location')
+                ->comment('The physical data facility or facilities where the application resides');
             $table->timestamps();
         });
     }
