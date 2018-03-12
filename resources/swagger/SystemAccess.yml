@@ -1,0 +1,81 @@
+---
+swagger: '2.0'
+info:
+  description: This is a sample document for System Authorization Access Requests
+  version: '0.0.1'
+  title: 'SAAR/DD-2875'
+  termsOfService: 'http://example.com'
+  contact:
+    email: djfurman@gmail.com
+  license:
+    name: 'BSD 3-Clause License'
+    url: 'https://raw.githubusercontent.com/facet-acq/post-award/develop/LICENSE.md'
+host: 'facet.danielfurman.net'
+basePath: '/api/v1'
+tags:
+- name: 'saar'
+  description: 'System Authorization Access Requests'
+  externalDocs:
+    description: 'Learn more!'
+    url: 'https://github.com/facet-acq/post-award/wiki/Getting-Started'
+schemes:
+- 'http'
+paths:
+  /security/access-request:
+    get:
+      description: Retrieves a collection of System Authorization Access Request (SAAR) requests known by the system
+      produces:
+      - 'application/json'
+      responses:
+        200:
+          description: A collection of pending workflow items. Returns an empty array if the inbox is empty.
+          schema:
+            $ref: '#/definitions/WorkflowItemList'
+        204:
+          description: The request completed successfully; however, there were not results found that can be returned by the system.
+        401:
+          description: The user authentication was recognized, but the user lacks access to the resource. This incident will be logged.
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        403:
+          description: This endpoint requires user authentication to retrieve but none was provided or if provided was not recognized as valid
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        500:
+          description: The system encountered an internal error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+    post:
+      description: Add a new System Authorization Access Request for the system
+      produces:
+      - 'application/json'
+      responses:
+        201:
+          description: Successful creation of a new SAAR in the system
+        422:
+          description: The request could not be processed as it did not comply with the requirements
+        500:
+          description: The server encountered an internal error
+        503:
+          description: The service is temporarily unavailable; please try the request again later
+  /security/access-request/{uuid}:
+    get:
+      description: Retrieves a single security access request in it's present state
+    put:
+      description: Updates a single security access request
+    patch:
+      description: Updates a single security access request
+    delete:
+      description: Remoes a single security access request
+definitions:
+  SecurityAccessRequest:
+    type: object
+    properties:
+      saar:
+        $ref: '#/definitions/saar'
+  SystemAccessResponse:
+    type: object
+  saar:
+    type: object
+  ErrorResponse:
+    type: object
