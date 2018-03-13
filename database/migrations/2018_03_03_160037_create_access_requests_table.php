@@ -28,6 +28,9 @@ class CreateAccessRequestsTable extends Migration
             $table->string('ldap')
                 ->nullable()
                 ->comment('Common name assigned to the organizational unit sub-object referring to the user');
+            $table->string('mfa')
+                ->nullable()
+                ->comment('Multi factor authentication universal ID');
             $table->timestamps();
         });
     }

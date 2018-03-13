@@ -11,6 +11,7 @@ class AccessRequest extends UuidModel
         'system',
         'system_location',
         'request_at',
-        'ldap'
+        'ldap',
+        'mfa'
     ];
 }

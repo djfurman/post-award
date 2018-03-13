@@ -96,5 +96,15 @@ class SecurityAccessRequestTest extends TestCase
         $this->assertDatabaseHas('access_requests', ['ldap' => $ldap]);
     }
 
+    /** @test */
+    public function it_tracks_the_mfa_token_identifier_and_allow_it_to_be_null()
+    {
+        $multiFactorToken = '011899988819991197253';
+        factory(AccessRequest::class)->create(['mfa' => $multiFactorToken]);
+        $this->assertDatabaseHas('access_requests', ['mfa' => $multiFactorToken]);
 
+        $multiFactorToken = null;
+        factory(AccessRequest::class)->create(['mfa' => $multiFactorToken]);
+        $this->assertDatabaseHas('access_requests', ['mfa' => $multiFactorToken]);
+    }
 }
