@@ -31,6 +31,13 @@ class CreateAccessRequestsTable extends Migration
             $table->string('mfa')
                 ->nullable()
                 ->comment('Multi factor authentication universal ID');
+            $table->string('given_name')
+                ->comment('Given or first name for the user');
+            $table->string('surname')
+                ->comment('Last or surname for the user');
+            $table->string('middle_initial', 1)
+                ->nullable()
+                ->comment('Middle initial of the user');
             $table->timestamps();
         });
     }

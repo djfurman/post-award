@@ -12,5 +12,8 @@ $factory->define(AccessRequest::class, function (Faker $faker) {
         'request_at' => $faker->iso8601(),
         'ldap' => $faker->regexify('[a-z]{2}[0-9]{4}'),
         'mfa' => $faker->uuid,
+        'given_name' => $faker->firstName(),
+        'surname' => $faker->lastName(),
+        'middle_initial' => $faker->randomLetter()
     ];
 });

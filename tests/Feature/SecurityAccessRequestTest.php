@@ -107,4 +107,40 @@ class SecurityAccessRequestTest extends TestCase
         factory(AccessRequest::class)->create(['mfa' => $multiFactorToken]);
         $this->assertDatabaseHas('access_requests', ['mfa' => $multiFactorToken]);
     }
+
+    /** @test */
+    public function it_tracks_the_given_name_and_does_not_allow_it_to_be_null()
+    {
+        $givenName = 'Thomas';
+        factory(AccessRequest::class)->create(['given_name' => $givenName]);
+        $this->assertDatabaseHas('access_requests', ['given_name' => $givenName]);
+
+        $givenName = null;
+        $this->expectException(QueryException::class);
+        factory(AccessRequest::class)->create(['given_name' => $givenName]);
+    }
+
+    /** @test */
+    public function it_tracks_the_surname_and_does_not_allow_it_to_be_null()
+    {
+        $surname = 'Paine';
+        factory(AccessRequest::class)->create(['surname' => $surname]);
+        $this->assertDatabaseHas('access_requests', ['surname' => $surname]);
+
+        $surname = null;
+        $this->expectException(QueryException::class);
+        factory(AccessRequest::class)->create(['surname' => $surname]);
+    }
+
+    /** @test */
+    public function it_tracks_the_middle_initial_and_allows_it_to_be_null()
+    {
+        $middleInitial = 'E';
+        factory(AccessRequest::class)->create(['middle_initial' => $middleInitial]);
+        $this->assertDatabaseHas('access_requests', ['middle_initial' => $middleInitial]);
+
+        $middleInitial = null;
+        factory(AccessRequest::class)->create(['middle_initial' => $middleInitial]);
+        $this->assertDatabaseHas('access_requests', ['middle_initial' => $middleInitial]);
+    }
 }

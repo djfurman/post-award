@@ -12,6 +12,9 @@ class AccessRequest extends UuidModel
         'system_location',
         'request_at',
         'ldap',
-        'mfa'
+        'mfa',
+        'given_name',
+        'surname',
+        'middle_initial',
     ];
 }
