@@ -526,56 +526,6 @@ export default {
           date_completed: ""
         }
       },
-      reviewedBy: {
-        supervisor: {
-          name: {
-            sur: "",
-            given: "",
-            middle_initial: ""
-          },
-          signed_date: "",
-          organization: "",
-          department: "",
-          phone: "",
-          email: ""
-        },
-        information_owner: {
-          name: {
-            sur: "",
-            given: "",
-            middle_initial: ""
-          },
-          signed_date: "",
-          organization: "",
-          department: "",
-          phone: "",
-          email: ""
-        },
-        iao: {
-          name: {
-            sur: "",
-            given: "",
-            middle_initial: ""
-          },
-          signed_date: "",
-          organization: "",
-          department: "",
-          phone: "",
-          email: ""
-        },
-        security_manager: {
-          name: {
-            sur: "",
-            given: "",
-            middle_initial: ""
-          },
-          signed_date: "",
-          organization: "",
-          department: "",
-          phone: "",
-          email: ""
-        }
-      },
       justification: {
         reason: "",
         type: {
