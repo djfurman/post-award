@@ -143,4 +143,76 @@ class SecurityAccessRequestTest extends TestCase
         factory(AccessRequest::class)->create(['middle_initial' => $middleInitial]);
         $this->assertDatabaseHas('access_requests', ['middle_initial' => $middleInitial]);
     }
+
+    /** @test */
+    public function it_tracks_the_mailing_street_address_and_does_not_allow_it_to_be_null()
+    {
+        $streetAddress = '123 Main St';
+        factory(AccessRequest::class)->create(['street_line_1' => $streetAddress]);
+        $this->assertDatabaseHas('access_requests', ['street_line_1' => $streetAddress]);
+
+        $streetAddress = null;
+        $this->expectException(QueryException::class);
+        factory(AccessRequest::class)->create(['street_line_1' => $streetAddress]);
+    }
+
+    /** @test */
+    public function it_tracks_the_secondary_address_and_allows_it_to_be_null()
+    {
+        $street2 = 'Suite 201';
+        factory(AccessRequest::class)->create(['street_line_2' => $street2]);
+        $this->assertDatabaseHas('access_requests', ['street_line_2' => $street2]);
+
+        $street2 = null;
+        factory(AccessRequest::class)->create(['street_line_2' => $street2]);
+        $this->assertDatabaseHas('access_requests', ['street_line_2' => $street2]);
+    }
+
+    /** @test */
+    public function it_tracks_the_city_and_does_not_allow_it_to_be_null()
+    {
+        $city = 'Springfield';
+        factory(AccessRequest::class)->create(['city' => $city]);
+        $this->assertDatabaseHas('access_requests', ['city' => $city]);
+
+        $city = null;
+        $this->expectException(QueryException::class);
+        factory(AccessRequest::class)->create(['city' => $city]);
+    }
+
+    /** @test */
+    public function it_tracks_the_state_and_does_not_allow_it_to_be_null()
+    {
+        $state = 'MA';
+        factory(AccessRequest::class)->create(['state' => $state]);
+        $this->assertDatabaseHas('access_requests', ['state' => $state]);
+
+        $state = null;
+        $this->expectException(QueryException::class);
+        factory(AccessRequest::class)->create(['state' => $state]);
+    }
+
+    /** @test */
+    public function it_tracks_the_country_and_does_not_allow_it_to_be_null()
+    {
+        $country = 'United States';
+        factory(AccessRequest::class)->create(['country' => $country]);
+        $this->assertDatabaseHas('access_requests', ['country' => $country]);
+
+        $country = null;
+        $this->expectException(QueryException::class);
+        factory(AccessRequest::class)->create(['country' => $country]);
+    }
+
+    /** @test */
+    public function it_tracks_the_planet_and_does_not_allow_it_to_be_null()
+    {
+        $planet = 'Earth';
+        factory(AccessRequest::class)->create(['planet' => $planet]);
+        $this->assertDatabaseHas('access_requests', ['planet' => $planet]);
+
+        $planet = null;
+        $this->expectException(QueryException::class);
+        factory(AccessRequest::class)->create(['planet' => $planet]);
+    }
 }

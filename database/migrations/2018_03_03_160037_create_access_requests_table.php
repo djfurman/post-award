@@ -38,6 +38,19 @@ class CreateAccessRequestsTable extends Migration
             $table->string('middle_initial', 1)
                 ->nullable()
                 ->comment('Middle initial of the user');
+            $table->string('street_line_1')
+                ->comment('Primary street address');
+            $table->string('street_line_2')
+                ->nullable()
+                ->comment('Secondary street address');
+            $table->string('city')
+                ->comment('Address city');
+            $table->string('state')
+                ->comment('Address State');
+            $table->string('country')
+                ->comment('Address country');
+            $table->string('planet')
+                ->comment('Address planet');
             $table->timestamps();
         });
     }

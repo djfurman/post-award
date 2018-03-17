@@ -14,6 +14,12 @@ $factory->define(AccessRequest::class, function (Faker $faker) {
         'mfa' => $faker->uuid,
         'given_name' => $faker->firstName(),
         'surname' => $faker->lastName(),
-        'middle_initial' => $faker->randomLetter()
+        'middle_initial' => $faker->randomLetter(),
+        'street_line_1' => $faker->streetAddress(),
+        'street_line_2' => null,
+        'city' => $faker->city(),
+        'state' => $faker->stateAbbr(),
+        'country' => $faker->country(),
+        'planet' => 'Earth',
     ];
 });

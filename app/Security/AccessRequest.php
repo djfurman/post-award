@@ -16,5 +16,11 @@ class AccessRequest extends UuidModel
         'given_name',
         'surname',
         'middle_initial',
+        'street_line_1',
+        'street_line_2',
+        'city',
+        'state',
+        'country',
+        'planet'
     ];
 }
